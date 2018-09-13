@@ -86,7 +86,7 @@ var _jsxFileName = "/Users/joel/dev/UnicornScheduler/components/Head.js";
 var defaultTitle = 'Unicorn Scheduler';
 var defaultDescription = 'Welcome to the Unicorn Scheduler. Home of all the fantastic scheduled events.';
 var defaultOGURL = 'https://unicornscheduler.com';
-var defaultOGImage = '/static/img/unicorn.jpg';
+var defaultOGImage = '/static/img/test1.jpg';
 
 var Head = function Head(props) {
   return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_head___default.a, {
@@ -105,103 +105,110 @@ var Head = function Head(props) {
       fileName: _jsxFileName,
       lineNumber: 12
     }
-  }, props.title || defaultTitle), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+  }, props.title || defaultTitle), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
+    rel: "manifest",
+    href: "/static/manifest.json",
+    __source: {
+      fileName: _jsxFileName,
+      lineNumber: 13
+    }
+  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
     name: "description",
     content: props.description || defaultDescription,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 13
+      lineNumber: 14
     }
   }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
     name: "viewport",
     content: "width=device-width, initial-scale=1",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 17
+      lineNumber: 18
     }
   }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
     rel: "icon",
-    href: "/static/favicon.ico",
+    href: "/static/img/test1.png",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 18
+      lineNumber: 19
     }
   }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
     property: "og:url",
     content: props.url || defaultOGURL,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 19
+      lineNumber: 20
     }
   }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
     property: "og:title",
     content: props.title || defaultTitle,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 20
+      lineNumber: 21
     }
   }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
     property: "og:description",
     content: props.description || defaultDescription,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 21
+      lineNumber: 22
     }
   }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
     rel: "icon",
     href: props.ogImage || defaultOGImage,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 25
+      lineNumber: 26
     }
   }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
     name: "twitter:site",
     content: props.url || defaultOGURL,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 26
+      lineNumber: 27
     }
   }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
     name: "twitter:card",
     content: "summary_large_image",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 27
+      lineNumber: 28
     }
   }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
     name: "twitter:image",
     content: props.ogImage || defaultOGImage,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 28
+      lineNumber: 29
     }
   }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
     property: "og:image",
     content: props.ogImage || defaultOGImage,
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 29
+      lineNumber: 30
     }
   }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
     property: "og:image:width",
     content: "1200",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 30
+      lineNumber: 31
     }
   }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
     property: "og:image:height",
     content: "630",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 31
+      lineNumber: 32
     }
   }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
     rel: "stylesheet",
     href: "/_next/static/style.css",
     __source: {
       fileName: _jsxFileName,
-      lineNumber: 32
+      lineNumber: 33
     }
   }));
 };
@@ -282,6 +289,20 @@ function (_React$Component) {
 
 /***/ }),
 
+/***/ "./css/slider.css":
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
+/***/ "./css/sliderContent.css":
+/***/ (function(module, exports) {
+
+
+
+/***/ }),
+
 /***/ "./pages/index.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -290,9 +311,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Layout_js__ = __webpack_require__("./components/Layout.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_slick__ = __webpack_require__("react-slick");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_slick___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_slick__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__css_slider_css__ = __webpack_require__("./css/slider.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__css_slider_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__css_slider_css__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__css_sliderContent_css__ = __webpack_require__("./css/sliderContent.css");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__css_sliderContent_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__css_sliderContent_css__);
 var _jsxFileName = "/Users/joel/dev/UnicornScheduler/pages/index.js";
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -309,31 +338,97 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
+
+
+var sliderSettings = {
+  dots: true,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  autoplay: false,
+  autoplaySpeed: 2000,
+  afterChange: function afterChange(i) {
+    console.log(i);
+  }
+};
+
 var Index =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(Index, _React$Component);
 
-  function Index() {
+  function Index(props) {
+    var _this;
+
     _classCallCheck(this, Index);
 
-    return _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).apply(this, arguments));
+    _this = _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).call(this, props));
+    _this.state = {
+      slides: [{
+        text: 'Slide 1',
+        image: '/static/img/test1.jpg'
+      }, {
+        text: 'Slide 2',
+        image: '/static/img/test2.jpg'
+      }, {
+        text: 'Unicorn!'
+      }]
+    };
+    return _this;
   }
 
   _createClass(Index, [{
     key: "render",
     value: function render() {
+      var _this2 = this;
+
+      console.log(this.state);
+      var renderSlides = this.state.slides ? this.state.slides.map(function (slide, i) {
+        var slideItemStyle = {};
+
+        if (slide.image) {
+          slideItemStyle = {
+            backgroundImage: "url(".concat(slide.image, ")")
+          };
+        }
+
+        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+          className: "slideItemWrapper",
+          key: i,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 44
+          }
+        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+          className: "slideItem",
+          style: slideItemStyle,
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 45
+          }
+        }, !slide.image ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2", {
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 47
+          }
+        }, slide.text) : null));
+      }) : {};
       return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_Layout_js__["a" /* default */], {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 7
+          lineNumber: 55
         }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", {
+      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_slick___default.a, _extends({
+        ref: function ref(e) {
+          return _this2.slider = e;
+        }
+      }, sliderSettings, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 8
+          lineNumber: 56
         }
-      }, "Unicorn!"));
+      }), renderSlides));
     }
   }]);
 
@@ -363,6 +458,13 @@ module.exports = require("next/head");
 /***/ (function(module, exports) {
 
 module.exports = require("react");
+
+/***/ }),
+
+/***/ "react-slick":
+/***/ (function(module, exports) {
+
+module.exports = require("react-slick");
 
 /***/ })
 

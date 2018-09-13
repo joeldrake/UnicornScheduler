@@ -1,0 +1,26 @@
+#__next,
+.main,
+.slick-slider,
+.slick-list,
+.slick-track,
+.slick-slide,
+.slick-slide div,
+.slideItemWrapper,
+.slideItem {
+  height: 100%;
+}
+
+.slideItem {
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.slideItem h2 {
+  font-weight: normal;
+  letter-spacing: 1px;
+  font-size: 3em;
+}

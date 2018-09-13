@@ -1,0 +1,21 @@
+{
+  "short_name": "UnicornScheduler",
+  "name": "Unicorn Scheduler",
+  "description": "Welcome to the Unicorn Scheduler. Home of all the fantastic scheduled events.",
+  "icons": [
+    {
+      "src": "/static/img/test1.jpg",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/img/test1.jpg",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "plum",
+  "background_color": "plum"
+}
