@@ -67,20 +67,38 @@ module.exports =
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 1);
 /******/ })
 /************************************************************************/
-/******/ ({
+/******/ ([
+/* 0 */
+/***/ (function(module, exports) {
 
-/***/ "./components/Head.js":
+module.exports = require("react");
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__(2);
+
+
+/***/ }),
+/* 2 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_head__ = __webpack_require__("next/head");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_next_head___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_next_head__);
-var _jsxFileName = "/Users/joel/dev/UnicornScheduler/components/Head.js";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+
+// EXTERNAL MODULE: external "react"
+var external__react_ = __webpack_require__(0);
+var external__react__default = /*#__PURE__*/__webpack_require__.n(external__react_);
+
+// EXTERNAL MODULE: external "next/head"
+var head_ = __webpack_require__(3);
+var head__default = /*#__PURE__*/__webpack_require__.n(head_);
+
+// CONCATENATED MODULE: ./components/Head.js
 
 
 var defaultTitle = 'Unicorn Scheduler';
@@ -88,146 +106,66 @@ var defaultDescription = 'Welcome to the Unicorn Scheduler. Home of all the fant
 var defaultOGURL = 'https://unicornscheduler.com';
 var defaultOGImage = '/static/img/test1.jpg';
 
-var Head = function Head(props) {
-  return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1_next_head___default.a, {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 10
-    }
-  }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
-    charSet: "UTF-8",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 11
-    }
-  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("title", {
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 12
-    }
-  }, props.title || defaultTitle), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
+var Head_Head = function Head(props) {
+  return external__react__default.a.createElement(head__default.a, null, external__react__default.a.createElement("meta", {
+    charSet: "UTF-8"
+  }), external__react__default.a.createElement("title", null, props.title || defaultTitle), external__react__default.a.createElement("link", {
     rel: "manifest",
-    href: "/static/manifest.json",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 13
-    }
-  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+    href: "/static/manifest.json"
+  }), external__react__default.a.createElement("meta", {
     name: "description",
-    content: props.description || defaultDescription,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 14
-    }
-  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+    content: props.description || defaultDescription
+  }), external__react__default.a.createElement("meta", {
     name: "viewport",
-    content: "width=device-width, initial-scale=1",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 18
-    }
-  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
+    content: "width=device-width, initial-scale=1"
+  }), external__react__default.a.createElement("link", {
     rel: "icon",
-    href: "/static/img/test1.png",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 19
-    }
-  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+    href: "/static/img/test1.png"
+  }), external__react__default.a.createElement("meta", {
     property: "og:url",
-    content: props.url || defaultOGURL,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 20
-    }
-  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+    content: props.url || defaultOGURL
+  }), external__react__default.a.createElement("meta", {
     property: "og:title",
-    content: props.title || defaultTitle,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 21
-    }
-  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+    content: props.title || defaultTitle
+  }), external__react__default.a.createElement("meta", {
     property: "og:description",
-    content: props.description || defaultDescription,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 22
-    }
-  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
+    content: props.description || defaultDescription
+  }), external__react__default.a.createElement("link", {
     rel: "icon",
-    href: props.ogImage || defaultOGImage,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 26
-    }
-  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+    href: props.ogImage || defaultOGImage
+  }), external__react__default.a.createElement("meta", {
+    name: "apple-mobile-web-app-status-bar-style",
+    content: "black-translucent"
+  }), external__react__default.a.createElement("meta", {
     name: "twitter:site",
-    content: props.url || defaultOGURL,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 27
-    }
-  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+    content: props.url || defaultOGURL
+  }), external__react__default.a.createElement("meta", {
     name: "twitter:card",
-    content: "summary_large_image",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 28
-    }
-  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+    content: "summary_large_image"
+  }), external__react__default.a.createElement("meta", {
     name: "twitter:image",
-    content: props.ogImage || defaultOGImage,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 29
-    }
-  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+    content: props.ogImage || defaultOGImage
+  }), external__react__default.a.createElement("meta", {
     property: "og:image",
-    content: props.ogImage || defaultOGImage,
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 30
-    }
-  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+    content: props.ogImage || defaultOGImage
+  }), external__react__default.a.createElement("meta", {
     property: "og:image:width",
-    content: "1200",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 31
-    }
-  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("meta", {
+    content: "1200"
+  }), external__react__default.a.createElement("meta", {
     property: "og:image:height",
-    content: "630",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 32
-    }
-  }), __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("link", {
+    content: "630"
+  }), external__react__default.a.createElement("link", {
     rel: "stylesheet",
-    href: "/_next/static/style.css",
-    __source: {
-      fileName: _jsxFileName,
-      lineNumber: 33
-    }
+    href: "/_next/static/style.css"
   }));
 };
 
-/* harmony default export */ __webpack_exports__["a"] = (Head);
+/* harmony default export */ var components_Head = (Head_Head);
+// EXTERNAL MODULE: ./css/main.css
+var main = __webpack_require__(4);
+var main_default = /*#__PURE__*/__webpack_require__.n(main);
 
-/***/ }),
-
-/***/ "./components/Layout.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Head__ = __webpack_require__("./components/Head.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_main_css__ = __webpack_require__("./css/main.css");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__css_main_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__css_main_css__);
-var _jsxFileName = "/Users/joel/dev/UnicornScheduler/components/Layout.js";
-
+// CONCATENATED MODULE: ./components/Layout.js
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -246,7 +184,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var Layout =
+var Layout_Layout =
 /*#__PURE__*/
 function (_React$Component) {
   _inherits(Layout, _React$Component);
@@ -260,80 +198,44 @@ function (_React$Component) {
   _createClass(Layout, [{
     key: "render",
     value: function render() {
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
-        className: "main",
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 8
-        }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__Head__["a" /* default */], {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 9
-        }
-      }), this.props.children);
+      return external__react__default.a.createElement("div", {
+        className: "main"
+      }, external__react__default.a.createElement(components_Head, null), this.props.children);
     }
   }]);
 
   return Layout;
-}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+}(external__react__default.a.Component);
 
-/* harmony default export */ __webpack_exports__["a"] = (Layout);
+/* harmony default export */ var components_Layout = (Layout_Layout);
+// EXTERNAL MODULE: external "react-slick"
+var external__react_slick_ = __webpack_require__(5);
+var external__react_slick__default = /*#__PURE__*/__webpack_require__.n(external__react_slick_);
 
-/***/ }),
+// EXTERNAL MODULE: ./css/slider.css
+var slider = __webpack_require__(6);
+var slider_default = /*#__PURE__*/__webpack_require__.n(slider);
 
-/***/ "./css/main.css":
-/***/ (function(module, exports) {
+// EXTERNAL MODULE: ./css/sliderContent.css
+var sliderContent = __webpack_require__(7);
+var sliderContent_default = /*#__PURE__*/__webpack_require__.n(sliderContent);
 
-
-
-/***/ }),
-
-/***/ "./css/slider.css":
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ "./css/sliderContent.css":
-/***/ (function(module, exports) {
-
-
-
-/***/ }),
-
-/***/ "./pages/index.js":
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__("react");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Layout_js__ = __webpack_require__("./components/Layout.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_slick__ = __webpack_require__("react-slick");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_slick___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_slick__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__css_slider_css__ = __webpack_require__("./css/slider.css");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__css_slider_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__css_slider_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__css_sliderContent_css__ = __webpack_require__("./css/sliderContent.css");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__css_sliderContent_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__css_sliderContent_css__);
-var _jsxFileName = "/Users/joel/dev/UnicornScheduler/pages/index.js";
-
-function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+// CONCATENATED MODULE: ./pages/index.js
+function pages__typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { pages__typeof = function _typeof(obj) { return typeof obj; }; } else { pages__typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return pages__typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function pages__classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+function pages__defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+function pages__createClass(Constructor, protoProps, staticProps) { if (protoProps) pages__defineProperties(Constructor.prototype, protoProps); if (staticProps) pages__defineProperties(Constructor, staticProps); return Constructor; }
 
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+function pages__possibleConstructorReturn(self, call) { if (call && (pages__typeof(call) === "object" || typeof call === "function")) { return call; } return pages__assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+function pages__assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+function pages__inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
 
@@ -353,17 +255,17 @@ var sliderSettings = {
   }
 };
 
-var Index =
+var pages_Index =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(Index, _React$Component);
+  pages__inherits(Index, _React$Component);
 
   function Index(props) {
     var _this;
 
-    _classCallCheck(this, Index);
+    pages__classCallCheck(this, Index);
 
-    _this = _possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).call(this, props));
+    _this = pages__possibleConstructorReturn(this, (Index.__proto__ || Object.getPrototypeOf(Index)).call(this, props));
     _this.state = {
       slides: [{
         text: 'Slide 1',
@@ -378,12 +280,11 @@ function (_React$Component) {
     return _this;
   }
 
-  _createClass(Index, [{
+  pages__createClass(Index, [{
     key: "render",
     value: function render() {
       var _this2 = this;
 
-      console.log(this.state);
       var renderSlides = this.state.slides ? this.state.slides.map(function (slide, i) {
         var slideItemStyle = {};
 
@@ -393,80 +294,56 @@ function (_React$Component) {
           };
         }
 
-        return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+        return external__react__default.a.createElement("div", {
           className: "slideItemWrapper",
-          key: i,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 44
-          }
-        }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", {
+          key: i
+        }, external__react__default.a.createElement("div", {
           className: "slideItem",
-          style: slideItemStyle,
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 45
-          }
-        }, !slide.image ? __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h2", {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 47
-          }
-        }, slide.text) : null));
+          style: slideItemStyle
+        }, !slide.image ? external__react__default.a.createElement("h2", null, slide.text) : null));
       }) : {};
-      return __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_1__components_Layout_js__["a" /* default */], {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 55
-        }
-      }, __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2_react_slick___default.a, _extends({
+      return external__react__default.a.createElement(components_Layout, null, external__react__default.a.createElement(external__react_slick__default.a, _extends({
         ref: function ref(e) {
           return _this2.slider = e;
         }
-      }, sliderSettings, {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 56
-        }
-      }), renderSlides));
+      }, sliderSettings), renderSlides));
     }
   }]);
 
   return Index;
-}(__WEBPACK_IMPORTED_MODULE_0_react___default.a.Component);
+}(external__react__default.a.Component);
 
-/* harmony default export */ __webpack_exports__["default"] = (Index);
-
-/***/ }),
-
-/***/ 3:
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__("./pages/index.js");
-
+/* harmony default export */ var pages = __webpack_exports__["default"] = (pages_Index);
 
 /***/ }),
-
-/***/ "next/head":
+/* 3 */
 /***/ (function(module, exports) {
 
 module.exports = require("next/head");
 
 /***/ }),
-
-/***/ "react":
+/* 4 */
 /***/ (function(module, exports) {
 
-module.exports = require("react");
+
 
 /***/ }),
-
-/***/ "react-slick":
+/* 5 */
 /***/ (function(module, exports) {
 
 module.exports = require("react-slick");
 
-/***/ })
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
 
-/******/ });
-//# sourceMappingURL=index.js.map
+
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+
+
+/***/ })
+/******/ ]);

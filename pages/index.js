@@ -30,8 +30,6 @@ class Index extends React.Component {
   }
 
   render() {
-    console.log(this.state);
-
     let renderSlides = this.state.slides
       ? this.state.slides.map((slide, i) => {
           let slideItemStyle = {};

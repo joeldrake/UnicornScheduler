@@ -24,6 +24,10 @@ const Head = props => (
       content={props.description || defaultDescription}
     />
     <link rel="icon" href={props.ogImage || defaultOGImage} />
+    <meta
+      name="apple-mobile-web-app-status-bar-style"
+      content="black-translucent"
+    />
     <meta name="twitter:site" content={props.url || defaultOGURL} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={props.ogImage || defaultOGImage} />
