@@ -23,3 +23,5 @@ app
     console.error(ex.stack);
     process.exit(1);
   });
+
+  //lollo testar puscha till Github! Du kan ta bort denna kommentar :) 
