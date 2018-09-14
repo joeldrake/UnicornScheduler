@@ -32,8 +32,10 @@ class Index extends React.Component {
     try {
       firebase.initializeApp(config);
     } catch (err) {
-      // we skip the "already exists" message which is
-      // not an actual error when we're hot-reloading
+      /*
+        this try function is to skip the "already exists" message which
+        happens when we're hot-reloading and is not an actual error
+      */
       if (!/already exists/.test(err.message)) {
         console.error('Firebase initialization error', err.stack);
       }
@@ -88,7 +90,7 @@ class Index extends React.Component {
             </div>
           );
         })
-      : {};
+      : [];
 
     return (
       <Layout>
