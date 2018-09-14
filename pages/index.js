@@ -1,10 +1,10 @@
 import React from 'react';
 import Layout from './../components/Layout.js';
+import SlideItem from './../components/SlideItem.js';
 import Slider from 'react-slick';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import './../css/slider.css';
-import './../css/sliderContent.css';
 
 var sliderSettings = {
   dots: true,
@@ -74,21 +74,7 @@ class Index extends React.Component {
   render() {
     let renderSlides = this.state.slides
       ? this.state.slides.map((slide, i) => {
-          let slideItemStyle = {};
-          if (slide.image) {
-            slideItemStyle.backgroundImage = `url(${slide.image})`;
-          }
-          if (slide.color) {
-            slideItemStyle.backgroundColor = `${slide.color}`;
-          }
-          return (
-            <div className={`slideItemWrapper`} key={i}>
-              <div className={`slideItem`} style={slideItemStyle}>
-                {/* temporär check som lägger in text om det inte finns någon bild */}
-                {!slide.image ? <h2>{slide.text}</h2> : null}
-              </div>
-            </div>
-          );
+          return <SlideItem key={i} slide={slide} />;
         })
       : [];
 
