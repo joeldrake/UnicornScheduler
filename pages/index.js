@@ -6,16 +6,6 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import './../css/slider.css';
 
-var sliderSettings = {
-  dots: true,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 1,
-  slidesToScroll: 1,
-  autoplay: true,
-  autoplaySpeed: 3000,
-};
-
 class Index extends React.Component {
   constructor(props) {
     super(props);
@@ -41,12 +31,17 @@ class Index extends React.Component {
       }
     }
 
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+
     this.state = {
       slides: [],
     };
   }
 
   componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+
     const firestore = firebase.firestore();
 
     const settings = {
@@ -71,12 +66,41 @@ class Index extends React.Component {
       });
   }
 
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
+  }
+
   render() {
-    let renderSlides = this.state.slides
-      ? this.state.slides.map((slide, i) => {
-          return <SlideItem key={i} slide={slide} />;
-        })
-      : [];
+    /*
+      Only autoplay if window is wider than 500px.
+      Autoplay only seem to have effect on first load,
+      if slider is not playing and window is resized there
+      should probably be a this.slider.play() somewhere.
+    */
+    var autoPlay = this.state.width > 500 ? true : false;
+
+    let sliderSettings = {
+      dots: true,
+      infinite: true,
+      speed: 500,
+      slidesToShow: 1,
+      slidesToScroll: 1,
+      autoplay: autoPlay,
+      pauseOnHover: false,
+      arrows: true,
+      autoplaySpeed: 5000,
+    };
+
+    let renderSlides = [];
+    if (this.state.slides) {
+      renderSlides = this.state.slides.map((slide, i) => {
+        return <SlideItem key={i} slide={slide} />;
+      });
+    }
 
     return (
       <Layout>

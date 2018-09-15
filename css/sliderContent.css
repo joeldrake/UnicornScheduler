@@ -13,14 +13,13 @@
 .slideItem {
   position: relative;
   color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  padding: 50px;
+  padding: 40px;
   font-size: 1.5em;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .slideItem h2 {
   font-weight: normal;
@@ -29,7 +28,6 @@
 }
 
 .slideBox {
-  position: absolute;
   padding: 30px 50px;
   background-color: black;
   color: white;
@@ -39,11 +37,26 @@
   word-break: break-word;
 }
 
+.headlineDescriptionWrapper {
+  position: absolute;
+  bottom: 60px;
+  left: 60px;
+  min-width: 50%;
+}
+
+.timeLocationWrapper {
+  position: absolute;
+  bottom: 70px;
+  right: 10%;
+  max-width: 30%;
+}
+
 .slideHeadline {
+  display: inline-block;
   padding: 20px 50px;
-  top: 0;
-  left: 40px;
-  transform: rotate(-3deg) translateY(-100%);
+  transform: rotate(-3deg) translateY(15px) translateX(20px);
+  max-width: 90%;
+  transform-origin: bottom left;
   font-size: 2.5em;
   background-color: white;
   color: black;
@@ -51,30 +64,18 @@
 }
 
 .slideDesciption {
-  bottom: 60px;
-  left: 20px;
-  max-width: 50%;
-}
-
-.timeLocationWrapper {
-  position: absolute;
-  bottom: 70px;
-  right: 100px;
-  width: 30%;
-}
-
-.slideLocation {
-  bottom: 0;
-  right: 10px;
-  padding: 15px 25px;
-  transform: rotate(3deg);
+  max-width: 55%;
 }
 
 .slideTime {
-  bottom: 0;
-  right: 0;
-  transform: translateY(-90%);
+  display: inline-block;
   padding: 15px 25px;
+}
+
+.slideLocation {
+  display: inline-block;
+  padding: 15px 25px;
+  transform: rotate(3deg) translateX(-15px);
 }
 
 @media screen and (max-width: 960px) {
@@ -87,31 +88,35 @@
   .slideItem {
     font-size: 1em;
   }
-  .slideDesciption {
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-    max-width: none;
+  .headlineDescriptionWrapper {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-top: 25%;
     bottom: auto;
   }
+
+  .timeLocationWrapper {
+    position: relative;
+    text-align: right;
+    top: 20px;
+    bottom: auto;
+    right: auto;
+    max-width: none;
+  }
+
   .slideHeadline {
-    width: 90%;
-    transform: rotate(-3deg) translateY(-90%);
+    transform: rotate(-3deg) translateY(7px) translateX(20px);
     font-size: 2em;
-    left: 20px;
-    right: 40px;
     padding: 20px 30px;
   }
-  .timeLocationWrapper {
-    width: 100%;
-    right: 20px;
+  .slideDesciption {
+    max-width: 100%;
   }
 }
 
 @media screen and (max-width: 300px) {
   .slideHeadline {
     font-size: 1.5em;
-    left: 20px;
-    right: 20px;
   }
 }

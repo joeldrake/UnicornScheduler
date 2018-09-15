@@ -6,11 +6,11 @@ class SlideItem extends React.Component {
     const slide = this.props.slide;
     let slideItemStyle = {};
     let slideHeadlineStyle = {};
+
     if (slide.image) {
       slideItemStyle.backgroundImage = `url(${slide.image})`;
     }
     if (slide.color) {
-      slideItemStyle.backgroundColor = `${slide.color}`;
       slideHeadlineStyle.backgroundColor = `${slide.color}`;
     }
 
@@ -23,10 +23,7 @@ class SlideItem extends React.Component {
     );
 
     let renderDescription = slide.description ? (
-      <div className={`slideBox slideDesciption`}>
-        {renderHeadline}
-        {slide.description}
-      </div>
+      <div className={`slideBox slideDesciption`}>{slide.description}</div>
     ) : (
       ''
     );
@@ -43,19 +40,25 @@ class SlideItem extends React.Component {
       ''
     );
 
+    let renderHeadlineDescriptionWrapper = (
+      <div className={`headlineDescriptionWrapper`}>
+        {renderHeadline}
+        {renderDescription}
+      </div>
+    );
+
     let renderTimeLocationWrapper = (
       <div className={`timeLocationWrapper`}>
-        {renderLocation}
         {renderTime}
+        <div className="clearfix" />
+        {renderLocation}
       </div>
     );
 
     return (
       <div className={`slideItemWrapper`}>
         <div className={`slideItem`} style={slideItemStyle}>
-          {/* temporär check som lägger in text om det inte finns någon bild */}
-          {!slide.image ? <h2>{slide.text}</h2> : null}
-          {renderDescription}
+          {renderHeadlineDescriptionWrapper}
           {renderTimeLocationWrapper}
         </div>
       </div>
