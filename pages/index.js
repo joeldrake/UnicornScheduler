@@ -31,16 +31,15 @@ class Index extends React.Component {
       }
     }
 
-    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
-
     this.state = {
       slides: [],
     };
   }
 
   componentDidMount() {
-    this.updateWindowDimensions();
-    window.addEventListener('resize', this.updateWindowDimensions);
+    //for some reason this caused problems with the starting slide
+    //this.updateWindowDimensions();
+    //window.addEventListener('resize', this.updateWindowDimensions);
 
     const firestore = firebase.firestore();
 
@@ -67,7 +66,7 @@ class Index extends React.Component {
   }
 
   componentWillUnmount() {
-    window.removeEventListener('resize', this.updateWindowDimensions);
+    //window.removeEventListener('resize', this.updateWindowDimensions);
   }
 
   updateWindowDimensions() {
@@ -81,7 +80,7 @@ class Index extends React.Component {
       if slider is not playing and window is resized there
       should probably be a this.slider.play() somewhere.
     */
-    var autoPlay = this.state.width > 500 ? true : false;
+    var autoPlay = true; //this.state.width > 500 ? true : false;
 
     let sliderSettings = {
       dots: true,
@@ -90,8 +89,9 @@ class Index extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: autoPlay,
-      pauseOnHover: false,
+      pauseOnHover: true,
       arrows: true,
+      initialSlide: 0,
       autoplaySpeed: 5000,
     };
 
