@@ -1,9 +1,52 @@
 import React from 'react';
+import Modal from './../components/Modal.js';
+import posed, { PoseGroup } from 'react-pose';
 import './../css/sliderContent.css';
 
 class SlideItem extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      modalOpen: false,
+    };
+  }
+
+  handleToolbarItemClick = e => {
+    e.preventDefault();
+
+    const modalOpen = this.state.modalOpen;
+
+    if (!modalOpen) {
+      //Modal is about to be open, pause the slider
+      this.props.slider.slickPause();
+      console.log('pause slider');
+    } else {
+      //Modal is about to be close, play the slider
+      this.props.slider.slickPlay();
+      console.log('play slider');
+    }
+
+    this.setState({
+      modalOpen: !modalOpen,
+    });
+  };
+
   render() {
     const slide = this.props.slide;
+    const modalOpen = this.state.modalOpen;
+
+    const ModalContainer = posed.div({
+      enter: {
+        y: '0',
+        opacity: 1,
+      },
+      exit: {
+        y: '-100%',
+        opacity: 0,
+      },
+    });
+
     let slideItemStyle = {};
     let slideHeadlineStyle = {};
 
@@ -29,13 +72,13 @@ class SlideItem extends React.Component {
     );
 
     let renderTime = slide.time ? (
-      <div className={`slideBox slideTime`}>{slide.time}</div>
+      <div className={`slideBox white slideTime`}>{slide.time}</div>
     ) : (
       ''
     );
 
     let renderLocation = slide.location ? (
-      <div className={`slideBox slideLocation`}>{slide.location}</div>
+      <div className={`slideBox white slideLocation`}>{slide.location}</div>
     ) : (
       ''
     );
@@ -58,6 +101,23 @@ class SlideItem extends React.Component {
     return (
       <div className={`slideItemWrapper`}>
         <div className={`slideItem`} style={slideItemStyle}>
+          <div className={`slideItemToolbar`}>
+            <a href="#" onClick={this.handleToolbarItemClick}>
+              <img src={`/static/img/pen.svg`} />
+            </a>
+            <a href="#" onClick={this.handleToolbarItemClick}>
+              <img src={`/static/img/plus.svg`} />
+            </a>
+          </div>
+
+          <PoseGroup>
+            {modalOpen ? (
+              <ModalContainer className={`modalWrapper`} key="modal">
+                <Modal toggleModal={this.handleToolbarItemClick} />
+              </ModalContainer>
+            ) : null}
+          </PoseGroup>
+
           {renderHeadlineDescriptionWrapper}
           {renderTimeLocationWrapper}
         </div>

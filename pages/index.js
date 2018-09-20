@@ -37,10 +37,11 @@ class Index extends React.Component {
   }
 
   componentDidMount() {
-    //for some reason this caused problems with the starting slide
-    //this.updateWindowDimensions();
-    //window.addEventListener('resize', this.updateWindowDimensions);
-
+    /*
+      //caused problems with the starting slide, removed it for now
+      this.updateWindowDimensions();
+      window.addEventListener('resize', this.updateWindowDimensions);
+    */
     const firestore = firebase.firestore();
 
     const settings = {
@@ -76,11 +77,11 @@ class Index extends React.Component {
   render() {
     /*
       Only autoplay if window is wider than 500px.
-      Autoplay only seem to have effect on first load,
-      if slider is not playing and window is resized there
-      should probably be a this.slider.play() somewhere.
+      this did not work so good, removed it.
+
+      var autoPlay = this.state.width > 500 ? true : false;
     */
-    var autoPlay = true; //this.state.width > 500 ? true : false;
+    var autoPlay = true;
 
     let sliderSettings = {
       dots: true,
@@ -89,7 +90,7 @@ class Index extends React.Component {
       slidesToShow: 1,
       slidesToScroll: 1,
       autoplay: autoPlay,
-      pauseOnHover: true,
+      pauseOnHover: false,
       arrows: true,
       initialSlide: 0,
       autoplaySpeed: 5000,
@@ -98,7 +99,7 @@ class Index extends React.Component {
     let renderSlides = [];
     if (this.state.slides) {
       renderSlides = this.state.slides.map((slide, i) => {
-        return <SlideItem key={i} slide={slide} />;
+        return <SlideItem key={i} slide={slide} slider={this.slider} />;
       });
     }
 

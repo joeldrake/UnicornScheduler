@@ -37,6 +37,11 @@
   word-break: break-word;
 }
 
+.slideBox.white {
+  background-color: white;
+  color: black;
+}
+
 .headlineDescriptionWrapper {
   position: absolute;
   bottom: 60px;
@@ -76,6 +81,29 @@
   display: inline-block;
   padding: 15px 25px;
   transform: rotate(3deg) translateX(-15px);
+}
+
+.slideItemToolbar {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+}
+
+.slideItemToolbar a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  margin-left: 10px;
+  background-color: rgba(255, 255, 255, 0.25);
+  opacity: 0.5;
+}
+
+.slideItemToolbar a:hover {
+  opacity: 1;
 }
 
 @media screen and (max-width: 960px) {
