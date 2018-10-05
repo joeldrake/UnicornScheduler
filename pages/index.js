@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from './../components/Layout.js';
-import SlideItem from './../components/SlideItem.js';
+import Event from './../components/Event.js';
 import Slider from 'react-slick';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -32,7 +32,7 @@ class Index extends React.Component {
     }
 
     this.state = {
-      slides: [],
+      events: [],
     };
   }
 
@@ -62,7 +62,7 @@ class Index extends React.Component {
           remove when app is in production
         */
         console.log(JSON.stringify(events, null, 2));
-        this.setState({ slides: events });
+        this.setState({ events });
       });
   }
 
@@ -96,17 +96,17 @@ class Index extends React.Component {
       autoplaySpeed: 5000,
     };
 
-    let renderSlides = [];
-    if (this.state.slides) {
-      renderSlides = this.state.slides.map((slide, i) => {
-        return <SlideItem key={i} slide={slide} slider={this.slider} />;
+    let renderEvents = [];
+    if (this.state.events) {
+      renderEvents = this.state.events.map((event, i) => {
+        return <Event key={i} event={event} slider={this.slider} />;
       });
     }
 
     return (
       <Layout>
         <Slider ref={e => (this.slider = e)} {...sliderSettings}>
-          {renderSlides}
+          {renderEvents}
         </Slider>
       </Layout>
     );

@@ -16,7 +16,7 @@ const Head = props => (
       content={props.description || defaultDescription}
     />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="/static/img/test1.png" />
+    <link rel="icon" href="/static/img/logo.png" />
     <meta property="og:url" content={props.url || defaultOGURL} />
     <meta property="og:title" content={props.title || defaultTitle} />
     <meta
@@ -32,7 +32,6 @@ const Head = props => (
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js" />
-    <link rel="stylesheet" href="/_next/static/style.css" />
   </NextHead>
 );
 

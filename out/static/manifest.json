@@ -4,18 +4,13 @@
   "description": "Welcome to the Unicorn Scheduler. Home of all the fantastic scheduled events.",
   "icons": [
     {
-      "src": "/static/img/test1.jpg",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "/static/img/test1.jpg",
-      "sizes": "512x512",
+      "src": "/static/img/logo.png",
+      "sizes": "800x800",
       "type": "image/png"
     }
   ],
   "start_url": "/",
   "display": "standalone",
-  "theme_color": "plum",
-  "background_color": "plum"
+  "theme_color": "black",
+  "background_color": "black"
 }

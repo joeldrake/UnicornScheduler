@@ -1,0 +1,71 @@
+.eventEditWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.eventEditDarken {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.eventEdit {
+  position: relative;
+  z-index: 11;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  max-width: 700px;
+  min-height: 300px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.78);
+  color: #000000;
+}
+
+.closeEventEditBtn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.eventEditForm {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 50px 20px 20px 20px;
+  justify-content: space-between;
+}
+
+.eventEditForm .form-control {
+  margin-bottom: 10px;
+}
+
+.eventEditForm > div {
+  width: 100%;
+}
+
+@media screen and (min-width: 500px) {
+  .eventEditForm > div {
+    width: 48%;
+  }
+}
+
+.eventEditForm > .eventEditFormFooter {
+  width: 100%;
+  min-width: 0;
+  text-align: right;
+}

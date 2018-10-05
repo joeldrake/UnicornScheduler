@@ -1,0 +1,51 @@
+:root {
+  --textColor: #222222;
+  --linkColor: #0073e0;
+  --themeColor: black;
+  --lightGrey: #f4f4f4;
+  --grey: #9b9b9b;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 50px;
+  padding: 6px 12px;
+  font-size: 16px;
+  font-family: 'semplicita_proregular', sans-serif;
+  line-height: 1.42857143;
+  color: var(--lightGrey);
+  background-color: var(--themeColor);
+  background-image: none;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  border-radius: 4px;
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+textarea.form-control {
+  padding: 12px;
+  height: auto;
+  height: 100px;
+  resize: vertical;
+}
+
+.form-control:disabled {
+  color: var(--grey);
+  background: var(--lightGrey);
+  cursor: default;
+}
+
+.form-control:disabled::placeholder {
+  color: var(--lightGrey);
+}

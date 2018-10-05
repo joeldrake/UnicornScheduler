@@ -1,0 +1,64 @@
+:root {
+  --textColor: #222222;
+  --linkColor: #0073e0;
+  --themeColor: black;
+  --lightGrey: #f4f4f4;
+  --grey: #9b9b9b;
+}
+.btn {
+  position: relative;
+  padding: 15px 25px;
+  font-weight: normal;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.5em;
+  border: 0;
+  color: #fff;
+  background-color: var(--themeColor);
+  font-size: 13px;
+  border-radius: 25px;
+  transition: background-color 0.2s;
+}
+
+.btnTransparent {
+  background-color: transparent;
+  color: var(--textColor);
+}
+
+.btnTransparent:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.btnWhite {
+  background: #fff;
+  color: var(--textColor);
+}
+
+.btnRound {
+  width: 55px;
+  height: 55px;
+  border-radius: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.btn:active {
+  box-shadow: none;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn:disabled {
+  background: var(--grey);
+  opacity: 0.5;
+  cursor: default;
+}

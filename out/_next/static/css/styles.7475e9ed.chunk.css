@@ -1,0 +1,631 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: Arial;
+  letter-spacing: 1px;
+  padding: 0;
+  margin: 0;
+  background-color: plum;
+  font-size: 16px;
+  width: 100%;
+  height: 100%;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: ' ';
+  display: table;
+}
+
+.clearfix:after {
+  clear: both;
+}
+
+.clearfix {
+  *zoom: 1;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: 50px;
+  padding: 6px 12px;
+  font-size: 16px;
+  font-family: 'semplicita_proregular', sans-serif;
+  line-height: 1.42857143;
+  color: #f4f4f4;
+  background-color: black;
+  background-image: none;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  border-radius: 4px;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.form-control:-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.form-control::-ms-input-placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.form-control::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+textarea.form-control {
+  padding: 12px;
+  height: auto;
+  height: 100px;
+  resize: vertical;
+}
+
+.form-control:disabled {
+  color: #9b9b9b;
+  background: #f4f4f4;
+  cursor: default;
+}
+
+.form-control:disabled::-webkit-input-placeholder {
+  color: #f4f4f4;
+}
+
+.form-control:disabled:-ms-input-placeholder {
+  color: #f4f4f4;
+}
+
+.form-control:disabled::-ms-input-placeholder {
+  color: #f4f4f4;
+}
+
+.form-control:disabled::placeholder {
+  color: #f4f4f4;
+}
+
+.btn {
+  position: relative;
+  padding: 15px 25px;
+  font-weight: normal;
+  text-align: center;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  line-height: 1.5em;
+  border: 0;
+  color: #fff;
+  background-color: black;
+  font-size: 13px;
+  border-radius: 25px;
+  transition: background-color 0.2s;
+}
+
+.btnTransparent {
+  background-color: transparent;
+  color: #222222;
+}
+
+.btnTransparent:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.btnWhite {
+  background: #fff;
+  color: #222222;
+}
+
+.btnRound {
+  width: 55px;
+  height: 55px;
+  border-radius: 100%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.btn:active {
+  box-shadow: none;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.btn:disabled {
+  background: #9b9b9b;
+  opacity: 0.5;
+  cursor: default;
+}
+
+.eventEditWrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.eventEditDarken {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.eventEdit {
+  position: relative;
+  z-index: 11;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 85%;
+  max-width: 700px;
+  min-height: 300px;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.78);
+  color: #000000;
+}
+
+.closeEventEditBtn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.eventEditForm {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 50px 20px 20px 20px;
+  justify-content: space-between;
+}
+
+.eventEditForm .form-control {
+  margin-bottom: 10px;
+}
+
+.eventEditForm > div {
+  width: 100%;
+}
+
+@media screen and (min-width: 500px) {
+  .eventEditForm > div {
+    width: 48%;
+  }
+}
+
+.eventEditForm > .eventEditFormFooter {
+  width: 100%;
+  min-width: 0;
+  text-align: right;
+}
+
+#__next,
+.main,
+.slick-slider,
+.slick-list,
+.slick-track,
+.slick-slide,
+.slick-slide > div,
+.eventWrapper,
+.event {
+  height: 100%;
+}
+
+.event {
+  position: relative;
+  color: white;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 40px;
+  font-size: 1.5em;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.event h2 {
+  font-weight: normal;
+  letter-spacing: 1px;
+  font-size: 3em;
+}
+
+.eventBox {
+  padding: 30px 50px;
+  background-color: black;
+  color: white;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+}
+
+.eventBox.white {
+  background-color: white;
+  color: black;
+}
+
+.headlineDescriptionWrapper {
+  position: absolute;
+  bottom: 60px;
+  left: 60px;
+  min-width: 50%;
+}
+
+.timeLocationWrapper {
+  position: absolute;
+  bottom: 70px;
+  right: 10%;
+  max-width: 30%;
+}
+
+.eventHeadline {
+  display: inline-block;
+  padding: 20px 50px;
+  -webkit-transform: rotate(-3deg) translateY(15px) translateX(20px);
+          transform: rotate(-3deg) translateY(15px) translateX(20px);
+  max-width: 90%;
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+  font-size: 2.5em;
+  background-color: white;
+  color: black;
+  z-index: 5;
+}
+
+.eventDesciption {
+  max-width: 55%;
+}
+
+.eventTime {
+  display: inline-block;
+  padding: 15px 25px;
+}
+
+.eventLocation {
+  display: inline-block;
+  padding: 15px 25px;
+  -webkit-transform: rotate(3deg) translateX(-15px);
+          transform: rotate(3deg) translateX(-15px);
+}
+
+.eventToolbar {
+  position: absolute;
+  z-index: 12;
+  top: 20px;
+  right: 20px;
+}
+
+.eventToolbar a {
+  display: inline-block;
+  text-align: center;
+  padding: 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 4px;
+  margin-left: 10px;
+  background-color: rgba(255, 255, 255, 0.25);
+  opacity: 0.5;
+}
+
+.eventToolbar a img {
+  width: 15px;
+}
+
+.eventToolbar a:hover {
+  opacity: 1;
+}
+
+@media screen and (max-width: 960px) {
+  .event {
+    font-size: 1.2em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .event {
+    font-size: 1em;
+  }
+  .headlineDescriptionWrapper {
+    position: relative;
+    left: 0;
+    right: 0;
+    margin-top: 25%;
+    bottom: auto;
+  }
+
+  .timeLocationWrapper {
+    position: relative;
+    text-align: right;
+    top: 20px;
+    bottom: auto;
+    right: auto;
+    max-width: none;
+  }
+
+  .eventHeadline {
+    -webkit-transform: rotate(-3deg) translateY(7px) translateX(20px);
+            transform: rotate(-3deg) translateY(7px) translateX(20px);
+    font-size: 2em;
+    padding: 20px 30px;
+  }
+  .eventDesciption {
+    max-width: 100%;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .eventHeadline {
+    font-size: 1.5em;
+  }
+}
+
+/* Slider */
+.slick-slider {
+  position: relative;
+
+  display: block;
+
+  -webkit-touch-callout: none;
+  touch-action: pan-y;
+}
+
+.slick-list {
+  position: relative;
+
+  display: block;
+  overflow: hidden;
+
+  margin: 0;
+  padding: 0;
+}
+.slick-list:focus {
+  outline: none;
+}
+.slick-list.dragging {
+  cursor: pointer;
+  cursor: hand;
+}
+
+.slick-slider .slick-track,
+.slick-slider .slick-list {
+  -webkit-transform: translate3d(0, 0, 0);
+          transform: translate3d(0, 0, 0);
+}
+
+.slick-track {
+  position: relative;
+  top: 0;
+  left: 0;
+
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+.slick-track:before,
+.slick-track:after {
+  display: table;
+
+  content: '';
+}
+.slick-track:after {
+  clear: both;
+}
+.slick-loading .slick-track {
+  visibility: hidden;
+}
+
+.slick-slide {
+  display: none;
+  float: left;
+
+  height: 100%;
+  min-height: 1px;
+}
+[dir='rtl'] .slick-slide {
+  float: right;
+}
+.slick-slide div:focus {
+  outline: none;
+}
+
+.slick-slide img {
+  display: inline-block;
+}
+.slick-slide.slick-loading img {
+  display: none;
+}
+.slick-slide.dragging img {
+  pointer-events: none;
+}
+.slick-initialized .slick-slide {
+  display: block;
+}
+.slick-loading .slick-slide {
+  visibility: hidden;
+}
+.slick-vertical .slick-slide {
+  display: block;
+
+  height: auto;
+
+  border: 1px solid transparent;
+}
+.slick-arrow.slick-hidden {
+  display: none;
+}
+
+/* Slider */
+.slick-loading .slick-list {
+}
+
+/* Arrows */
+.slick-prev,
+.slick-next {
+  font-size: 0;
+  line-height: 0;
+
+  position: absolute;
+  top: 50%;
+
+  display: block;
+
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  border-radius: 100%;
+
+  z-index: 1;
+  opacity: 0.75;
+
+  cursor: pointer;
+
+  color: transparent;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  background-position: center;
+  background-size: auto 50%;
+  background-repeat: no-repeat;
+}
+.slick-prev:hover,
+.slick-prev:focus,
+.slick-next:hover,
+.slick-next:focus {
+  outline: none;
+  background-color: rgba(0, 0, 0, 0.1);
+  opacity: 1;
+}
+.slick-prev:hover:before,
+.slick-prev:focus:before,
+.slick-next:hover:before,
+.slick-next:focus:before {
+  opacity: 1;
+}
+.slick-prev.slick-disabled:before,
+.slick-next.slick-disabled:before {
+  opacity: 0.25;
+}
+
+.slick-prev {
+  left: 5px;
+  background-image: url('/static/img/arrow_back_white.svg');
+}
+
+[dir='rtl'] .slick-prev {
+  right: 5px;
+  left: auto;
+}
+
+.slick-next {
+  right: 5px;
+  background-image: url('/static/img/arrow_forward_white.svg');
+}
+[dir='rtl'] .slick-next {
+  right: auto;
+  left: 5px;
+}
+
+/* Dots */
+.slick-dotted.slick-slider {
+  margin-bottom: 30px;
+}
+
+.slick-dots {
+  position: absolute;
+  bottom: 25px;
+
+  display: block;
+
+  width: 100%;
+  padding: 0;
+  margin: 0;
+
+  list-style: none;
+
+  text-align: center;
+}
+.slick-dots li {
+  position: relative;
+
+  display: inline-block;
+
+  width: 20px;
+  height: 20px;
+  margin: 0 5px;
+  padding: 0;
+
+  cursor: pointer;
+}
+.slick-dots li button {
+  font-size: 0;
+  line-height: 0;
+
+  display: block;
+
+  width: 20px;
+  height: 20px;
+  padding: 5px;
+
+  cursor: pointer;
+
+  color: transparent;
+  border: 0;
+  outline: none;
+  background: transparent;
+}
+.slick-dots li button:hover,
+.slick-dots li button:focus {
+  outline: none;
+}
+.slick-dots li button:hover:before,
+.slick-dots li button:focus:before {
+  opacity: 1;
+}
+.slick-dots li button:before {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+
+  content: '';
+  text-align: center;
+
+  opacity: 0.25;
+  background-color: white;
+}
+.slick-dots li.slick-active button:before {
+  opacity: 0.75;
+  background-color: white;
+}
+
