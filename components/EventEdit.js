@@ -9,7 +9,29 @@ class Modal extends React.Component {
     console.log(values);
     alert(JSON.stringify(values, null, 2));
     /* 
-      todo: Submit form data to firebase
+    todo: Submit form data to firebase
+
+    CREATE EVENT (something like this)
+    const firestore = this.props.firebase.firestore();
+    const uniqeName = `${value.name} ${Date.now()}`;
+    
+    values.lastUpdated = new Date()
+    values.id = uniqeName
+
+    firestore.collection(`events`).doc(uniqeName).set(values);
+
+    UPDATE EVENT (something like this)
+    firestore
+      .collection(`events`)
+      .doc(uniqeName)
+      .update(values)
+      .then(() => {
+        console.log('Document successfully updated!');
+      })
+      .catch(error => {
+        console.error('Error updating document: ', error);
+      });
+
     */
 
     actions.setSubmitting(false);
