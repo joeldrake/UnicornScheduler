@@ -3,6 +3,10 @@ import { Formik } from 'formik';
 import './../css/form-control.css';
 import './../css/btn.css';
 import './../css/eventEdit.css';
+import moment from 'moment';
+import 'react-dates/initialize';
+import { SingleDatePicker } from 'react-dates';
+import './../css/datepicker.css';
 
 
 
@@ -28,17 +32,31 @@ import './../css/eventEdit.css';
 // });
 
 class Modal extends React.Component {
+
+  constructor() {
+    super();
+  
+    this.state = {
+      date: "",
+    };
+  }
+
+
   submitEventForm = (values, actions) => {
+    console.log(this.state.date)
     console.log(values);
     alert(JSON.stringify(values, null, 2));
 
     const firestore = this.props.firebase.firestore();
     const eventname = `${values.name} ${Date.now()}`;
-    
+    values.date = this.state.date;
     values.lastUpdated = new Date()
     values.id = eventname
 
-    firestore.collection(`events`).doc(eventname).set(values);
+    // firestore.collection(`events`).doc(eventname).set(values);
+
+
+
     /////calles
     // const firestore = this.props.firebase.firestore();
 
@@ -114,6 +132,7 @@ class Modal extends React.Component {
             handleBlur,
             handleSubmit,
             isSubmitting,
+            setFieldValue,
           }) => (
             <form onSubmit={handleSubmit} className={`eventEditForm`}>
               <div>
@@ -158,10 +177,19 @@ class Modal extends React.Component {
                 />
               </div>
               <div>
+              <SingleDatePicker
+  date={this.state.date} // momentPropTypes.momentObj or null
+  onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
+  focused={this.state.focused} // PropTypes.bool
+  onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
+  id="your_unique_id"
+  onChange={setFieldValue}
+  onBlur={handleBlur} // PropTypes.string.isRequired,
+/>
                 <input
                   type={`text`}
                   name={`date`}
-                  value={values.date || ''}
+                  value={values.date}
                   placeholder={`Date`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -172,7 +200,7 @@ class Modal extends React.Component {
                 <input
                   type={`color`}
                   name={`color`}
-                  value={values.color || ''}
+                  value={values.color}
                   placeholder={`Color`}
                   className={`form-control`}
                   onChange={handleChange}

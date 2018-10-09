@@ -8,7 +8,7 @@ class Event extends React.Component {
     super(props);
 
     this.state = {
-      eventEditOpen: false,
+      eventEditOpen: true,
     };
   }
 

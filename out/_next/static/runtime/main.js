@@ -5604,7 +5604,7 @@ function connect(options) {
       error.name = err.name;
       error.stack = err.stack; // __NEXT_DIST_DIR is provided by webpack
 
-      (0, _sourceMapSupport.rewriteStacktrace)(error, "/Users/joel/dev/UnicornScheduler/.next");
+      (0, _sourceMapSupport.rewriteStacktrace)(error, "C:\\Users\\dell\\projects\\UnicornScheduler\\.next");
       return error;
     }
   };
@@ -9635,12 +9635,12 @@ var index = typeof fetch=='function' ? fetch.bind() : function(url, options) {
 
 /***/ "./node_modules/object-assign/index.js":
 /*!***************************************************************************************************!*\
-  !*** delegated ./node_modules/object-assign/index.js from dll-reference dll_4637a5625a9a2f93d7d1 ***!
+  !*** delegated ./node_modules/object-assign/index.js from dll-reference dll_6dd916b6c70ea515fc6b ***!
   \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_4637a5625a9a2f93d7d1 */ "dll-reference dll_4637a5625a9a2f93d7d1"))("./node_modules/object-assign/index.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_6dd916b6c70ea515fc6b */ "dll-reference dll_6dd916b6c70ea515fc6b"))("./node_modules/object-assign/index.js");
 
 /***/ }),
 
@@ -10779,12 +10779,12 @@ exports.encode = exports.stringify = __webpack_require__(/*! ./encode */ "./node
 
 /***/ "./node_modules/react-dom/index.js":
 /*!***********************************************************************************************!*\
-  !*** delegated ./node_modules/react-dom/index.js from dll-reference dll_4637a5625a9a2f93d7d1 ***!
+  !*** delegated ./node_modules/react-dom/index.js from dll-reference dll_6dd916b6c70ea515fc6b ***!
   \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_4637a5625a9a2f93d7d1 */ "dll-reference dll_4637a5625a9a2f93d7d1"))("./node_modules/react-dom/index.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_6dd916b6c70ea515fc6b */ "dll-reference dll_6dd916b6c70ea515fc6b"))("./node_modules/react-dom/index.js");
 
 /***/ }),
 
@@ -16529,12 +16529,12 @@ module.exports = "!function(e){function t(n){if(u[n])return u[n].exports;var r=u
 
 /***/ "./node_modules/react/index.js":
 /*!*******************************************************************************************!*\
-  !*** delegated ./node_modules/react/index.js from dll-reference dll_4637a5625a9a2f93d7d1 ***!
+  !*** delegated ./node_modules/react/index.js from dll-reference dll_6dd916b6c70ea515fc6b ***!
   \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_4637a5625a9a2f93d7d1 */ "dll-reference dll_4637a5625a9a2f93d7d1"))("./node_modules/react/index.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_6dd916b6c70ea515fc6b */ "dll-reference dll_6dd916b6c70ea515fc6b"))("./node_modules/react/index.js");
 
 /***/ }),
 
@@ -18179,19 +18179,19 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/joel/dev/UnicornScheduler/node_modules/next/dist/client/next-dev */"./node_modules/next/dist/client/next-dev.js");
+module.exports = __webpack_require__(/*! C:\Users\dell\projects\UnicornScheduler\node_modules\next\dist\client\next-dev */"./node_modules/next/dist/client/next-dev.js");
 
 
 /***/ }),
 
-/***/ "dll-reference dll_4637a5625a9a2f93d7d1":
+/***/ "dll-reference dll_6dd916b6c70ea515fc6b":
 /*!*******************************************!*\
-  !*** external "dll_4637a5625a9a2f93d7d1" ***!
+  !*** external "dll_6dd916b6c70ea515fc6b" ***!
   \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = dll_4637a5625a9a2f93d7d1;
+module.exports = dll_6dd916b6c70ea515fc6b;
 
 /***/ })
 

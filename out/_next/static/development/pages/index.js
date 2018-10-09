@@ -1,4 +1,4 @@
-((window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/index.js"],{
+((window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\index.js"],{
 
 /***/ "./components/Event.js":
 /*!*****************************!*\
@@ -74,7 +74,7 @@ function (_React$Component) {
     });
 
     _this.state = {
-      eventEditOpen: true
+      eventEditOpen: false
     };
     return _this;
   }
@@ -155,6 +155,7 @@ function (_React$Component) {
         className: "eventEditWrapper",
         key: "eventEdit"
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_EventEdit_js__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        firebase: this.props.firebase,
         toggleModal: this.handleToolbarItemClick
       })) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_pose__WEBPACK_IMPORTED_MODULE_2__["PoseGroup"], null, eventEditOpen ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(EventEditDarkenContainer, {
         className: "eventEditDarken",
@@ -216,7 +217,20 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
-
+ // const firestore = firebase.firestore();
+// firestore
+//       .collection(`events`)
+//       .orderBy(`date`, `asc`)
+//       .onSnapshot(querySnapshot => {
+//         const events = querySnapshot.docs.map(event => {
+//           let eventData = event.data();
+//           return eventData;
+//         });
+// var database = firebase.database().ref;
+// var { database } = this.props.firebase;
+// firebase.database().ref('/events/').once('value').then(function(snapshot) {
+//   console.log(snapshot.val())
+// });
 
 var Modal =
 /*#__PURE__*/
@@ -239,9 +253,56 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "submitEventForm", function (values, actions) {
       console.log(values);
       alert(JSON.stringify(values, null, 2));
-      /* 
-        todo: Submit form data to firebase
+
+      var firestore = _this.props.firebase.firestore();
+
+      var eventname = "".concat(values.name, " ").concat(Date.now());
+      values.lastUpdated = new Date();
+      values.id = eventname;
+      firestore.collection("events").doc(eventname).set(values); /////calles
+      // const firestore = this.props.firebase.firestore();
+      // const settings = {
+      //   timestampsInSnapshots: true,
+      // };
+      // firestore.settings(settings);
+      // firestore
+      //   .collection(`events`)
+      //   .orderBy(`date`, `asc`)
+      //   .onSnapshot(querySnapshot => {
+      //     const events = querySnapshot.docs.map(event => {
+      //       let eventData = event.data();
+      //       return eventData;
+      //     });
+      /////slut calles
+      //   console.log(JSON.stringify(events, null, 2));
+      // });
+
+      /*
+        dump to console only for dev purposes
+        remove when app is in production
       */
+
+      /* 
+      todo: Submit form data to firebase
+        CREATE EVENT (something like this)
+      const firestore = this.props.firebase.firestore();
+      const uniqeName = `${value.name} ${Date.now()}`;
+      
+      values.lastUpdated = new Date()
+      values.id = uniqeName
+        firestore.collection(`events`).doc(uniqeName).set(values);
+        UPDATE EVENT (something like this)
+      firestore
+        .collection(`events`)
+        .doc(uniqeName)
+        .update(values)
+        .then(() => {
+          console.log('Document successfully updated!');
+        })
+        .catch(error => {
+          console.error('Error updating document: ', error);
+        });
+        */
 
       actions.setSubmitting(false);
       actions.resetForm();
@@ -257,7 +318,7 @@ function (_React$Component) {
         className: "jsx-1704629409" + " " + "eventEdit"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
         styleId: "1704629409",
-        css: "body,.event{height:100vh;overflow:hidden;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qb2VsL2Rldi9Vbmljb3JuU2NoZWR1bGVyL2NvbXBvbmVudHMvRXZlbnRFZGl0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQW9CMkIsQUFJMEIsYUFDRyxnQkFDbEIiLCJmaWxlIjoiL1VzZXJzL2pvZWwvZGV2L1VuaWNvcm5TY2hlZHVsZXIvY29tcG9uZW50cy9FdmVudEVkaXQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IHsgRm9ybWlrIH0gZnJvbSAnZm9ybWlrJztcbmltcG9ydCAnLi8uLi9jc3MvZm9ybS1jb250cm9sLmNzcyc7XG5pbXBvcnQgJy4vLi4vY3NzL2J0bi5jc3MnO1xuaW1wb3J0ICcuLy4uL2Nzcy9ldmVudEVkaXQuY3NzJztcblxuY2xhc3MgTW9kYWwgZXh0ZW5kcyBSZWFjdC5Db21wb25lbnQge1xuICBzdWJtaXRFdmVudEZvcm0gPSAodmFsdWVzLCBhY3Rpb25zKSA9PiB7XG4gICAgY29uc29sZS5sb2codmFsdWVzKTtcbiAgICBhbGVydChKU09OLnN0cmluZ2lmeSh2YWx1ZXMsIG51bGwsIDIpKTtcbiAgICAvKiBcbiAgICAgIHRvZG86IFN1Ym1pdCBmb3JtIGRhdGEgdG8gZmlyZWJhc2VcbiAgICAqL1xuXG4gICAgYWN0aW9ucy5zZXRTdWJtaXR0aW5nKGZhbHNlKTtcbiAgICBhY3Rpb25zLnJlc2V0Rm9ybSgpO1xuICB9O1xuICByZW5kZXIoKSB7XG4gICAgcmV0dXJuIChcbiAgICAgIDxkaXYgY2xhc3NOYW1lPXtgZXZlbnRFZGl0YH0+XG4gICAgICAgIDxzdHlsZSBnbG9iYWwganN4PntgXG4gICAgICAgICAgYm9keSxcbiAgICAgICAgICAuZXZlbnQge1xuICAgICAgICAgICAgaGVpZ2h0OiAxMDB2aDtcbiAgICAgICAgICAgIG92ZXJmbG93OiBoaWRkZW47XG4gICAgICAgICAgfVxuICAgICAgICBgfTwvc3R5bGU+XG4gICAgICAgIDxGb3JtaWsgaW5pdGlhbFZhbHVlcz17e319IG9uU3VibWl0PXt0aGlzLnN1Ym1pdEV2ZW50Rm9ybX0+XG4gICAgICAgICAgeyh7XG4gICAgICAgICAgICB2YWx1ZXMsXG4gICAgICAgICAgICBoYW5kbGVDaGFuZ2UsXG4gICAgICAgICAgICBoYW5kbGVCbHVyLFxuICAgICAgICAgICAgaGFuZGxlU3VibWl0LFxuICAgICAgICAgICAgaXNTdWJtaXR0aW5nLFxuICAgICAgICAgIH0pID0+IChcbiAgICAgICAgICAgIDxmb3JtIG9uU3VibWl0PXtoYW5kbGVTdWJtaXR9IGNsYXNzTmFtZT17YGV2ZW50RWRpdEZvcm1gfT5cbiAgICAgICAgICAgICAgPGRpdj5cbiAgICAgICAgICAgICAgICA8aW5wdXRcbiAgICAgICAgICAgICAgICAgIHR5cGU9e2B0ZXh0YH1cbiAgICAgICAgICAgICAgICAgIG5hbWU9e2BoZWFkbGluZWB9XG4gICAgICAgICAgICAgICAgICB2YWx1ZT17dmFsdWVzLmhlYWRsaW5lIHx8ICcnfVxuICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9e2BFdmVudG5hbWVgfVxuICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgZm9ybS1jb250cm9sYH1cbiAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXtoYW5kbGVDaGFuZ2V9XG4gICAgICAgICAgICAgICAgICBvbkJsdXI9e2hhbmRsZUJsdXJ9XG4gICAgICAgICAgICAgICAgICBhdXRvQ29tcGxldGU9e2BvZmZgfVxuICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgICAgPHRleHRhcmVhXG4gICAgICAgICAgICAgICAgICBuYW1lPXtgZGVzY3JpcHRpb25gfVxuICAgICAgICAgICAgICAgICAgdmFsdWU9e3ZhbHVlcy5kZXNjcmlwdGlvbiB8fCAnJ31cbiAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyPXtgRGVzY2lwdGlvbmB9XG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2Bmb3JtLWNvbnRyb2xgfVxuICAgICAgICAgICAgICAgICAgb25DaGFuZ2U9e2hhbmRsZUNoYW5nZX1cbiAgICAgICAgICAgICAgICAgIG9uQmx1cj17aGFuZGxlQmx1cn1cbiAgICAgICAgICAgICAgICAgIGF1dG9Db21wbGV0ZT17YG9mZmB9XG4gICAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgICA8aW5wdXRcbiAgICAgICAgICAgICAgICAgIHR5cGU9e2B0ZXh0YH1cbiAgICAgICAgICAgICAgICAgIG5hbWU9e2Bsb2NhdGlvbmB9XG4gICAgICAgICAgICAgICAgICB2YWx1ZT17dmFsdWVzLmxvY2F0aW9uIHx8ICcnfVxuICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9e2BMb2NhdGlvbmB9XG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2Bmb3JtLWNvbnRyb2xgfVxuICAgICAgICAgICAgICAgICAgb25DaGFuZ2U9e2hhbmRsZUNoYW5nZX1cbiAgICAgICAgICAgICAgICAgIG9uQmx1cj17aGFuZGxlQmx1cn1cbiAgICAgICAgICAgICAgICAgIGF1dG9Db21wbGV0ZT17YG9mZmB9XG4gICAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgICA8aW5wdXRcbiAgICAgICAgICAgICAgICAgIHR5cGU9e2B0ZXh0YH1cbiAgICAgICAgICAgICAgICAgIG5hbWU9e2B0aW1lYH1cbiAgICAgICAgICAgICAgICAgIHZhbHVlPXt2YWx1ZXMudGltZSB8fCAnJ31cbiAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyPXtgVGltZWB9XG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2Bmb3JtLWNvbnRyb2xgfVxuICAgICAgICAgICAgICAgICAgb25DaGFuZ2U9e2hhbmRsZUNoYW5nZX1cbiAgICAgICAgICAgICAgICAgIG9uQmx1cj17aGFuZGxlQmx1cn1cbiAgICAgICAgICAgICAgICAgIGF1dG9Db21wbGV0ZT17YG9mZmB9XG4gICAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICAgIDxkaXY+XG4gICAgICAgICAgICAgICAgPGlucHV0XG4gICAgICAgICAgICAgICAgICB0eXBlPXtgdGV4dGB9XG4gICAgICAgICAgICAgICAgICBuYW1lPXtgZGF0ZWB9XG4gICAgICAgICAgICAgICAgICB2YWx1ZT17dmFsdWVzLmRhdGUgfHwgJyd9XG4gICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcj17YERhdGVgfVxuICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgZm9ybS1jb250cm9sYH1cbiAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXtoYW5kbGVDaGFuZ2V9XG4gICAgICAgICAgICAgICAgICBvbkJsdXI9e2hhbmRsZUJsdXJ9XG4gICAgICAgICAgICAgICAgICBhdXRvQ29tcGxldGU9e2BvZmZgfVxuICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgICAgPGlucHV0XG4gICAgICAgICAgICAgICAgICB0eXBlPXtgdGV4dGB9XG4gICAgICAgICAgICAgICAgICBuYW1lPXtgY29sb3JgfVxuICAgICAgICAgICAgICAgICAgdmFsdWU9e3ZhbHVlcy5jb2xvciB8fCAnJ31cbiAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyPXtgQ29sb3JgfVxuICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgZm9ybS1jb250cm9sYH1cbiAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXtoYW5kbGVDaGFuZ2V9XG4gICAgICAgICAgICAgICAgICBvbkJsdXI9e2hhbmRsZUJsdXJ9XG4gICAgICAgICAgICAgICAgICBhdXRvQ29tcGxldGU9e2BvZmZgfVxuICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgICAgPGlucHV0XG4gICAgICAgICAgICAgICAgICB0eXBlPXtgdGV4dGB9XG4gICAgICAgICAgICAgICAgICBuYW1lPXtgaW1hZ2VgfVxuICAgICAgICAgICAgICAgICAgdmFsdWU9e3ZhbHVlcy5pbWFnZSB8fCAnJ31cbiAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyPXtgSW1hZ2VgfVxuICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgZm9ybS1jb250cm9sYH1cbiAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXtoYW5kbGVDaGFuZ2V9XG4gICAgICAgICAgICAgICAgICBvbkJsdXI9e2hhbmRsZUJsdXJ9XG4gICAgICAgICAgICAgICAgICBhdXRvQ29tcGxldGU9e2BvZmZgfVxuICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgIDwvZGl2PlxuXG4gICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPXtgZXZlbnRFZGl0Rm9ybUZvb3RlcmB9PlxuICAgICAgICAgICAgICAgIDxidXR0b25cbiAgICAgICAgICAgICAgICAgIHR5cGU9e2BzdWJtaXRgfVxuICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgYnRuIGV2ZW50RWRpdEZvcm1TdWJtaXRCdG5gfVxuICAgICAgICAgICAgICAgICAgZGlzYWJsZWQ9e2lzU3VibWl0dGluZ31cbiAgICAgICAgICAgICAgICA+XG4gICAgICAgICAgICAgICAgICBTYXZlXG4gICAgICAgICAgICAgICAgPC9idXR0b24+XG4gICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgPC9mb3JtPlxuICAgICAgICAgICl9XG4gICAgICAgIDwvRm9ybWlrPlxuICAgICAgICA8YnV0dG9uXG4gICAgICAgICAgY2xhc3NOYW1lPXtgY2xvc2VFdmVudEVkaXRCdG4gYnRuIGJ0blRyYW5zcGFyZW50IGJ0blJvdW5kYH1cbiAgICAgICAgICBvbkNsaWNrPXt0aGlzLnByb3BzLnRvZ2dsZU1vZGFsfVxuICAgICAgICA+XG4gICAgICAgICAgPGltZyBzcmM9e2Avc3RhdGljL2ltZy9jcm9zcy5zdmdgfSAvPlxuICAgICAgICA8L2J1dHRvbj5cbiAgICAgIDwvZGl2PlxuICAgICk7XG4gIH1cbn1cblxuZXhwb3J0IGRlZmF1bHQgTW9kYWw7XG4iXX0= */\n/*@ sourceURL=/Users/joel/dev/UnicornScheduler/components/EventEdit.js */"
+        css: "body,.event{height:100vh;overflow:hidden;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkM6XFxVc2Vyc1xcZGVsbFxccHJvamVjdHNcXFVuaWNvcm5TY2hlZHVsZXJcXGNvbXBvbmVudHNcXEV2ZW50RWRpdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFzRzJCLEFBSTBCLGFBQ0csZ0JBQ2xCIiwiZmlsZSI6IkM6XFxVc2Vyc1xcZGVsbFxccHJvamVjdHNcXFVuaWNvcm5TY2hlZHVsZXJcXGNvbXBvbmVudHNcXEV2ZW50RWRpdC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCB7IEZvcm1payB9IGZyb20gJ2Zvcm1payc7XHJcbmltcG9ydCAnLi8uLi9jc3MvZm9ybS1jb250cm9sLmNzcyc7XHJcbmltcG9ydCAnLi8uLi9jc3MvYnRuLmNzcyc7XHJcbmltcG9ydCAnLi8uLi9jc3MvZXZlbnRFZGl0LmNzcyc7XHJcblxyXG5cclxuXHJcblxyXG4vLyBjb25zdCBmaXJlc3RvcmUgPSBmaXJlYmFzZS5maXJlc3RvcmUoKTtcclxuXHJcbi8vIGZpcmVzdG9yZVxyXG4vLyAgICAgICAuY29sbGVjdGlvbihgZXZlbnRzYClcclxuLy8gICAgICAgLm9yZGVyQnkoYGRhdGVgLCBgYXNjYClcclxuLy8gICAgICAgLm9uU25hcHNob3QocXVlcnlTbmFwc2hvdCA9PiB7XHJcbi8vICAgICAgICAgY29uc3QgZXZlbnRzID0gcXVlcnlTbmFwc2hvdC5kb2NzLm1hcChldmVudCA9PiB7XHJcbi8vICAgICAgICAgICBsZXQgZXZlbnREYXRhID0gZXZlbnQuZGF0YSgpO1xyXG4vLyAgICAgICAgICAgcmV0dXJuIGV2ZW50RGF0YTtcclxuLy8gICAgICAgICB9KTtcclxuXHJcbi8vIHZhciBkYXRhYmFzZSA9IGZpcmViYXNlLmRhdGFiYXNlKCkucmVmO1xyXG5cclxuLy8gdmFyIHsgZGF0YWJhc2UgfSA9IHRoaXMucHJvcHMuZmlyZWJhc2U7XHJcblxyXG5cclxuLy8gZmlyZWJhc2UuZGF0YWJhc2UoKS5yZWYoJy9ldmVudHMvJykub25jZSgndmFsdWUnKS50aGVuKGZ1bmN0aW9uKHNuYXBzaG90KSB7XHJcbi8vICAgY29uc29sZS5sb2coc25hcHNob3QudmFsKCkpXHJcbi8vIH0pO1xyXG5cclxuY2xhc3MgTW9kYWwgZXh0ZW5kcyBSZWFjdC5Db21wb25lbnQge1xyXG4gIHN1Ym1pdEV2ZW50Rm9ybSA9ICh2YWx1ZXMsIGFjdGlvbnMpID0+IHtcclxuICAgIGNvbnNvbGUubG9nKHZhbHVlcyk7XHJcbiAgICBhbGVydChKU09OLnN0cmluZ2lmeSh2YWx1ZXMsIG51bGwsIDIpKTtcclxuXHJcbiAgICBjb25zdCBmaXJlc3RvcmUgPSB0aGlzLnByb3BzLmZpcmViYXNlLmZpcmVzdG9yZSgpO1xyXG4gICAgY29uc3QgZXZlbnRuYW1lID0gYCR7dmFsdWVzLm5hbWV9ICR7RGF0ZS5ub3coKX1gO1xyXG4gICAgXHJcbiAgICB2YWx1ZXMubGFzdFVwZGF0ZWQgPSBuZXcgRGF0ZSgpXHJcbiAgICB2YWx1ZXMuaWQgPSBldmVudG5hbWVcclxuXHJcbiAgICBmaXJlc3RvcmUuY29sbGVjdGlvbihgZXZlbnRzYCkuZG9jKGV2ZW50bmFtZSkuc2V0KHZhbHVlcyk7XHJcbiAgICAvLy8vL2NhbGxlc1xyXG4gICAgLy8gY29uc3QgZmlyZXN0b3JlID0gdGhpcy5wcm9wcy5maXJlYmFzZS5maXJlc3RvcmUoKTtcclxuXHJcbiAgICAvLyBjb25zdCBzZXR0aW5ncyA9IHtcclxuICAgIC8vICAgdGltZXN0YW1wc0luU25hcHNob3RzOiB0cnVlLFxyXG4gICAgLy8gfTtcclxuICAgIC8vIGZpcmVzdG9yZS5zZXR0aW5ncyhzZXR0aW5ncyk7XHJcblxyXG4gICAgLy8gZmlyZXN0b3JlXHJcbiAgICAvLyAgIC5jb2xsZWN0aW9uKGBldmVudHNgKVxyXG4gICAgLy8gICAub3JkZXJCeShgZGF0ZWAsIGBhc2NgKVxyXG4gICAgLy8gICAub25TbmFwc2hvdChxdWVyeVNuYXBzaG90ID0+IHtcclxuICAgIC8vICAgICBjb25zdCBldmVudHMgPSBxdWVyeVNuYXBzaG90LmRvY3MubWFwKGV2ZW50ID0+IHtcclxuICAgIC8vICAgICAgIGxldCBldmVudERhdGEgPSBldmVudC5kYXRhKCk7XHJcbiAgICAvLyAgICAgICByZXR1cm4gZXZlbnREYXRhO1xyXG4gICAgLy8gICAgIH0pO1xyXG5cclxuICAgICAgICAvLy8vL3NsdXQgY2FsbGVzXHJcbiAgICAgIC8vICAgY29uc29sZS5sb2coSlNPTi5zdHJpbmdpZnkoZXZlbnRzLCBudWxsLCAyKSk7XHJcbiAgICAgIC8vIH0pO1xyXG5cclxuICAgICAgICAvKlxyXG4gICAgICAgICAgZHVtcCB0byBjb25zb2xlIG9ubHkgZm9yIGRldiBwdXJwb3Nlc1xyXG4gICAgICAgICAgcmVtb3ZlIHdoZW4gYXBwIGlzIGluIHByb2R1Y3Rpb25cclxuICAgICAgICAqL1xyXG4gICAgICAgXHJcbiAgICAvKiBcclxuICAgIHRvZG86IFN1Ym1pdCBmb3JtIGRhdGEgdG8gZmlyZWJhc2VcclxuXHJcbiAgICBDUkVBVEUgRVZFTlQgKHNvbWV0aGluZyBsaWtlIHRoaXMpXHJcbiAgICBjb25zdCBmaXJlc3RvcmUgPSB0aGlzLnByb3BzLmZpcmViYXNlLmZpcmVzdG9yZSgpO1xyXG4gICAgY29uc3QgdW5pcWVOYW1lID0gYCR7dmFsdWUubmFtZX0gJHtEYXRlLm5vdygpfWA7XHJcbiAgICBcclxuICAgIHZhbHVlcy5sYXN0VXBkYXRlZCA9IG5ldyBEYXRlKClcclxuICAgIHZhbHVlcy5pZCA9IHVuaXFlTmFtZVxyXG5cclxuICAgIGZpcmVzdG9yZS5jb2xsZWN0aW9uKGBldmVudHNgKS5kb2ModW5pcWVOYW1lKS5zZXQodmFsdWVzKTtcclxuXHJcbiAgICBVUERBVEUgRVZFTlQgKHNvbWV0aGluZyBsaWtlIHRoaXMpXHJcbiAgICBmaXJlc3RvcmVcclxuICAgICAgLmNvbGxlY3Rpb24oYGV2ZW50c2ApXHJcbiAgICAgIC5kb2ModW5pcWVOYW1lKVxyXG4gICAgICAudXBkYXRlKHZhbHVlcylcclxuICAgICAgLnRoZW4oKCkgPT4ge1xyXG4gICAgICAgIGNvbnNvbGUubG9nKCdEb2N1bWVudCBzdWNjZXNzZnVsbHkgdXBkYXRlZCEnKTtcclxuICAgICAgfSlcclxuICAgICAgLmNhdGNoKGVycm9yID0+IHtcclxuICAgICAgICBjb25zb2xlLmVycm9yKCdFcnJvciB1cGRhdGluZyBkb2N1bWVudDogJywgZXJyb3IpO1xyXG4gICAgICB9KTtcclxuXHJcbiAgICAqL1xyXG5cclxuICAgIGFjdGlvbnMuc2V0U3VibWl0dGluZyhmYWxzZSk7XHJcbiAgICBhY3Rpb25zLnJlc2V0Rm9ybSgpO1xyXG4gIH07XHJcblxyXG5cclxuICByZW5kZXIoKSB7XHJcbiAgICBcclxuICAgIHJldHVybiAoXHJcbiAgICAgIDxkaXYgY2xhc3NOYW1lPXtgZXZlbnRFZGl0YH0+XHJcbiAgICAgICAgPHN0eWxlIGdsb2JhbCBqc3g+e2BcclxuICAgICAgICAgIGJvZHksXHJcbiAgICAgICAgICAuZXZlbnQge1xyXG4gICAgICAgICAgICBoZWlnaHQ6IDEwMHZoO1xyXG4gICAgICAgICAgICBvdmVyZmxvdzogaGlkZGVuO1xyXG4gICAgICAgICAgfVxyXG4gICAgICAgIGB9PC9zdHlsZT5cclxuICAgICAgICA8Rm9ybWlrIGluaXRpYWxWYWx1ZXM9e3t9fSBvblN1Ym1pdD17dGhpcy5zdWJtaXRFdmVudEZvcm19PlxyXG4gICAgICAgICAgeyh7XHJcbiAgICAgICAgICAgIHZhbHVlcyxcclxuICAgICAgICAgICAgaGFuZGxlQ2hhbmdlLFxyXG4gICAgICAgICAgICBoYW5kbGVCbHVyLFxyXG4gICAgICAgICAgICBoYW5kbGVTdWJtaXQsXHJcbiAgICAgICAgICAgIGlzU3VibWl0dGluZyxcclxuICAgICAgICAgIH0pID0+IChcclxuICAgICAgICAgICAgPGZvcm0gb25TdWJtaXQ9e2hhbmRsZVN1Ym1pdH0gY2xhc3NOYW1lPXtgZXZlbnRFZGl0Rm9ybWB9PlxyXG4gICAgICAgICAgICAgIDxkaXY+XHJcbiAgICAgICAgICAgICAgICA8aW5wdXRcclxuICAgICAgICAgICAgICAgICAgdHlwZT17YHRleHRgfVxyXG4gICAgICAgICAgICAgICAgICBuYW1lPXtgaGVhZGxpbmVgfVxyXG4gICAgICAgICAgICAgICAgICB2YWx1ZT17dmFsdWVzLmhlYWRsaW5lIHx8ICcnfVxyXG4gICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcj17YEV2ZW50bmFtZWB9XHJcbiAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT17YGZvcm0tY29udHJvbGB9XHJcbiAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXtoYW5kbGVDaGFuZ2V9XHJcbiAgICAgICAgICAgICAgICAgIG9uQmx1cj17aGFuZGxlQmx1cn1cclxuICAgICAgICAgICAgICAgICAgYXV0b0NvbXBsZXRlPXtgb2ZmYH1cclxuICAgICAgICAgICAgICAgIC8+XHJcbiAgICAgICAgICAgICAgICA8dGV4dGFyZWFcclxuICAgICAgICAgICAgICAgICAgbmFtZT17YGRlc2NyaXB0aW9uYH1cclxuICAgICAgICAgICAgICAgICAgdmFsdWU9e3ZhbHVlcy5kZXNjcmlwdGlvbiB8fCAnJ31cclxuICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9e2BEZXNjaXB0aW9uYH1cclxuICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgZm9ybS1jb250cm9sYH1cclxuICAgICAgICAgICAgICAgICAgb25DaGFuZ2U9e2hhbmRsZUNoYW5nZX1cclxuICAgICAgICAgICAgICAgICAgb25CbHVyPXtoYW5kbGVCbHVyfVxyXG4gICAgICAgICAgICAgICAgICBhdXRvQ29tcGxldGU9e2BvZmZgfVxyXG4gICAgICAgICAgICAgICAgLz5cclxuICAgICAgICAgICAgICAgIDxpbnB1dFxyXG4gICAgICAgICAgICAgICAgICB0eXBlPXtgdGV4dGB9XHJcbiAgICAgICAgICAgICAgICAgIG5hbWU9e2Bsb2NhdGlvbmB9XHJcbiAgICAgICAgICAgICAgICAgIHZhbHVlPXt2YWx1ZXMubG9jYXRpb24gfHwgJyd9XHJcbiAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyPXtgTG9jYXRpb25gfVxyXG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2Bmb3JtLWNvbnRyb2xgfVxyXG4gICAgICAgICAgICAgICAgICBvbkNoYW5nZT17aGFuZGxlQ2hhbmdlfVxyXG4gICAgICAgICAgICAgICAgICBvbkJsdXI9e2hhbmRsZUJsdXJ9XHJcbiAgICAgICAgICAgICAgICAgIGF1dG9Db21wbGV0ZT17YG9mZmB9XHJcbiAgICAgICAgICAgICAgICAvPlxyXG4gICAgICAgICAgICAgICAgPGlucHV0XHJcbiAgICAgICAgICAgICAgICAgIHR5cGU9e2B0ZXh0YH1cclxuICAgICAgICAgICAgICAgICAgbmFtZT17YHRpbWVgfVxyXG4gICAgICAgICAgICAgICAgICB2YWx1ZT17dmFsdWVzLnRpbWUgfHwgJyd9XHJcbiAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyPXtgVGltZWB9XHJcbiAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT17YGZvcm0tY29udHJvbGB9XHJcbiAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXtoYW5kbGVDaGFuZ2V9XHJcbiAgICAgICAgICAgICAgICAgIG9uQmx1cj17aGFuZGxlQmx1cn1cclxuICAgICAgICAgICAgICAgICAgYXV0b0NvbXBsZXRlPXtgb2ZmYH1cclxuICAgICAgICAgICAgICAgIC8+XHJcbiAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgICAgPGRpdj5cclxuICAgICAgICAgICAgICAgIDxpbnB1dFxyXG4gICAgICAgICAgICAgICAgICB0eXBlPXtgdGV4dGB9XHJcbiAgICAgICAgICAgICAgICAgIG5hbWU9e2BkYXRlYH1cclxuICAgICAgICAgICAgICAgICAgdmFsdWU9e3ZhbHVlcy5kYXRlIHx8ICcnfVxyXG4gICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcj17YERhdGVgfVxyXG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2Bmb3JtLWNvbnRyb2xgfVxyXG4gICAgICAgICAgICAgICAgICBvbkNoYW5nZT17aGFuZGxlQ2hhbmdlfVxyXG4gICAgICAgICAgICAgICAgICBvbkJsdXI9e2hhbmRsZUJsdXJ9XHJcbiAgICAgICAgICAgICAgICAgIGF1dG9Db21wbGV0ZT17YG9mZmB9XHJcbiAgICAgICAgICAgICAgICAvPlxyXG4gICAgICAgICAgICAgICAgQ29sb3JcclxuICAgICAgICAgICAgICAgIDxpbnB1dFxyXG4gICAgICAgICAgICAgICAgICB0eXBlPXtgY29sb3JgfVxyXG4gICAgICAgICAgICAgICAgICBuYW1lPXtgY29sb3JgfVxyXG4gICAgICAgICAgICAgICAgICB2YWx1ZT17dmFsdWVzLmNvbG9yIHx8ICcnfVxyXG4gICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcj17YENvbG9yYH1cclxuICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgZm9ybS1jb250cm9sYH1cclxuICAgICAgICAgICAgICAgICAgb25DaGFuZ2U9e2hhbmRsZUNoYW5nZX1cclxuICAgICAgICAgICAgICAgICAgb25CbHVyPXtoYW5kbGVCbHVyfVxyXG4gICAgICAgICAgICAgICAgICBhdXRvQ29tcGxldGU9e2BvZmZgfVxyXG4gICAgICAgICAgICAgICAgLz5cclxuICAgICAgICAgICAgICAgIDxpbnB1dFxyXG4gICAgICAgICAgICAgICAgICB0eXBlPXtgdGV4dGB9XHJcbiAgICAgICAgICAgICAgICAgIG5hbWU9e2BpbWFnZWB9XHJcbiAgICAgICAgICAgICAgICAgIHZhbHVlPXt2YWx1ZXMuaW1hZ2UgfHwgJyd9XHJcbiAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyPXtgSW1hZ2VgfVxyXG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2Bmb3JtLWNvbnRyb2xgfVxyXG4gICAgICAgICAgICAgICAgICBvbkNoYW5nZT17aGFuZGxlQ2hhbmdlfVxyXG4gICAgICAgICAgICAgICAgICBvbkJsdXI9e2hhbmRsZUJsdXJ9XHJcbiAgICAgICAgICAgICAgICAgIGF1dG9Db21wbGV0ZT17YG9mZmB9XHJcbiAgICAgICAgICAgICAgICAvPlxyXG4gICAgICAgICAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT17YGV2ZW50RWRpdEZvcm1Gb290ZXJgfT5cclxuICAgICAgICAgICAgICAgIDxidXR0b25cclxuICAgICAgICAgICAgICAgICAgdHlwZT17YHN1Ym1pdGB9XHJcbiAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT17YGJ0biBldmVudEVkaXRGb3JtU3VibWl0QnRuYH1cclxuICAgICAgICAgICAgICAgICAgZGlzYWJsZWQ9e2lzU3VibWl0dGluZ31cclxuICAgICAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgICAgU2F2ZVxyXG4gICAgICAgICAgICAgICAgPC9idXR0b24+XHJcbiAgICAgICAgICAgICAgPC9kaXY+XHJcbiAgICAgICAgICAgIDwvZm9ybT5cclxuICAgICAgICAgICl9XHJcbiAgICAgICAgPC9Gb3JtaWs+XHJcbiAgICAgICAgPGJ1dHRvblxyXG4gICAgICAgICAgY2xhc3NOYW1lPXtgY2xvc2VFdmVudEVkaXRCdG4gYnRuIGJ0blRyYW5zcGFyZW50IGJ0blJvdW5kYH1cclxuICAgICAgICAgIG9uQ2xpY2s9e3RoaXMucHJvcHMudG9nZ2xlTW9kYWx9XHJcbiAgICAgICAgPlxyXG4gICAgICAgICAgPGltZyBzcmM9e2Avc3RhdGljL2ltZy9jcm9zcy5zdmdgfSAvPlxyXG4gICAgICAgIDwvYnV0dG9uPlxyXG4gICAgICA8L2Rpdj5cclxuICAgICk7XHJcbiAgfVxyXG59XHJcblxyXG5leHBvcnQgZGVmYXVsdCBNb2RhbDtcclxuIl19 */\n/*@ sourceURL=C:\\Users\\dell\\projects\\UnicornScheduler\\components\\EventEdit.js */"
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Formik"], {
         initialValues: {},
         onSubmit: this.submitEventForm
@@ -318,8 +379,8 @@ function (_React$Component) {
           onBlur: handleBlur,
           autoComplete: "off",
           className: "jsx-1704629409" + " " + "form-control"
-        }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-          type: "text",
+        }), "Color", react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+          type: "color",
           name: "color",
           value: values.color || '',
           placeholder: "Color",
@@ -35744,12 +35805,12 @@ module.exports = __webpack_require__(/*! ./dist/lib/head */ "./node_modules/next
 
 /***/ "./node_modules/object-assign/index.js":
 /*!***************************************************************************************************!*\
-  !*** delegated ./node_modules/object-assign/index.js from dll-reference dll_4637a5625a9a2f93d7d1 ***!
+  !*** delegated ./node_modules/object-assign/index.js from dll-reference dll_6dd916b6c70ea515fc6b ***!
   \***************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_4637a5625a9a2f93d7d1 */ "dll-reference dll_4637a5625a9a2f93d7d1"))("./node_modules/object-assign/index.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_6dd916b6c70ea515fc6b */ "dll-reference dll_6dd916b6c70ea515fc6b"))("./node_modules/object-assign/index.js");
 
 /***/ }),
 
@@ -39594,12 +39655,12 @@ module.exports = ReactPropTypesSecret;
 
 /***/ "./node_modules/react-dom/index.js":
 /*!***********************************************************************************************!*\
-  !*** delegated ./node_modules/react-dom/index.js from dll-reference dll_4637a5625a9a2f93d7d1 ***!
+  !*** delegated ./node_modules/react-dom/index.js from dll-reference dll_6dd916b6c70ea515fc6b ***!
   \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_4637a5625a9a2f93d7d1 */ "dll-reference dll_4637a5625a9a2f93d7d1"))("./node_modules/react-dom/index.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_6dd916b6c70ea515fc6b */ "dll-reference dll_6dd916b6c70ea515fc6b"))("./node_modules/react-dom/index.js");
 
 /***/ }),
 
@@ -42551,12 +42612,12 @@ var canUseDOM = exports.canUseDOM = function canUseDOM() {
 
 /***/ "./node_modules/react/index.js":
 /*!*******************************************************************************************!*\
-  !*** delegated ./node_modules/react/index.js from dll-reference dll_4637a5625a9a2f93d7d1 ***!
+  !*** delegated ./node_modules/react/index.js from dll-reference dll_6dd916b6c70ea515fc6b ***!
   \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = (__webpack_require__(/*! dll-reference dll_4637a5625a9a2f93d7d1 */ "dll-reference dll_4637a5625a9a2f93d7d1"))("./node_modules/react/index.js");
+module.exports = (__webpack_require__(/*! dll-reference dll_6dd916b6c70ea515fc6b */ "dll-reference dll_6dd916b6c70ea515fc6b"))("./node_modules/react/index.js");
 
 /***/ }),
 
@@ -46580,7 +46641,7 @@ function (_React$Component) {
         timestampsInSnapshots: true
       };
       firestore.settings(settings);
-      firestore.collection("events").orderBy("date", "asc").onSnapshot(function (querySnapshot) {
+      firestore.collection("events").onSnapshot(function (querySnapshot) {
         var events = querySnapshot.docs.map(function (event) {
           var eventData = event.data();
           return eventData;
@@ -46617,9 +46678,9 @@ function (_React$Component) {
       /*
         Only autoplay if window is wider than 500px.
         this did not work so good, removed it.
-         var autoPlay = this.state.width > 500 ? true : false;
+          var autoPlay = this.state.width > 500 ? true : false;
       */
-      var autoPlay = false;
+      var autoPlay = true;
       var sliderSettings = {
         dots: true,
         infinite: true,
@@ -46639,7 +46700,8 @@ function (_React$Component) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Event_js__WEBPACK_IMPORTED_MODULE_2__["default"], {
             key: i,
             event: event,
-            slider: _this3.slider
+            slider: _this3.slider,
+            firebase: firebase_app__WEBPACK_IMPORTED_MODULE_4___default.a
           });
         });
       }
@@ -46692,14 +46754,14 @@ return { page: module.exports.default }});
 
 /***/ }),
 
-/***/ "dll-reference dll_4637a5625a9a2f93d7d1":
+/***/ "dll-reference dll_6dd916b6c70ea515fc6b":
 /*!*******************************************!*\
-  !*** external "dll_4637a5625a9a2f93d7d1" ***!
+  !*** external "dll_6dd916b6c70ea515fc6b" ***!
   \*******************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = dll_4637a5625a9a2f93d7d1;
+module.exports = dll_6dd916b6c70ea515fc6b;
 
 /***/ })
 

@@ -80,7 +80,7 @@ class Index extends React.Component {
 
       var autoPlay = this.state.width > 500 ? true : false;
     */
-    var autoPlay = true;
+    var autoPlay = false;
 
     let sliderSettings = {
       dots: true,
