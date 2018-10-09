@@ -51,7 +51,6 @@ class Index extends React.Component {
 
     firestore
       .collection(`events`)
-      .orderBy(`date`, `asc`)
       .onSnapshot(querySnapshot => {
         const events = querySnapshot.docs.map(event => {
           let eventData = event.data();
@@ -99,7 +98,7 @@ class Index extends React.Component {
     let renderEvents = [];
     if (this.state.events) {
       renderEvents = this.state.events.map((event, i) => {
-        return <Event key={i} event={event} slider={this.slider} />;
+        return <Event key={i} event={event} slider={this.slider} firebase={firebase} />;
       });
     }
 

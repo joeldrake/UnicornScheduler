@@ -124,7 +124,7 @@ class Event extends React.Component {
                 className={`eventEditWrapper`}
                 key="eventEdit"
               >
-                <EventEdit toggleModal={this.handleToolbarItemClick} />
+                <EventEdit firebase={this.props.firebase} toggleModal={this.handleToolbarItemClick} />
               </EventEditContainer>
             ) : null}
           </PoseGroup>

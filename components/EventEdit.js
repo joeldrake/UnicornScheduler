@@ -4,10 +4,67 @@ import './../css/form-control.css';
 import './../css/btn.css';
 import './../css/eventEdit.css';
 
+
+
+
+// const firestore = firebase.firestore();
+
+// firestore
+//       .collection(`events`)
+//       .orderBy(`date`, `asc`)
+//       .onSnapshot(querySnapshot => {
+//         const events = querySnapshot.docs.map(event => {
+//           let eventData = event.data();
+//           return eventData;
+//         });
+
+// var database = firebase.database().ref;
+
+// var { database } = this.props.firebase;
+
+
+// firebase.database().ref('/events/').once('value').then(function(snapshot) {
+//   console.log(snapshot.val())
+// });
+
 class Modal extends React.Component {
   submitEventForm = (values, actions) => {
     console.log(values);
     alert(JSON.stringify(values, null, 2));
+
+    const firestore = this.props.firebase.firestore();
+    const eventname = `${values.name} ${Date.now()}`;
+    
+    values.lastUpdated = new Date()
+    values.id = eventname
+
+    firestore.collection(`events`).doc(eventname).set(values);
+    /////calles
+    // const firestore = this.props.firebase.firestore();
+
+    // const settings = {
+    //   timestampsInSnapshots: true,
+    // };
+    // firestore.settings(settings);
+
+    // firestore
+    //   .collection(`events`)
+    //   .orderBy(`date`, `asc`)
+    //   .onSnapshot(querySnapshot => {
+    //     const events = querySnapshot.docs.map(event => {
+    //       let eventData = event.data();
+    //       return eventData;
+    //     });
+
+        /////slut calles
+      //   console.log(JSON.stringify(events, null, 2));
+      // });
+
+        /*
+          dump to console only for dev purposes
+          remove when app is in production
+        */
+       
     /* 
     todo: Submit form data to firebase
 
@@ -37,7 +94,10 @@ class Modal extends React.Component {
     actions.setSubmitting(false);
     actions.resetForm();
   };
+
+
   render() {
+    
     return (
       <div className={`eventEdit`}>
         <style global jsx>{`
@@ -108,8 +168,9 @@ class Modal extends React.Component {
                   onBlur={handleBlur}
                   autoComplete={`off`}
                 />
+                Color
                 <input
-                  type={`text`}
+                  type={`color`}
                   name={`color`}
                   value={values.color || ''}
                   placeholder={`Color`}
