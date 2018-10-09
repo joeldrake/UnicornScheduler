@@ -6,7 +6,8 @@
   --grey: #9b9b9b;
 }
 
-.form-control {
+.form-control,
+.DateInput_input {
   display: block;
   width: 100%;
   max-width: 100%;

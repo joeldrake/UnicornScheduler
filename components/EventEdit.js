@@ -8,9 +8,6 @@ import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 import './../css/datepicker.css';
 
-
-
-
 // const firestore = firebase.firestore();
 
 // firestore
@@ -26,36 +23,31 @@ import './../css/datepicker.css';
 
 // var { database } = this.props.firebase;
 
-
 // firebase.database().ref('/events/').once('value').then(function(snapshot) {
 //   console.log(snapshot.val())
 // });
 
 class Modal extends React.Component {
-
   constructor() {
     super();
-  
+
     this.state = {
-      date: "",
+      date: '',
     };
   }
 
-
   submitEventForm = (values, actions) => {
-    console.log(this.state.date)
+    console.log(this.state.date);
     console.log(values);
     alert(JSON.stringify(values, null, 2));
 
     const firestore = this.props.firebase.firestore();
     const eventname = `${values.name} ${Date.now()}`;
     values.date = this.state.date;
-    values.lastUpdated = new Date()
-    values.id = eventname
+    values.lastUpdated = new Date();
+    values.id = eventname;
 
     // firestore.collection(`events`).doc(eventname).set(values);
-
-
 
     /////calles
     // const firestore = this.props.firebase.firestore();
@@ -74,15 +66,15 @@ class Modal extends React.Component {
     //       return eventData;
     //     });
 
-        /////slut calles
-      //   console.log(JSON.stringify(events, null, 2));
-      // });
+    /////slut calles
+    //   console.log(JSON.stringify(events, null, 2));
+    // });
 
-        /*
+    /*
           dump to console only for dev purposes
           remove when app is in production
         */
-       
+
     /* 
     todo: Submit form data to firebase
 
@@ -113,9 +105,7 @@ class Modal extends React.Component {
     actions.resetForm();
   };
 
-
   render() {
-    
     return (
       <div className={`eventEdit`}>
         <style global jsx>{`
@@ -177,15 +167,19 @@ class Modal extends React.Component {
                 />
               </div>
               <div>
-              <SingleDatePicker
-  date={this.state.date} // momentPropTypes.momentObj or null
-  onDateChange={date => this.setState({ date })} // PropTypes.func.isRequired
-  focused={this.state.focused} // PropTypes.bool
-  onFocusChange={({ focused }) => this.setState({ focused })} // PropTypes.func.isRequired
-  id="your_unique_id"
-  onChange={setFieldValue}
-  onBlur={handleBlur} // PropTypes.string.isRequired,
-/>
+                <SingleDatePicker
+                  date={values.date}
+                  onDateChange={date => (values.date = date)}
+                  focused={this.state.focused}
+                  onFocusChange={({ focused }) => this.setState({ focused })}
+                  name="date"
+                  onChange={setFieldValue}
+                  onBlur={handleBlur}
+                  displayFormat="DD MMM, YYYY"
+                  numberOfMonths={1}
+                  required={true}
+                />
+                {/*
                 <input
                   type={`text`}
                   name={`date`}
@@ -196,6 +190,7 @@ class Modal extends React.Component {
                   onBlur={handleBlur}
                   autoComplete={`off`}
                 />
+                */}
                 Color
                 <input
                   type={`color`}
