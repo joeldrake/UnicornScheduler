@@ -122,11 +122,12 @@ class Modal extends React.Component {
             handleBlur,
             handleSubmit,
             isSubmitting,
-            setFieldValue,
+            
           }) => (
             <form onSubmit={handleSubmit} className={`eventEditForm`}>
               <div>
                 <input
+                  required
                   type={`text`}
                   name={`headline`}
                   value={values.headline || ''}
@@ -137,6 +138,7 @@ class Modal extends React.Component {
                   autoComplete={`off`}
                 />
                 <textarea
+                  required
                   name={`description`}
                   value={values.description || ''}
                   placeholder={`Desciption`}
@@ -146,6 +148,7 @@ class Modal extends React.Component {
                   autoComplete={`off`}
                 />
                 <input
+                  required
                   type={`text`}
                   name={`location`}
                   value={values.location || ''}
@@ -156,10 +159,11 @@ class Modal extends React.Component {
                   autoComplete={`off`}
                 />
                 <input
+                  required
                   type={`text`}
                   name={`time`}
                   value={values.time || ''}
-                  placeholder={`Time`}
+                  placeholder={`Time (four digits like 09:00)`}
                   className={`form-control`}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -168,12 +172,13 @@ class Modal extends React.Component {
               </div>
               <div>
                 <SingleDatePicker
+                  readOnly
+                  placeholder="Date"
                   date={values.date}
                   onDateChange={date => (values.date = date)}
                   focused={this.state.focused}
                   onFocusChange={({ focused }) => this.setState({ focused })}
                   name="date"
-                  onChange={setFieldValue}
                   onBlur={handleBlur}
                   displayFormat="DD MMM, YYYY"
                   numberOfMonths={1}
@@ -193,6 +198,7 @@ class Modal extends React.Component {
                 */}
                 Color
                 <input
+                  required
                   type={`color`}
                   name={`color`}
                   value={values.color}
@@ -203,6 +209,7 @@ class Modal extends React.Component {
                   autoComplete={`off`}
                 />
                 <input
+                  required
                   type={`text`}
                   name={`image`}
                   value={values.image || ''}
