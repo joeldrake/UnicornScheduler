@@ -108,20 +108,7 @@ class Modal extends React.Component {
     actions.resetForm();
   };
 
-
-  onChoosingImage = () => {
-    uploadcare.openDialog(null, {
-      crop: "300:200",
-      imagesOnly: true
-    }).done(function(file) {
-      file.promise().done(function(fileInfo){
-        console.log(fileInfo.cdnUrl);
-        return fileInfo.cdnUrl
-      });
-    });
-  }
-
-  test = (e) => {
+  onChoosingImage = (e) => {
     e.preventDefault();
     uploadcare
       .openDialog(null, {
@@ -149,7 +136,7 @@ class Modal extends React.Component {
       if(this.state.picture) {
         return <div><img id="picture_load" src={this.state.picture}></img></div>
       } else {
-        return <button id="picture_load_button" className="ui button big wider_button" onClick={this.test}>
+        return <button id="picture_load_button" className="ui button big wider_button" onClick={this.onChoosingImage}>
                 Choose a picture
               </button>
       }
@@ -164,10 +151,8 @@ class Modal extends React.Component {
             overflow: hidden;
           }
         `}</style>
-        {picturebutton()}
         <Formik initialValues={{}} onSubmit={this.submitEventForm}>
           {({
-            formikTest,
             values,
             handleChange,
             handleBlur,
@@ -238,7 +223,7 @@ class Modal extends React.Component {
                   required={true}
                 />
                 
-                Color
+                <h5>Color</h5>
                 <input
                   required
                   type={`color`}
@@ -250,8 +235,9 @@ class Modal extends React.Component {
                   onBlur={handleBlur}
                   autoComplete={`off`}
                 />
-
                 
+                {picturebutton()}
+
                 <input
                   id="hideIt"
                   type={`text`}
