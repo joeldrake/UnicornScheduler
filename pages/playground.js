@@ -15,7 +15,7 @@ class Playground extends React.Component {
     }
 
     render() {
- 
+        
         var style = {
             backgroundColor: this.state.color,
           };

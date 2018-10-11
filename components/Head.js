@@ -9,6 +9,19 @@ const defaultIcon = '/static/img/logo.png';
 
 const Head = props => (
   <NextHead>
+<script>
+  UPLOADCARE_PUBLIC_KEY = 'demopublickey';
+  UPLOADCARE_TABS = 'file camera facebook dropbox';
+  UPLOADCARE_EFFECTS = 'crop';
+  UPLOADCARE_IMAGES_ONLY = true;
+  UPLOADCARE_PREVIEW_STEP = true;
+</script>
+
+<script src="https://ucarecdn.com/libs/widget/3.6.1/uploadcare.full.min.js"></script><script src="https://ucarecdn.com/libs/widget-tab-effects/1.x/uploadcare.tab-effects.js"></script>
+<script>
+  uploadcare.registerTab('preview', uploadcareTabEffects)
+</script>
+
     <meta charSet="UTF-8" />
     <title>{props.title || defaultTitle}</title>
     <link rel="manifest" href="/static/manifest.json" />

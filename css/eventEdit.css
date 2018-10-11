@@ -84,3 +84,7 @@
   min-width: 0;
   text-align: right;
 }
+
+#hideIt {
+  display: none;
+}

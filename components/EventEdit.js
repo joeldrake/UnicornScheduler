@@ -7,6 +7,8 @@ import moment from 'moment';
 import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 import './../css/datepicker.css';
+import uploadcare from 'uploadcare-widget';
+import $ from 'jquery';
 
 // const firestore = firebase.firestore();
 
@@ -33,6 +35,7 @@ class Modal extends React.Component {
 
     this.state = {
       date: '',
+      picture: '',
     };
   }
 
@@ -47,7 +50,7 @@ class Modal extends React.Component {
     values.lastUpdated = new Date();
     values.id = eventname;
 
-    // firestore.collection(`events`).doc(eventname).set(values);
+    firestore.collection(`events`).doc(eventname).set(values);
 
     /////calles
     // const firestore = this.props.firebase.firestore();
@@ -105,7 +108,53 @@ class Modal extends React.Component {
     actions.resetForm();
   };
 
+
+  onChoosingImage = () => {
+    uploadcare.openDialog(null, {
+      crop: "300:200",
+      imagesOnly: true
+    }).done(function(file) {
+      file.promise().done(function(fileInfo){
+        console.log(fileInfo.cdnUrl);
+        return fileInfo.cdnUrl
+      });
+    });
+  }
+
+  test = (e) => {
+    e.preventDefault();
+    uploadcare
+      .openDialog(null, {
+        imagesOnly: true,
+        crop: "3:2"
+      })
+      .done(file => {
+        file.promise().done(fileInfo => {
+          console.log('From inside promise ' + fileInfo.cdnUrl);
+          this.setState({
+            picture: fileInfo.cdnUrl,
+          });
+          console.log(this.state);
+        });
+      });
+  };
+
+  getPictureUrl = () => {
+    return (this.state.picture)
+  }
+
   render() {
+
+    var picturebutton = () => {
+      if(this.state.picture) {
+        return <div><img id="picture_load" src={this.state.picture}></img></div>
+      } else {
+        return <button id="picture_load_button" className="ui button big wider_button" onClick={this.test}>
+                Choose a picture
+              </button>
+      }
+    }
+
     return (
       <div className={`eventEdit`}>
         <style global jsx>{`
@@ -115,8 +164,10 @@ class Modal extends React.Component {
             overflow: hidden;
           }
         `}</style>
+        {picturebutton()}
         <Formik initialValues={{}} onSubmit={this.submitEventForm}>
           {({
+            formikTest,
             values,
             handleChange,
             handleBlur,
@@ -158,6 +209,8 @@ class Modal extends React.Component {
                   onBlur={handleBlur}
                   autoComplete={`off`}
                 />
+
+
                 <input
                   required
                   type={`text`}
@@ -184,18 +237,7 @@ class Modal extends React.Component {
                   numberOfMonths={1}
                   required={true}
                 />
-                {/*
-                <input
-                  type={`text`}
-                  name={`date`}
-                  value={values.date}
-                  placeholder={`Date`}
-                  className={`form-control`}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  autoComplete={`off`}
-                />
-                */}
+                
                 Color
                 <input
                   required
@@ -208,17 +250,20 @@ class Modal extends React.Component {
                   onBlur={handleBlur}
                   autoComplete={`off`}
                 />
+
+                
                 <input
-                  required
+                  id="hideIt"
                   type={`text`}
                   name={`image`}
-                  value={values.image || ''}
+                  value={values.image = this.getPictureUrl()}
                   placeholder={`Image`}
                   className={`form-control`}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   autoComplete={`off`}
                 />
+
               </div>
 
               <div className={`eventEditFormFooter`}>
