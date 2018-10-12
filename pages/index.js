@@ -89,20 +89,14 @@ class Index extends React.Component {
     };
     firestore.settings(settings);
 
-    firestore
-      .collection(`events`)
-      .onSnapshot(querySnapshot => {
-        const events = querySnapshot.docs.map(event => {
-          let eventData = event.data();
-          return eventData;
-        });
-        /*
-          dump to console only for dev purposes
-          remove when app is in production
-        */
-        console.log(JSON.stringify(events, null, 2));
-        this.setState({ events });
+    firestore.collection(`events`).onSnapshot(querySnapshot => {
+      const events = querySnapshot.docs.map(event => {
+        let eventData = event.data();
+        console.log(`${eventData.headline}\ndate:${eventData.date}\n\n`);
+        return eventData;
       });
+      this.setState({ events });
+    });
   }
 
   componentWillUnmount() {
@@ -158,47 +152,44 @@ class Index extends React.Component {
     let renderEvents = [];
     if (this.state.events) {
       renderEvents = this.state.events.map((event, i) => {
-        return <Event key={i} event={event} slider={this.slider} firebase={firebase} />;
+        return <Event event={event} key={i} />;
       });
     }
 
     const { eventEditOpen } = this.state;
 
-   
-
     return (
       <Layout>
         <div className={`eventToolbar`}>
-            <a href="#" onClick={this.handleToolbarItemClick}>
-              <img src={`/static/img/pen.svg`} />
-            </a>
-            <a href="#" onClick={this.handleToolbarItemClick}>
-              <img src={`/static/img/plus.svg`} />
-            </a>
-          </div>
+          <a href="#" onClick={this.handleToolbarItemClick}>
+            <img src={`/static/img/pen.svg`} />
+          </a>
+          <a href="#" onClick={this.handleToolbarItemClick}>
+            <img src={`/static/img/plus.svg`} />
+          </a>
+        </div>
         <Slider ref={e => (this.slider = e)} {...sliderSettings}>
           {renderEvents}
         </Slider>
         <PoseGroup>
-            {eventEditOpen ? (
-              <EventEditContainer
-                className={`eventEditWrapper`}
-                key="eventEdit"
-              >
-                <EventEdit firebase={this.props.firebase} toggleModal={this.handleToolbarItemClick} />
-              </EventEditContainer>
-            ) : null}
-          </PoseGroup>
-          <PoseGroup>
-            {eventEditOpen ? (
-              <EventEditDarkenContainer
-                className={`eventEditDarken`}
-                key="darken"
+          {eventEditOpen ? (
+            <EventEditContainer className={`eventEditWrapper`} key="eventEdit">
+              <EventEdit
+                firebase={firebase}
+                toggleEventEditOpen={this.handleToolbarItemClick}
               />
-            ) : null}
-          </PoseGroup>
+            </EventEditContainer>
+          ) : null}
+        </PoseGroup>
+        <PoseGroup>
+          {eventEditOpen ? (
+            <EventEditDarkenContainer
+              className={`eventEditDarken`}
+              key="darken"
+            />
+          ) : null}
+        </PoseGroup>
       </Layout>
-
     );
   }
 }

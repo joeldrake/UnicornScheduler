@@ -36,7 +36,7 @@ const Head = props => (
     <script
       dangerouslySetInnerHTML={{
         __html: `
-          UPLOADCARE_PUBLIC_KEY = 'demopublickey';
+          UPLOADCARE_PUBLIC_KEY = '3c62cd2cc88c1ce1c4ea';
           UPLOADCARE_TABS = 'file camera facebook dropbox'; 
           UPLOADCARE_EFFECTS = 'crop'; 
           UPLOADCARE_IMAGES_ONLY = true; 
@@ -45,6 +45,7 @@ const Head = props => (
       }}
     />
 
+    {/*
     <script src="https://ucarecdn.com/libs/widget/3.6.1/uploadcare.full.min.js" />
     <script src="https://ucarecdn.com/libs/widget-tab-effects/1.x/uploadcare.tab-effects.js" />
 
@@ -54,7 +55,9 @@ const Head = props => (
     uploadcare.registerTab('preview', uploadcareTabEffects)
 `,
       }}
+      
     />
+    */}
 
     {/* todo: get this polyfill in the normal next.js build, or remove it, or maybe just remove it*/}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js" />
