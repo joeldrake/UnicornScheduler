@@ -10,12 +10,11 @@ class EventList extends React.Component {
 
     this.state = {
       date: '',
-      picture: '',
     };
   }
 
   render() {
-      
+
     return (
       <div className={`eventEdit`}>
         <style global jsx>{`
