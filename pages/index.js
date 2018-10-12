@@ -3,8 +3,48 @@ import Layout from './../components/Layout.js';
 import Event from './../components/Event.js';
 import Slider from 'react-slick';
 import firebase from 'firebase/app';
+import EventEdit from './../components/EventEdit.js';
+import posed, { PoseGroup } from 'react-pose';
 import 'firebase/firestore';
 import './../css/slider.css';
+
+const EventEditContainer = posed.div({
+  enter: {
+    y: '0',
+    opacity: 1,
+  },
+  exit: {
+    y: '-80%',
+    opacity: 0,
+  },
+});
+const EventEditDarkenContainer = posed.div({
+  enter: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+});
+
+const EventListContainer = posed.div({
+  enter: {
+    y: '0',
+    opacity: 1,
+  },
+  exit: {
+    y: '-80%',
+    opacity: 0,
+  },
+});
+const EventListDarkenContainer = posed.div({
+  enter: {
+    opacity: 1,
+  },
+  exit: {
+    opacity: 0,
+  },
+});
 
 class Index extends React.Component {
   constructor(props) {
@@ -73,6 +113,26 @@ class Index extends React.Component {
     this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
+  handleToolbarItemClick = e => {
+    e.preventDefault();
+
+    const { eventEditOpen } = this.state;
+
+    if (!eventEditOpen) {
+      //Modal is about to be open, pause the slider
+      this.slider.slickPause();
+      console.log('pause slider');
+    } else {
+      //Modal is about to be close, play the slider
+      this.slider.slickPlay();
+      console.log('play slider');
+    }
+
+    this.setState({
+      eventEditOpen: !eventEditOpen,
+    });
+  };
+
   render() {
     /*
       Only autoplay if window is wider than 500px.
@@ -102,12 +162,43 @@ class Index extends React.Component {
       });
     }
 
+    const { eventEditOpen } = this.state;
+
+   
+
     return (
       <Layout>
+        <div className={`eventToolbar`}>
+            <a href="#" onClick={this.handleToolbarItemClick}>
+              <img src={`/static/img/pen.svg`} />
+            </a>
+            <a href="#" onClick={this.handleToolbarItemClick}>
+              <img src={`/static/img/plus.svg`} />
+            </a>
+          </div>
         <Slider ref={e => (this.slider = e)} {...sliderSettings}>
           {renderEvents}
         </Slider>
+        <PoseGroup>
+            {eventEditOpen ? (
+              <EventEditContainer
+                className={`eventEditWrapper`}
+                key="eventEdit"
+              >
+                <EventEdit firebase={this.props.firebase} toggleModal={this.handleToolbarItemClick} />
+              </EventEditContainer>
+            ) : null}
+          </PoseGroup>
+          <PoseGroup>
+            {eventEditOpen ? (
+              <EventEditDarkenContainer
+                className={`eventEditDarken`}
+                key="darken"
+              />
+            ) : null}
+          </PoseGroup>
       </Layout>
+
     );
   }
 }
