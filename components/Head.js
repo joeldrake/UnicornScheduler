@@ -9,19 +9,6 @@ const defaultIcon = '/static/img/logo.png';
 
 const Head = props => (
   <NextHead>
-<script>
-  UPLOADCARE_PUBLIC_KEY = 'demopublickey';
-  UPLOADCARE_TABS = 'file camera facebook dropbox';
-  UPLOADCARE_EFFECTS = 'crop';
-  UPLOADCARE_IMAGES_ONLY = true;
-  UPLOADCARE_PREVIEW_STEP = true;
-</script>
-
-<script src="https://ucarecdn.com/libs/widget/3.6.1/uploadcare.full.min.js"></script><script src="https://ucarecdn.com/libs/widget-tab-effects/1.x/uploadcare.tab-effects.js"></script>
-<script>
-  uploadcare.registerTab('preview', uploadcareTabEffects)
-</script>
-
     <meta charSet="UTF-8" />
     <title>{props.title || defaultTitle}</title>
     <link rel="manifest" href="/static/manifest.json" />
@@ -45,6 +32,30 @@ const Head = props => (
     <meta property="og:image" content={props.ogImage || defaultOGImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+
+    <script
+      dangerouslySetInnerHTML={{
+        __html: `
+          UPLOADCARE_PUBLIC_KEY = 'demopublickey';
+          UPLOADCARE_TABS = 'file camera facebook dropbox'; 
+          UPLOADCARE_EFFECTS = 'crop'; 
+          UPLOADCARE_IMAGES_ONLY = true; 
+          UPLOADCARE_PREVIEW_STEP = true;
+    `,
+      }}
+    />
+
+    <script src="https://ucarecdn.com/libs/widget/3.6.1/uploadcare.full.min.js" />
+    <script src="https://ucarecdn.com/libs/widget-tab-effects/1.x/uploadcare.tab-effects.js" />
+
+    <script
+      dangerouslySetInnerHTML={{
+        __html: `
+    uploadcare.registerTab('preview', uploadcareTabEffects)
+`,
+      }}
+    />
+
     {/* todo: get this polyfill in the normal next.js build, or remove it, or maybe just remove it*/}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js" />
   </NextHead>
