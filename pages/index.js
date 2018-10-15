@@ -1,8 +1,10 @@
 import React from 'react';
 import Layout from './../components/Layout.js';
 import Event from './../components/Event.js';
+import Router from 'next/router';
 import Slider from 'react-slick';
 import firebase from 'firebase/app';
+import moment from 'moment';
 import EventEdit from './../components/EventEdit.js';
 import posed, { PoseGroup } from 'react-pose';
 import 'firebase/firestore';
@@ -71,8 +73,22 @@ class Index extends React.Component {
       }
     }
 
+    //if ?date= is in url next router will pick it up and insert into state
+    const dateFromUrl =
+      Router && Router.router && Router.router.query
+        ? Router.router.query.date
+        : null;
+
+    const eventFromUrl =
+      Router && Router.router && Router.router.query
+        ? Router.router.query.event
+        : null;
+
     this.state = {
       events: [],
+      todaysDate: moment().format(`YYYY-MM-DD`),
+      dateFromUrl,
+      eventFromUrl,
     };
   }
 
@@ -82,6 +98,7 @@ class Index extends React.Component {
       this.updateWindowDimensions();
       window.addEventListener('resize', this.updateWindowDimensions);
     */
+
     const firestore = firebase.firestore();
 
     const settings = {
@@ -92,7 +109,15 @@ class Index extends React.Component {
     firestore.collection(`events`).onSnapshot(querySnapshot => {
       const events = querySnapshot.docs.map(event => {
         let eventData = event.data();
-        console.log(`${eventData.headline}\ndate:${eventData.date}\n\n`);
+
+        // adding and extra value to event in state that is not in firebase
+        eventData.normalizedDate = moment
+          .unix(eventData.date.seconds)
+          .format(`YYYY-MM-DD`);
+
+        console.log(eventData.headline, eventData);
+        console.log(`\n`);
+
         return eventData;
       });
       this.setState({ events });
@@ -151,9 +176,30 @@ class Index extends React.Component {
 
     let renderEvents = [];
     if (this.state.events) {
-      renderEvents = this.state.events.map((event, i) => {
-        return <Event event={event} key={i} />;
-      });
+      renderEvents = this.state.events
+        .filter(event => {
+          //first filter the events on date, then map them
+          const { dateFromUrl, todaysDate, eventFromUrl } = this.state;
+
+          if (eventFromUrl) {
+            if (dateFromUrl) {
+              //both event headline and date is provided, sort on both
+              return (
+                event.headline === eventFromUrl &&
+                event.normalizedDate === dateFromUrl
+              );
+            } else {
+              //only event headline is provided, sort on that
+              return event.headline === eventFromUrl;
+            }
+          } else {
+            //sort on date from url if provided, else sort on todays date
+            return event.normalizedDate === (dateFromUrl || todaysDate);
+          }
+        })
+        .map((event, i) => {
+          return <Event event={event} key={i} />;
+        });
     }
 
     const { eventEditOpen } = this.state;
