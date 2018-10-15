@@ -29,7 +29,7 @@ class Modal extends React.Component {
 
     console.log(this.props);
 
-    const dateNow = moment().format(`YYYY-MM-DD mm:ss`);
+    const dateNow = moment().format(`YYYY-MM-DD HH:ss`);
     const eventname = `${dateNow} ${values.headline}`;
 
     values.lastUpdated = new Date();
