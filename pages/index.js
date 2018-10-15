@@ -1,11 +1,11 @@
 import React from 'react';
 import Layout from './../components/Layout.js';
 import Event from './../components/Event.js';
-import Router from 'next/router';
 import Slider from 'react-slick';
 import firebase from 'firebase/app';
 import moment from 'moment';
 import EventEdit from './../components/EventEdit.js';
+import { getQueryVariable } from './../utils/functions.js';
 import posed, { PoseGroup } from 'react-pose';
 import 'firebase/firestore';
 import './../css/slider.css';
@@ -73,22 +73,9 @@ class Index extends React.Component {
       }
     }
 
-    //if ?date= is in url next router will pick it up and insert into state
-    const dateFromUrl =
-      Router && Router.router && Router.router.query
-        ? Router.router.query.date
-        : null;
-
-    const eventFromUrl =
-      Router && Router.router && Router.router.query
-        ? Router.router.query.event
-        : null;
-
     this.state = {
       events: [],
       todaysDate: moment().format(`YYYY-MM-DD`),
-      dateFromUrl,
-      eventFromUrl,
     };
   }
 
@@ -98,6 +85,17 @@ class Index extends React.Component {
       this.updateWindowDimensions();
       window.addEventListener('resize', this.updateWindowDimensions);
     */
+
+    /*
+    if app is not exported to static files we shoul use next/router 
+    insted of window.location.search as this util function uses
+    Then we could also move it to the constructor
+    */
+
+    const dateFromUrl = getQueryVariable('date');
+    const eventFromUrl = getQueryVariable('event');
+
+    this.setState({ dateFromUrl, eventFromUrl });
 
     const firestore = firebase.firestore();
 
@@ -116,7 +114,6 @@ class Index extends React.Component {
           .format(`YYYY-MM-DD`);
 
         console.log(eventData.headline, eventData);
-        console.log(`\n`);
 
         return eventData;
       });
@@ -159,7 +156,7 @@ class Index extends React.Component {
 
       var autoPlay = this.state.width > 500 ? true : false;
     */
-    var autoPlay = false;
+    var autoPlay = true;
 
     let sliderSettings = {
       dots: true,
