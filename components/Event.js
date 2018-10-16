@@ -7,7 +7,7 @@ class Event extends React.Component {
 
     this.state = {
       eventEditOpen: false,
-      evenListOpen: false,
+      eventListOpen: false,
     };
   }
 

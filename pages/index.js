@@ -7,6 +7,8 @@ import EventEdit from './../components/EventEdit.js';
 import posed, { PoseGroup } from 'react-pose';
 import 'firebase/firestore';
 import './../css/slider.css';
+import EventList from '../components/EventList.js';
+import ExistingEventEdit from '../components/ExistingEventEdit.js';
 
 const EventEditContainer = posed.div({
   enter: {
@@ -73,6 +75,9 @@ class Index extends React.Component {
 
     this.state = {
       events: [],
+      eventEditOpen: false,
+      eventListOpen: false,
+      existingEditOpen: false,
     };
   }
 
@@ -133,6 +138,47 @@ class Index extends React.Component {
     });
   };
 
+  handleListClick = e => {
+    e.preventDefault();
+
+    const { eventListOpen } = this.state;
+
+    if (!eventListOpen) {
+      //Modal is about to be open, pause the slider
+      this.slider.slickPause();
+      console.log('pause slider');
+    } else {
+      //Modal is about to be close, play the slider
+      this.slider.slickPlay();
+      console.log('play slider');
+    }
+
+    this.setState({
+      eventListOpen: !eventListOpen,
+    });
+  };
+
+  handleExistingClick = e => {
+    e.preventDefault();
+
+    const { eventListOpen } = this.state;
+
+    if (!eventListOpen) {
+      //Modal is about to be open, pause the slider
+      this.slider.slickPause();
+      console.log('pause slider');
+    } else {
+      //Modal is about to be close, play the slider
+      this.slider.slickPlay();
+      console.log('play slider');
+    }
+
+    this.setState({
+      eventListOpen: !eventListOpen,
+    });
+  };
+
+
   render() {
     /*
       Only autoplay if window is wider than 500px.
@@ -162,14 +208,14 @@ class Index extends React.Component {
       });
     }
 
-    const { eventEditOpen } = this.state;
+    const { eventEditOpen, eventListOpen, existingEditOpen } = this.state;
 
    
 
     return (
       <Layout>
         <div className={`eventToolbar`}>
-            <a href="#" onClick={this.handleToolbarItemClick}>
+            <a href="#" onClick={this.handleListClick}>
               <img src={`/static/img/pen.svg`} />
             </a>
             <a href="#" onClick={this.handleToolbarItemClick}>
@@ -197,6 +243,45 @@ class Index extends React.Component {
               />
             ) : null}
           </PoseGroup>
+
+          <PoseGroup>
+            {eventListOpen ? (
+              <EventEditContainer
+                className={`eventEditWrapper`}
+                key="eventEdit"
+              >
+                <EventList events={this.state.events} toggleModal={this.handleListClick} />
+              </EventEditContainer>
+            ) : null}
+          </PoseGroup>
+          <PoseGroup>
+            {eventListOpen ? (
+              <EventEditDarkenContainer
+                className={`eventEditDarken`}
+                key="darken"
+              />
+            ) : null}
+          </PoseGroup>
+
+          <PoseGroup>
+            {existingEditOpen ? (
+              <EventEditContainer
+                className={`eventEditWrapper`}
+                key="eventEdit"
+              >
+                <ExistingEventEdit firebase={this.props.firebase} toggleModal={this.handleExistingClick} />
+              </EventEditContainer>
+            ) : null}
+          </PoseGroup>
+          <PoseGroup>
+            {existingEditOpen ? (
+              <EventEditDarkenContainer
+                className={`eventEditDarken`}
+                key="darken"
+              />
+            ) : null}
+          </PoseGroup>
+          
       </Layout>
 
     );
