@@ -76,7 +76,7 @@ class Index extends React.Component {
     this.state = {
       events: [],
       eventEditOpen: false,
-      eventListOpen: false,
+      eventListOpen: true,
       existingEditOpen: false,
     };
   }
