@@ -159,9 +159,19 @@ class Index extends React.Component {
   };
 
   findEvent = (header) => {
+    const incomeHeader = header
     const events = this.state.events
     console.log('from find event', events)
-    alert(header)
+
+    let selectedEvent = events.filter(event => {
+      return event.headline === incomeHeader
+    })
+
+    console.log(selectedEvent)
+
+    // let filteredIceCream = iceCream.filter(iceCream => {
+    //   return iceCream.flavour !== flavour;
+    // })
 
   }
 
