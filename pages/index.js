@@ -158,9 +158,21 @@ class Index extends React.Component {
     });
   };
 
-  handleExistingClick = e => {
+  findEvent = (header) => {
+    const events = this.state.events
+    console.log('from find event', events)
+    alert(header)
+
+  }
+
+  handleExistingClick = (e, header) => {
     e.preventDefault();
+    if (header) {
+      this.findEvent(header)
+    }
+    
     const { existingEditOpen } = this.state;
+    
 
     if (!existingEditOpen) {
       //Modal is about to be open, pause the slider
