@@ -160,10 +160,9 @@ class Index extends React.Component {
 
   handleExistingClick = e => {
     e.preventDefault();
+    const { existingEditOpen } = this.state;
 
-    const { eventListOpen } = this.state;
-
-    if (!eventListOpen) {
+    if (!existingEditOpen) {
       //Modal is about to be open, pause the slider
       this.slider.slickPause();
       console.log('pause slider');
@@ -174,7 +173,7 @@ class Index extends React.Component {
     }
 
     this.setState({
-      eventListOpen: !eventListOpen,
+      existingEditOpen: !existingEditOpen,
     });
   };
 
@@ -250,7 +249,7 @@ class Index extends React.Component {
                 className={`eventEditWrapper`}
                 key="eventEdit"
               >
-                <EventList events={this.state.events} toggleModal={this.handleListClick} />
+                <EventList events={this.state.events} toggleModal={this.handleListClick} toggleModal1={this.handleExistingClick} />
               </EventEditContainer>
             ) : null}
           </PoseGroup>
@@ -269,7 +268,7 @@ class Index extends React.Component {
                 className={`eventEditWrapper`}
                 key="eventEdit"
               >
-                <ExistingEventEdit firebase={this.props.firebase} toggleModal={this.handleExistingClick} />
+                <ExistingEventEdit firebase={this.props.firebase} toggleModal={this.handleListClick} toggleModal1={this.handleExistingClick} />
               </EventEditContainer>
             ) : null}
           </PoseGroup>

@@ -3,31 +3,10 @@ import { Formik } from 'formik';
 import './../css/form-control.css';
 import './../css/btn.css';
 import './../css/eventEdit.css';
-import moment from 'moment';
 import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 import './../css/datepicker.css';
 import uploadcare from 'uploadcare-widget';
-import $ from 'jquery';
-
-// const firestore = firebase.firestore();
-
-// firestore
-//       .collection(`events`)
-//       .orderBy(`date`, `asc`)
-//       .onSnapshot(querySnapshot => {
-//         const events = querySnapshot.docs.map(event => {
-//           let eventData = event.data();
-//           return eventData;
-//         });
-
-// var database = firebase.database().ref;
-
-// var { database } = this.props.firebase;
-
-// firebase.database().ref('/events/').once('value').then(function(snapshot) {
-//   console.log(snapshot.val())
-// });
 
 class ExistingEventEdit extends React.Component {
   constructor() {
@@ -215,7 +194,7 @@ class ExistingEventEdit extends React.Component {
         <div>existing</div>
         <button
           className={`closeEventEditBtn btn btnTransparent btnRound`}
-          onClick={this.props.toggleModal}
+          onClick={this.props.toggleModal1}
         >
           <img src={`/static/img/cross.svg`} />
         </button>
