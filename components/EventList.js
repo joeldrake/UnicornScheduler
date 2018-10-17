@@ -1,7 +1,6 @@
 import React from 'react';
 import './../css/btn.css';
 import './../css/eventEdit.css';
-import './../css/eventList.css';
 
 
 class EventList extends React.Component {
@@ -13,7 +12,15 @@ class EventList extends React.Component {
     };
   }
 
+  
+  editEvent = (headline) => {
+    alert(headline)
+  }
+
   render() {
+
+    const { events } = this.props;
+    console.log(events)
 
     return (
       <div className={`eventEdit`}>
@@ -24,6 +31,20 @@ class EventList extends React.Component {
             overflow: hidden;
           }
         `}</style>
+          <ul>
+        {events.map((event) => {
+        var {headline} = event;
+        return (
+        <li>
+        <a href="#" onClick={(e) => this.props.toggleModal1(e, headline)}>{headline}</a>
+        </li>
+        )
+        
+      })}
+      </ul>
+      
+      
+        
         <button
           className={`closeEventEditBtn btn btnTransparent btnRound`}
           onClick={this.props.toggleModal}

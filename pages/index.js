@@ -9,6 +9,8 @@ import { getQueryVariable } from './../utils/functions.js';
 import posed, { PoseGroup } from 'react-pose';
 import 'firebase/firestore';
 import './../css/slider.css';
+import EventList from '../components/EventList.js';
+import ExistingEventEdit from '../components/ExistingEventEdit.js';
 
 const EventEditContainer = posed.div({
   enter: {
@@ -75,6 +77,10 @@ class Index extends React.Component {
 
     this.state = {
       events: [],
+      eventEditOpen: false,
+      eventListOpen: false,
+      existingEditOpen: false,
+      selectedEvent: []
       todaysDate: moment().format(`YYYY-MM-DD`),
     };
   }
@@ -149,6 +155,73 @@ class Index extends React.Component {
     });
   };
 
+  handleListClick = e => {
+    e.preventDefault();
+
+    const { eventListOpen } = this.state;
+
+    if (!eventListOpen) {
+      //Modal is about to be open, pause the slider
+      this.slider.slickPause();
+      console.log('pause slider');
+    } else {
+      //Modal is about to be close, play the slider
+      this.slider.slickPlay();
+      console.log('play slider');
+    }
+
+    this.setState({
+      eventListOpen: !eventListOpen,
+    });
+  };
+
+  findEvent = (header) => {
+    const incomeHeader = header
+    const events = this.state.events
+    console.log('from find event', events)
+
+    let selectedEvent = events.filter(event => {
+      return event.headline === incomeHeader
+    })
+
+    this.setState({
+      selectedEvent
+    })
+
+    console.log('from function', selectedEvent)
+    console.log('from state', this.state.selectedEvent)
+
+    // let filteredIceCream = iceCream.filter(iceCream => {
+    //   return iceCream.flavour !== flavour;
+    // })
+
+  }
+
+  handleExistingClick = (e, header) => {
+    e.preventDefault();
+    if (header) {
+      this.findEvent(header)
+    }
+    
+    const { existingEditOpen } = this.state;
+    
+
+    if (!existingEditOpen) {
+      //Modal is about to be open, pause the slider
+      this.slider.slickPause();
+      console.log('pause slider');
+    } else {
+      //Modal is about to be close, play the slider
+      this.slider.slickPlay();
+      console.log('play slider');
+    }
+
+    this.setState({
+      existingEditOpen: !existingEditOpen,
+    });
+  };
+
+
   render() {
     /*
       Only autoplay if window is wider than 500px.
@@ -199,39 +272,78 @@ class Index extends React.Component {
         });
     }
 
-    const { eventEditOpen } = this.state;
+    const { eventEditOpen, eventListOpen, existingEditOpen } = this.state;
 
     return (
       <Layout>
         <div className={`eventToolbar`}>
-          <a href="#" onClick={this.handleToolbarItemClick}>
-            <img src={`/static/img/pen.svg`} />
-          </a>
-          <a href="#" onClick={this.handleToolbarItemClick}>
-            <img src={`/static/img/plus.svg`} />
-          </a>
-        </div>
+            <a href="#" onClick={this.handleListClick}>
+              <img src={`/static/img/pen.svg`} />
+            </a>
+            <a href="#" onClick={this.handleToolbarItemClick}>
+              <img src={`/static/img/plus.svg`} />
+            </a>
+          </div>
         <Slider ref={e => (this.slider = e)} {...sliderSettings}>
           {renderEvents}
         </Slider>
         <PoseGroup>
-          {eventEditOpen ? (
-            <EventEditContainer className={`eventEditWrapper`} key="eventEdit">
-              <EventEdit
-                firebase={firebase}
-                toggleEventEditOpen={this.handleToolbarItemClick}
+
+            {eventEditOpen ? (
+              <EventEditContainer
+                className={`eventEditWrapper`}
+                key="eventEdit"
+              >
+                <EventEdit firebase={firebase} toggleModal={this.handleToolbarItemClick} />
+              </EventEditContainer>
+            ) : null}
+          </PoseGroup>
+          <PoseGroup>
+            {eventEditOpen ? (
+              <EventEditDarkenContainer
+                className={`eventEditDarken`}
+                key="darken"
               />
-            </EventEditContainer>
-          ) : null}
-        </PoseGroup>
-        <PoseGroup>
-          {eventEditOpen ? (
-            <EventEditDarkenContainer
-              className={`eventEditDarken`}
-              key="darken"
-            />
-          ) : null}
-        </PoseGroup>
+            ) : null}
+          </PoseGroup>
+
+          <PoseGroup>
+            {eventListOpen ? (
+              <EventEditContainer
+                className={`eventEditWrapper`}
+                key="eventEdit"
+              >
+                <EventList events={this.state.events} toggleModal={this.handleListClick} toggleModal1={this.handleExistingClick} />
+              </EventEditContainer>
+            ) : null}
+          </PoseGroup>
+          <PoseGroup>
+            {eventListOpen ? (
+              <EventEditDarkenContainer
+                className={`eventEditDarken`}
+                key="darken"
+              />
+            ) : null}
+          </PoseGroup>
+
+          <PoseGroup>
+            {existingEditOpen ? (
+              <EventEditContainer
+                className={`eventEditWrapper`}
+                key="eventEdit"
+              >
+                <ExistingEventEdit firebase={firebase} toggleModal={this.handleListClick} toggleModal1={this.handleExistingClick} selectedEvent={this.state.selectedEvent[0]} />
+              </EventEditContainer>
+            ) : null}
+          </PoseGroup>
+          <PoseGroup>
+            {existingEditOpen ? (
+              <EventEditDarkenContainer
+                className={`eventEditDarken`}
+                key="darken"
+              />
+            ) : null}
+          </PoseGroup>
       </Layout>
     );
   }
