@@ -59,6 +59,8 @@ class ExistingEventEdit extends React.Component {
 
   render() {
 
+    console.log('from existing event.js', this.props.selectedEvent)
+
     var picturebutton = () => {
       if(this.state.picture) {
         return <div><img id="picture_load" src={this.state.picture}></img></div>

@@ -78,6 +78,7 @@ class Index extends React.Component {
       eventEditOpen: false,
       eventListOpen: true,
       existingEditOpen: false,
+      selectedEvent: []
     };
   }
 
@@ -167,7 +168,12 @@ class Index extends React.Component {
       return event.headline === incomeHeader
     })
 
-    console.log(selectedEvent)
+    this.setState({
+      selectedEvent
+    })
+
+    console.log('from function', selectedEvent)
+    console.log('from state', this.state.selectedEvent)
 
     // let filteredIceCream = iceCream.filter(iceCream => {
     //   return iceCream.flavour !== flavour;
@@ -290,7 +296,7 @@ class Index extends React.Component {
                 className={`eventEditWrapper`}
                 key="eventEdit"
               >
-                <ExistingEventEdit firebase={this.props.firebase} toggleModal={this.handleListClick} toggleModal1={this.handleExistingClick} />
+                <ExistingEventEdit firebase={this.props.firebase} toggleModal={this.handleListClick} toggleModal1={this.handleExistingClick} selectedEvent={this.state.selectedEvent} />
               </EventEditContainer>
             ) : null}
           </PoseGroup>
