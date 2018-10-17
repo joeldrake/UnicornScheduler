@@ -7,6 +7,7 @@ import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 import './../css/datepicker.css';
 import uploadcare from 'uploadcare-widget';
+import './../css/eventEdit.css';
 
 class ExistingEventEdit extends React.Component {
   constructor() {
@@ -60,14 +61,19 @@ class ExistingEventEdit extends React.Component {
   render() {
 
     console.log('from existing event.js', this.props.selectedEvent)
+    const headline = this.props.selectedEvent[0].headline
+    console.log(headline)
 
     var picturebutton = () => {
       if(this.state.picture) {
         return <div><img id="picture_load" src={this.state.picture}></img></div>
       } else {
-        return <button id="picture_load_button" className="ui button big wider_button" onClick={this.onChoosingImage}>
+        return<div><button id="picture_load_button" className="ui button big wider_button" onClick={this.onChoosingImage}>
                 Choose a picture
               </button>
+             <img id="picture_load" src={this.props.selectedEvent[0].image}></img>
+             </div>
+            
       }
     }
 
@@ -95,7 +101,7 @@ class ExistingEventEdit extends React.Component {
                   required
                   type={`text`}
                   name={`headline`}
-                  value={values.headline || ''}
+                  value={values.headline || this.props.selectedEvent[0].headline}
                   placeholder={`Eventname`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -105,7 +111,7 @@ class ExistingEventEdit extends React.Component {
                 <textarea
                   required
                   name={`description`}
-                  value={values.description || ''}
+                  value={values.description || this.props.selectedEvent[0].description}
                   placeholder={`Desciption`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -116,7 +122,7 @@ class ExistingEventEdit extends React.Component {
                   required
                   type={`text`}
                   name={`location`}
-                  value={values.location || ''}
+                  value={values.location || this.props.selectedEvent[0].location}
                   placeholder={`Location`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -129,7 +135,7 @@ class ExistingEventEdit extends React.Component {
                   required
                   type={`text`}
                   name={`time`}
-                  value={values.time || ''}
+                  value={values.time || this.props.selectedEvent[0].time}
                   placeholder={`Time (four digits like 09:00)`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -157,7 +163,7 @@ class ExistingEventEdit extends React.Component {
                   required
                   type={`color`}
                   name={`color`}
-                  value={values.color}
+                  value={values.color || this.props.selectedEvent[0].color}
                   placeholder={`Color`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -171,7 +177,7 @@ class ExistingEventEdit extends React.Component {
                   id="hideIt"
                   type={`text`}
                   name={`image`}
-                  value={values.image = this.getPictureUrl()}
+                  value={values.image || this.props.selectedEvent[0].image}
                   placeholder={`Image`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -193,7 +199,7 @@ class ExistingEventEdit extends React.Component {
             </form>
           )}
         </Formik>
-        <div>existing</div>
+        <div>{this.props.selectedEvent.header}</div>
         <button
           className={`closeEventEditBtn btn btnTransparent btnRound`}
           onClick={this.props.toggleModal1}
