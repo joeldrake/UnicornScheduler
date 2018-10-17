@@ -11,11 +11,8 @@ class Event extends React.Component {
     };
   }
 
- 
-
   render() {
     const { event } = this.props;
-    
 
     let eventStyle = {};
     let eventHeadlineStyle = {};
@@ -68,13 +65,9 @@ class Event extends React.Component {
       </div>
     );
 
-    return ( 
+    return (
       <div className={`eventWrapper`}>
         <div className={`event`} style={eventStyle}>
-          
-
-         
-
           {renderHeadlineDescriptionWrapper}
           {renderTimeLocationWrapper}
         </div>

@@ -8,33 +8,13 @@ import 'react-dates/initialize';
 import { SingleDatePicker } from 'react-dates';
 import './../css/datepicker.css';
 import uploadcare from 'uploadcare-widget';
-import $ from 'jquery';
-
-// const firestore = firebase.firestore();
-
-// firestore
-//       .collection(`events`)
-//       .orderBy(`date`, `asc`)
-//       .onSnapshot(querySnapshot => {
-//         const events = querySnapshot.docs.map(event => {
-//           let eventData = event.data();
-//           return eventData;
-//         });
-
-// var database = firebase.database().ref;
-
-// var { database } = this.props.firebase;
-
-// firebase.database().ref('/events/').once('value').then(function(snapshot) {
-//   console.log(snapshot.val())
-// });
 
 class Modal extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      date: '',
+      date: null,
       picture: '',
     };
   }
@@ -42,78 +22,41 @@ class Modal extends React.Component {
   submitEventForm = (values, actions) => {
     console.log(this.state.date);
     console.log(values);
+
+    const firestore = this.props.firebase.firestore();
+
+    values.date = this.state.date.toDate();
+
+    console.log(this.props);
+
+    const dateNow = moment().format(`YYYY-MM-DD HH:ss`);
+    const eventname = `${dateNow} ${values.headline}`;
+
+    values.lastUpdated = new Date();
+    values.docName = eventname;
+
+    //the id of the event is created when the event is created
+    //just using unix time for now.
+    values.id = new Date().getTime();
+
     alert(JSON.stringify(values, null, 2));
 
-    const firestore = this.props.firebase.firestore();
-    const eventname = `${values.name} ${Date.now()}`;
-    values.date = this.state.date;
-    values.lastUpdated = new Date();
-    values.id = eventname;
-
-    firestore.collection(`events`).doc(eventname).set(values);
-
-    /////calles
-    // const firestore = this.props.firebase.firestore();
-
-    // const settings = {
-    //   timestampsInSnapshots: true,
-    // };
-    // firestore.settings(settings);
-
-    // firestore
-    //   .collection(`events`)
-    //   .orderBy(`date`, `asc`)
-    //   .onSnapshot(querySnapshot => {
-    //     const events = querySnapshot.docs.map(event => {
-    //       let eventData = event.data();
-    //       return eventData;
-    //     });
-
-    /////slut calles
-    //   console.log(JSON.stringify(events, null, 2));
-    // });
-
-    /*
-          dump to console only for dev purposes
-          remove when app is in production
-        */
-
-    /* 
-    todo: Submit form data to firebase
-
-    CREATE EVENT (something like this)
-    const firestore = this.props.firebase.firestore();
-    const uniqeName = `${value.name} ${Date.now()}`;
-    
-    values.lastUpdated = new Date()
-    values.id = uniqeName
-
-    firestore.collection(`events`).doc(uniqeName).set(values);
-
-    UPDATE EVENT (something like this)
     firestore
       .collection(`events`)
-      .doc(uniqeName)
-      .update(values)
-      .then(() => {
-        console.log('Document successfully updated!');
-      })
-      .catch(error => {
-        console.error('Error updating document: ', error);
-      });
+      .doc(eventname)
+      .set(values);
 
-    */
-
+    this.setState({ picture: '' });
     actions.setSubmitting(false);
     actions.resetForm();
   };
 
-  onChoosingImage = (e) => {
+  onChoosingImage = e => {
     e.preventDefault();
     uploadcare
       .openDialog(null, {
         imagesOnly: true,
-        crop: "3:2"
+        crop: '3:2',
       })
       .done(file => {
         file.promise().done(fileInfo => {
@@ -126,22 +69,7 @@ class Modal extends React.Component {
       });
   };
 
-  getPictureUrl = () => {
-    return (this.state.picture)
-  }
-
   render() {
-
-    var picturebutton = () => {
-      if(this.state.picture) {
-        return <div><img id="picture_load" src={this.state.picture}></img></div>
-      } else {
-        return <button id="picture_load_button" className="ui button big wider_button" onClick={this.onChoosingImage}>
-                Choose a picture
-              </button>
-      }
-    }
-
     return (
       <div className={`eventEdit`}>
         <style global jsx>{`
@@ -158,12 +86,11 @@ class Modal extends React.Component {
             handleBlur,
             handleSubmit,
             isSubmitting,
-            
           }) => (
             <form onSubmit={handleSubmit} className={`eventEditForm`}>
               <div>
                 <input
-                  required
+                  required={true}
                   type={`text`}
                   name={`headline`}
                   value={values.headline || ''}
@@ -174,7 +101,7 @@ class Modal extends React.Component {
                   autoComplete={`off`}
                 />
                 <textarea
-                  required
+                  required={true}
                   name={`description`}
                   value={values.description || ''}
                   placeholder={`Desciption`}
@@ -184,7 +111,7 @@ class Modal extends React.Component {
                   autoComplete={`off`}
                 />
                 <input
-                  required
+                  required={true}
                   type={`text`}
                   name={`location`}
                   value={values.location || ''}
@@ -195,9 +122,8 @@ class Modal extends React.Component {
                   autoComplete={`off`}
                 />
 
-
                 <input
-                  required
+                  required={true}
                   type={`text`}
                   name={`time`}
                   value={values.time || ''}
@@ -212,20 +138,18 @@ class Modal extends React.Component {
                 <SingleDatePicker
                   readOnly
                   placeholder="Date"
-                  date={values.date}
-                  onDateChange={date => (values.date = date)}
+                  date={this.state.date}
+                  onDateChange={date => this.setState({ date })}
                   focused={this.state.focused}
                   onFocusChange={({ focused }) => this.setState({ focused })}
-                  name="date"
-                  onBlur={handleBlur}
                   displayFormat="DD MMM, YYYY"
                   numberOfMonths={1}
                   required={true}
                 />
-                
+
                 <h5>Color</h5>
                 <input
-                  required
+                  required={false}
                   type={`color`}
                   name={`color`}
                   value={values.color}
@@ -235,21 +159,32 @@ class Modal extends React.Component {
                   onBlur={handleBlur}
                   autoComplete={`off`}
                 />
-                
-                {picturebutton()}
+
+                {this.state.picture ? (
+                  <div>
+                    <img id="picture_load" src={this.state.picture} />
+                  </div>
+                ) : (
+                  <button
+                    id="picture_load_button"
+                    className="ui button big wider_button"
+                    onClick={this.onChoosingImage}
+                  >
+                    Choose a picture
+                  </button>
+                )}
 
                 <input
-                  id="hideIt"
-                  type={`text`}
+                  id="image"
+                  type={`hidden`}
                   name={`image`}
-                  value={values.image = this.getPictureUrl()}
+                  value={(values.image = this.state.picture)}
                   placeholder={`Image`}
                   className={`form-control`}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   autoComplete={`off`}
                 />
-
               </div>
 
               <div className={`eventEditFormFooter`}>
@@ -266,7 +201,7 @@ class Modal extends React.Component {
         </Formik>
         <button
           className={`closeEventEditBtn btn btnTransparent btnRound`}
-          onClick={this.props.toggleModal}
+          onClick={this.props.toggleEventEditOpen}
         >
           <img src={`/static/img/cross.svg`} />
         </button>

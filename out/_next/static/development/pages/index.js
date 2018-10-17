@@ -1,4 +1,4 @@
-((window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static\\development\\pages\\index.js"],{
+((window["webpackJsonp"] = window["webpackJsonp"] || []).push([["static/development/pages/index.js"],{
 
 /***/ "./components/Event.js":
 /*!*****************************!*\
@@ -11,10 +11,8 @@
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _components_EventEdit_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../components/EventEdit.js */ "./components/EventEdit.js");
-/* harmony import */ var react_pose__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-pose */ "./node_modules/react-pose/dist/react-pose.es.js");
-/* harmony import */ var _css_event_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./../css/event.css */ "./css/event.css");
-/* harmony import */ var _css_event_css__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_css_event_css__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _css_event_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./../css/event.css */ "./css/event.css");
+/* harmony import */ var _css_event_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_css_event_css__WEBPACK_IMPORTED_MODULE_1__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -25,17 +23,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-
 
 
 
@@ -51,30 +45,9 @@ function (_React$Component) {
     _classCallCheck(this, Event);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Event).call(this, props));
-
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleToolbarItemClick", function (e) {
-      e.preventDefault();
-      var eventEditOpen = _this.state.eventEditOpen;
-
-      if (!eventEditOpen) {
-        //Modal is about to be open, pause the slider
-        _this.props.slider.slickPause();
-
-        console.log('pause slider');
-      } else {
-        //Modal is about to be close, play the slider
-        _this.props.slider.slickPlay();
-
-        console.log('play slider');
-      }
-
-      _this.setState({
-        eventEditOpen: !eventEditOpen
-      });
-    });
-
     _this.state = {
-      eventEditOpen: false
+      eventEditOpen: false,
+      evenListOpen: false
     };
     return _this;
   }
@@ -83,25 +56,6 @@ function (_React$Component) {
     key: "render",
     value: function render() {
       var event = this.props.event;
-      var eventEditOpen = this.state.eventEditOpen;
-      var EventEditContainer = react_pose__WEBPACK_IMPORTED_MODULE_2__["default"].div({
-        enter: {
-          y: '0',
-          opacity: 1
-        },
-        exit: {
-          y: '-80%',
-          opacity: 0
-        }
-      });
-      var EventEditDarkenContainer = react_pose__WEBPACK_IMPORTED_MODULE_2__["default"].div({
-        enter: {
-          opacity: 1
-        },
-        exit: {
-          opacity: 0
-        }
-      });
       var eventStyle = {};
       var eventHeadlineStyle = {};
 
@@ -139,28 +93,7 @@ function (_React$Component) {
       }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "event",
         style: eventStyle
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "eventToolbar"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        onClick: this.handleToolbarItemClick
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "/static/img/pen.svg"
-      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
-        href: "#",
-        onClick: this.handleToolbarItemClick
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "/static/img/plus.svg"
-      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_pose__WEBPACK_IMPORTED_MODULE_2__["PoseGroup"], null, eventEditOpen ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(EventEditContainer, {
-        className: "eventEditWrapper",
-        key: "eventEdit"
-      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_EventEdit_js__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        firebase: this.props.firebase,
-        toggleModal: this.handleToolbarItemClick
-      })) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_pose__WEBPACK_IMPORTED_MODULE_2__["PoseGroup"], null, eventEditOpen ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(EventEditDarkenContainer, {
-        className: "eventEditDarken",
-        key: "darken"
-      }) : null), renderHeadlineDescriptionWrapper, renderTimeLocationWrapper));
+      }, renderHeadlineDescriptionWrapper, renderTimeLocationWrapper));
     }
   }]);
 
@@ -201,8 +134,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _css_datepicker_css__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(_css_datepicker_css__WEBPACK_IMPORTED_MODULE_9__);
 /* harmony import */ var uploadcare_widget__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! uploadcare-widget */ "./node_modules/uploadcare-widget/uploadcare.min.js");
 /* harmony import */ var uploadcare_widget__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(uploadcare_widget__WEBPACK_IMPORTED_MODULE_10__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_11___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_11__);
 
 
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -235,20 +166,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 
- // const firestore = firebase.firestore();
-// firestore
-//       .collection(`events`)
-//       .orderBy(`date`, `asc`)
-//       .onSnapshot(querySnapshot => {
-//         const events = querySnapshot.docs.map(event => {
-//           let eventData = event.data();
-//           return eventData;
-//         });
-// var database = firebase.database().ref;
-// var { database } = this.props.firebase;
-// firebase.database().ref('/events/').once('value').then(function(snapshot) {
-//   console.log(snapshot.val())
-// });
 
 var Modal =
 /*#__PURE__*/
@@ -265,58 +182,24 @@ function (_React$Component) {
     _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "submitEventForm", function (values, actions) {
       console.log(_this.state.date);
       console.log(values);
-      alert(JSON.stringify(values, null, 2));
 
       var firestore = _this.props.firebase.firestore();
 
-      var eventname = "".concat(values.name, " ").concat(Date.now());
-      values.date = _this.state.date;
+      values.date = _this.state.date.toDate();
+      console.log(_this.props);
+      var dateNow = moment__WEBPACK_IMPORTED_MODULE_6___default()().format("YYYY-MM-DD mm:ss");
+      var eventname = "".concat(dateNow, " ").concat(values.headline);
       values.lastUpdated = new Date();
-      values.id = eventname;
-      firestore.collection("events").doc(eventname).set(values); /////calles
-      // const firestore = this.props.firebase.firestore();
-      // const settings = {
-      //   timestampsInSnapshots: true,
-      // };
-      // firestore.settings(settings);
-      // firestore
-      //   .collection(`events`)
-      //   .orderBy(`date`, `asc`)
-      //   .onSnapshot(querySnapshot => {
-      //     const events = querySnapshot.docs.map(event => {
-      //       let eventData = event.data();
-      //       return eventData;
-      //     });
-      /////slut calles
-      //   console.log(JSON.stringify(events, null, 2));
-      // });
+      values.docName = eventname; //the id of the event is created when the event is created
+      //just using unix time for now.
 
-      /*
-            dump to console only for dev purposes
-            remove when app is in production
-          */
+      values.id = new Date().getTime();
+      alert(JSON.stringify(values, null, 2));
+      firestore.collection("events").doc(eventname).set(values);
 
-      /* 
-      todo: Submit form data to firebase
-        CREATE EVENT (something like this)
-      const firestore = this.props.firebase.firestore();
-      const uniqeName = `${value.name} ${Date.now()}`;
-      
-      values.lastUpdated = new Date()
-      values.id = uniqeName
-        firestore.collection(`events`).doc(uniqeName).set(values);
-        UPDATE EVENT (something like this)
-      firestore
-        .collection(`events`)
-        .doc(uniqeName)
-        .update(values)
-        .then(() => {
-          console.log('Document successfully updated!');
-        })
-        .catch(error => {
-          console.error('Error updating document: ', error);
-        });
-        */
+      _this.setState({
+        picture: ''
+      });
 
       actions.setSubmitting(false);
       actions.resetForm();
@@ -326,7 +209,7 @@ function (_React$Component) {
       e.preventDefault();
       uploadcare_widget__WEBPACK_IMPORTED_MODULE_10___default.a.openDialog(null, {
         imagesOnly: true,
-        crop: "3:2"
+        crop: '3:2'
       }).done(function (file) {
         file.promise().done(function (fileInfo) {
           console.log('From inside promise ' + fileInfo.cdnUrl);
@@ -340,12 +223,8 @@ function (_React$Component) {
       });
     });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "getPictureUrl", function () {
-      return _this.state.picture;
-    });
-
     _this.state = {
-      date: '',
+      date: null,
       picture: ''
     };
     return _this;
@@ -356,26 +235,11 @@ function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var picturebutton = function picturebutton() {
-        if (_this2.state.picture) {
-          return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
-            id: "picture_load",
-            src: _this2.state.picture
-          }));
-        } else {
-          return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-            id: "picture_load_button",
-            className: "ui button big wider_button",
-            onClick: _this2.onChoosingImage
-          }, "Choose a picture");
-        }
-      };
-
       return react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
         className: "jsx-1704629409" + " " + "eventEdit"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(styled_jsx_style__WEBPACK_IMPORTED_MODULE_0___default.a, {
         styleId: "1704629409",
-        css: "body,.event{height:100vh;overflow:hidden;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIkM6XFxVc2Vyc1xcZGVsbFxccHJvamVjdHNcXFVuaWNvcm5TY2hlZHVsZXJcXGNvbXBvbmVudHNcXEV2ZW50RWRpdC5qcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFrSjJCLEFBSTBCLGFBQ0csZ0JBQ2xCIiwiZmlsZSI6IkM6XFxVc2Vyc1xcZGVsbFxccHJvamVjdHNcXFVuaWNvcm5TY2hlZHVsZXJcXGNvbXBvbmVudHNcXEV2ZW50RWRpdC5qcyIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCBSZWFjdCBmcm9tICdyZWFjdCc7XHJcbmltcG9ydCB7IEZvcm1payB9IGZyb20gJ2Zvcm1payc7XHJcbmltcG9ydCAnLi8uLi9jc3MvZm9ybS1jb250cm9sLmNzcyc7XHJcbmltcG9ydCAnLi8uLi9jc3MvYnRuLmNzcyc7XHJcbmltcG9ydCAnLi8uLi9jc3MvZXZlbnRFZGl0LmNzcyc7XHJcbmltcG9ydCBtb21lbnQgZnJvbSAnbW9tZW50JztcclxuaW1wb3J0ICdyZWFjdC1kYXRlcy9pbml0aWFsaXplJztcclxuaW1wb3J0IHsgU2luZ2xlRGF0ZVBpY2tlciB9IGZyb20gJ3JlYWN0LWRhdGVzJztcclxuaW1wb3J0ICcuLy4uL2Nzcy9kYXRlcGlja2VyLmNzcyc7XHJcbmltcG9ydCB1cGxvYWRjYXJlIGZyb20gJ3VwbG9hZGNhcmUtd2lkZ2V0JztcclxuaW1wb3J0ICQgZnJvbSAnanF1ZXJ5JztcclxuXHJcbi8vIGNvbnN0IGZpcmVzdG9yZSA9IGZpcmViYXNlLmZpcmVzdG9yZSgpO1xyXG5cclxuLy8gZmlyZXN0b3JlXHJcbi8vICAgICAgIC5jb2xsZWN0aW9uKGBldmVudHNgKVxyXG4vLyAgICAgICAub3JkZXJCeShgZGF0ZWAsIGBhc2NgKVxyXG4vLyAgICAgICAub25TbmFwc2hvdChxdWVyeVNuYXBzaG90ID0+IHtcclxuLy8gICAgICAgICBjb25zdCBldmVudHMgPSBxdWVyeVNuYXBzaG90LmRvY3MubWFwKGV2ZW50ID0+IHtcclxuLy8gICAgICAgICAgIGxldCBldmVudERhdGEgPSBldmVudC5kYXRhKCk7XHJcbi8vICAgICAgICAgICByZXR1cm4gZXZlbnREYXRhO1xyXG4vLyAgICAgICAgIH0pO1xyXG5cclxuLy8gdmFyIGRhdGFiYXNlID0gZmlyZWJhc2UuZGF0YWJhc2UoKS5yZWY7XHJcblxyXG4vLyB2YXIgeyBkYXRhYmFzZSB9ID0gdGhpcy5wcm9wcy5maXJlYmFzZTtcclxuXHJcbi8vIGZpcmViYXNlLmRhdGFiYXNlKCkucmVmKCcvZXZlbnRzLycpLm9uY2UoJ3ZhbHVlJykudGhlbihmdW5jdGlvbihzbmFwc2hvdCkge1xyXG4vLyAgIGNvbnNvbGUubG9nKHNuYXBzaG90LnZhbCgpKVxyXG4vLyB9KTtcclxuXHJcbmNsYXNzIE1vZGFsIGV4dGVuZHMgUmVhY3QuQ29tcG9uZW50IHtcclxuICBjb25zdHJ1Y3RvcigpIHtcclxuICAgIHN1cGVyKCk7XHJcblxyXG4gICAgdGhpcy5zdGF0ZSA9IHtcclxuICAgICAgZGF0ZTogJycsXHJcbiAgICAgIHBpY3R1cmU6ICcnLFxyXG4gICAgfTtcclxuICB9XHJcblxyXG4gIHN1Ym1pdEV2ZW50Rm9ybSA9ICh2YWx1ZXMsIGFjdGlvbnMpID0+IHtcclxuICAgIGNvbnNvbGUubG9nKHRoaXMuc3RhdGUuZGF0ZSk7XHJcbiAgICBjb25zb2xlLmxvZyh2YWx1ZXMpO1xyXG4gICAgYWxlcnQoSlNPTi5zdHJpbmdpZnkodmFsdWVzLCBudWxsLCAyKSk7XHJcblxyXG4gICAgY29uc3QgZmlyZXN0b3JlID0gdGhpcy5wcm9wcy5maXJlYmFzZS5maXJlc3RvcmUoKTtcclxuICAgIGNvbnN0IGV2ZW50bmFtZSA9IGAke3ZhbHVlcy5uYW1lfSAke0RhdGUubm93KCl9YDtcclxuICAgIHZhbHVlcy5kYXRlID0gdGhpcy5zdGF0ZS5kYXRlO1xyXG4gICAgdmFsdWVzLmxhc3RVcGRhdGVkID0gbmV3IERhdGUoKTtcclxuICAgIHZhbHVlcy5pZCA9IGV2ZW50bmFtZTtcclxuXHJcbiAgICBmaXJlc3RvcmUuY29sbGVjdGlvbihgZXZlbnRzYCkuZG9jKGV2ZW50bmFtZSkuc2V0KHZhbHVlcyk7XHJcblxyXG4gICAgLy8vLy9jYWxsZXNcclxuICAgIC8vIGNvbnN0IGZpcmVzdG9yZSA9IHRoaXMucHJvcHMuZmlyZWJhc2UuZmlyZXN0b3JlKCk7XHJcblxyXG4gICAgLy8gY29uc3Qgc2V0dGluZ3MgPSB7XHJcbiAgICAvLyAgIHRpbWVzdGFtcHNJblNuYXBzaG90czogdHJ1ZSxcclxuICAgIC8vIH07XHJcbiAgICAvLyBmaXJlc3RvcmUuc2V0dGluZ3Moc2V0dGluZ3MpO1xyXG5cclxuICAgIC8vIGZpcmVzdG9yZVxyXG4gICAgLy8gICAuY29sbGVjdGlvbihgZXZlbnRzYClcclxuICAgIC8vICAgLm9yZGVyQnkoYGRhdGVgLCBgYXNjYClcclxuICAgIC8vICAgLm9uU25hcHNob3QocXVlcnlTbmFwc2hvdCA9PiB7XHJcbiAgICAvLyAgICAgY29uc3QgZXZlbnRzID0gcXVlcnlTbmFwc2hvdC5kb2NzLm1hcChldmVudCA9PiB7XHJcbiAgICAvLyAgICAgICBsZXQgZXZlbnREYXRhID0gZXZlbnQuZGF0YSgpO1xyXG4gICAgLy8gICAgICAgcmV0dXJuIGV2ZW50RGF0YTtcclxuICAgIC8vICAgICB9KTtcclxuXHJcbiAgICAvLy8vL3NsdXQgY2FsbGVzXHJcbiAgICAvLyAgIGNvbnNvbGUubG9nKEpTT04uc3RyaW5naWZ5KGV2ZW50cywgbnVsbCwgMikpO1xyXG4gICAgLy8gfSk7XHJcblxyXG4gICAgLypcclxuICAgICAgICAgIGR1bXAgdG8gY29uc29sZSBvbmx5IGZvciBkZXYgcHVycG9zZXNcclxuICAgICAgICAgIHJlbW92ZSB3aGVuIGFwcCBpcyBpbiBwcm9kdWN0aW9uXHJcbiAgICAgICAgKi9cclxuXHJcbiAgICAvKiBcclxuICAgIHRvZG86IFN1Ym1pdCBmb3JtIGRhdGEgdG8gZmlyZWJhc2VcclxuXHJcbiAgICBDUkVBVEUgRVZFTlQgKHNvbWV0aGluZyBsaWtlIHRoaXMpXHJcbiAgICBjb25zdCBmaXJlc3RvcmUgPSB0aGlzLnByb3BzLmZpcmViYXNlLmZpcmVzdG9yZSgpO1xyXG4gICAgY29uc3QgdW5pcWVOYW1lID0gYCR7dmFsdWUubmFtZX0gJHtEYXRlLm5vdygpfWA7XHJcbiAgICBcclxuICAgIHZhbHVlcy5sYXN0VXBkYXRlZCA9IG5ldyBEYXRlKClcclxuICAgIHZhbHVlcy5pZCA9IHVuaXFlTmFtZVxyXG5cclxuICAgIGZpcmVzdG9yZS5jb2xsZWN0aW9uKGBldmVudHNgKS5kb2ModW5pcWVOYW1lKS5zZXQodmFsdWVzKTtcclxuXHJcbiAgICBVUERBVEUgRVZFTlQgKHNvbWV0aGluZyBsaWtlIHRoaXMpXHJcbiAgICBmaXJlc3RvcmVcclxuICAgICAgLmNvbGxlY3Rpb24oYGV2ZW50c2ApXHJcbiAgICAgIC5kb2ModW5pcWVOYW1lKVxyXG4gICAgICAudXBkYXRlKHZhbHVlcylcclxuICAgICAgLnRoZW4oKCkgPT4ge1xyXG4gICAgICAgIGNvbnNvbGUubG9nKCdEb2N1bWVudCBzdWNjZXNzZnVsbHkgdXBkYXRlZCEnKTtcclxuICAgICAgfSlcclxuICAgICAgLmNhdGNoKGVycm9yID0+IHtcclxuICAgICAgICBjb25zb2xlLmVycm9yKCdFcnJvciB1cGRhdGluZyBkb2N1bWVudDogJywgZXJyb3IpO1xyXG4gICAgICB9KTtcclxuXHJcbiAgICAqL1xyXG5cclxuICAgIGFjdGlvbnMuc2V0U3VibWl0dGluZyhmYWxzZSk7XHJcbiAgICBhY3Rpb25zLnJlc2V0Rm9ybSgpO1xyXG4gIH07XHJcblxyXG4gIG9uQ2hvb3NpbmdJbWFnZSA9IChlKSA9PiB7XHJcbiAgICBlLnByZXZlbnREZWZhdWx0KCk7XHJcbiAgICB1cGxvYWRjYXJlXHJcbiAgICAgIC5vcGVuRGlhbG9nKG51bGwsIHtcclxuICAgICAgICBpbWFnZXNPbmx5OiB0cnVlLFxyXG4gICAgICAgIGNyb3A6IFwiMzoyXCJcclxuICAgICAgfSlcclxuICAgICAgLmRvbmUoZmlsZSA9PiB7XHJcbiAgICAgICAgZmlsZS5wcm9taXNlKCkuZG9uZShmaWxlSW5mbyA9PiB7XHJcbiAgICAgICAgICBjb25zb2xlLmxvZygnRnJvbSBpbnNpZGUgcHJvbWlzZSAnICsgZmlsZUluZm8uY2RuVXJsKTtcclxuICAgICAgICAgIHRoaXMuc2V0U3RhdGUoe1xyXG4gICAgICAgICAgICBwaWN0dXJlOiBmaWxlSW5mby5jZG5VcmwsXHJcbiAgICAgICAgICB9KTtcclxuICAgICAgICAgIGNvbnNvbGUubG9nKHRoaXMuc3RhdGUpO1xyXG4gICAgICAgIH0pO1xyXG4gICAgICB9KTtcclxuICB9O1xyXG5cclxuICBnZXRQaWN0dXJlVXJsID0gKCkgPT4ge1xyXG4gICAgcmV0dXJuICh0aGlzLnN0YXRlLnBpY3R1cmUpXHJcbiAgfVxyXG5cclxuICByZW5kZXIoKSB7XHJcblxyXG4gICAgdmFyIHBpY3R1cmVidXR0b24gPSAoKSA9PiB7XHJcbiAgICAgIGlmKHRoaXMuc3RhdGUucGljdHVyZSkge1xyXG4gICAgICAgIHJldHVybiA8ZGl2PjxpbWcgaWQ9XCJwaWN0dXJlX2xvYWRcIiBzcmM9e3RoaXMuc3RhdGUucGljdHVyZX0+PC9pbWc+PC9kaXY+XHJcbiAgICAgIH0gZWxzZSB7XHJcbiAgICAgICAgcmV0dXJuIDxidXR0b24gaWQ9XCJwaWN0dXJlX2xvYWRfYnV0dG9uXCIgY2xhc3NOYW1lPVwidWkgYnV0dG9uIGJpZyB3aWRlcl9idXR0b25cIiBvbkNsaWNrPXt0aGlzLm9uQ2hvb3NpbmdJbWFnZX0+XHJcbiAgICAgICAgICAgICAgICBDaG9vc2UgYSBwaWN0dXJlXHJcbiAgICAgICAgICAgICAgPC9idXR0b24+XHJcbiAgICAgIH1cclxuICAgIH1cclxuXHJcbiAgICByZXR1cm4gKFxyXG4gICAgICA8ZGl2IGNsYXNzTmFtZT17YGV2ZW50RWRpdGB9PlxyXG4gICAgICAgIDxzdHlsZSBnbG9iYWwganN4PntgXHJcbiAgICAgICAgICBib2R5LFxyXG4gICAgICAgICAgLmV2ZW50IHtcclxuICAgICAgICAgICAgaGVpZ2h0OiAxMDB2aDtcclxuICAgICAgICAgICAgb3ZlcmZsb3c6IGhpZGRlbjtcclxuICAgICAgICAgIH1cclxuICAgICAgICBgfTwvc3R5bGU+XHJcbiAgICAgICAgPEZvcm1payBpbml0aWFsVmFsdWVzPXt7fX0gb25TdWJtaXQ9e3RoaXMuc3VibWl0RXZlbnRGb3JtfT5cclxuICAgICAgICAgIHsoe1xyXG4gICAgICAgICAgICB2YWx1ZXMsXHJcbiAgICAgICAgICAgIGhhbmRsZUNoYW5nZSxcclxuICAgICAgICAgICAgaGFuZGxlQmx1cixcclxuICAgICAgICAgICAgaGFuZGxlU3VibWl0LFxyXG4gICAgICAgICAgICBpc1N1Ym1pdHRpbmcsXHJcbiAgICAgICAgICAgIFxyXG4gICAgICAgICAgfSkgPT4gKFxyXG4gICAgICAgICAgICA8Zm9ybSBvblN1Ym1pdD17aGFuZGxlU3VibWl0fSBjbGFzc05hbWU9e2BldmVudEVkaXRGb3JtYH0+XHJcbiAgICAgICAgICAgICAgPGRpdj5cclxuICAgICAgICAgICAgICAgIDxpbnB1dFxyXG4gICAgICAgICAgICAgICAgICByZXF1aXJlZFxyXG4gICAgICAgICAgICAgICAgICB0eXBlPXtgdGV4dGB9XHJcbiAgICAgICAgICAgICAgICAgIG5hbWU9e2BoZWFkbGluZWB9XHJcbiAgICAgICAgICAgICAgICAgIHZhbHVlPXt2YWx1ZXMuaGVhZGxpbmUgfHwgJyd9XHJcbiAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyPXtgRXZlbnRuYW1lYH1cclxuICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgZm9ybS1jb250cm9sYH1cclxuICAgICAgICAgICAgICAgICAgb25DaGFuZ2U9e2hhbmRsZUNoYW5nZX1cclxuICAgICAgICAgICAgICAgICAgb25CbHVyPXtoYW5kbGVCbHVyfVxyXG4gICAgICAgICAgICAgICAgICBhdXRvQ29tcGxldGU9e2BvZmZgfVxyXG4gICAgICAgICAgICAgICAgLz5cclxuICAgICAgICAgICAgICAgIDx0ZXh0YXJlYVxyXG4gICAgICAgICAgICAgICAgICByZXF1aXJlZFxyXG4gICAgICAgICAgICAgICAgICBuYW1lPXtgZGVzY3JpcHRpb25gfVxyXG4gICAgICAgICAgICAgICAgICB2YWx1ZT17dmFsdWVzLmRlc2NyaXB0aW9uIHx8ICcnfVxyXG4gICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcj17YERlc2NpcHRpb25gfVxyXG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2Bmb3JtLWNvbnRyb2xgfVxyXG4gICAgICAgICAgICAgICAgICBvbkNoYW5nZT17aGFuZGxlQ2hhbmdlfVxyXG4gICAgICAgICAgICAgICAgICBvbkJsdXI9e2hhbmRsZUJsdXJ9XHJcbiAgICAgICAgICAgICAgICAgIGF1dG9Db21wbGV0ZT17YG9mZmB9XHJcbiAgICAgICAgICAgICAgICAvPlxyXG4gICAgICAgICAgICAgICAgPGlucHV0XHJcbiAgICAgICAgICAgICAgICAgIHJlcXVpcmVkXHJcbiAgICAgICAgICAgICAgICAgIHR5cGU9e2B0ZXh0YH1cclxuICAgICAgICAgICAgICAgICAgbmFtZT17YGxvY2F0aW9uYH1cclxuICAgICAgICAgICAgICAgICAgdmFsdWU9e3ZhbHVlcy5sb2NhdGlvbiB8fCAnJ31cclxuICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9e2BMb2NhdGlvbmB9XHJcbiAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT17YGZvcm0tY29udHJvbGB9XHJcbiAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXtoYW5kbGVDaGFuZ2V9XHJcbiAgICAgICAgICAgICAgICAgIG9uQmx1cj17aGFuZGxlQmx1cn1cclxuICAgICAgICAgICAgICAgICAgYXV0b0NvbXBsZXRlPXtgb2ZmYH1cclxuICAgICAgICAgICAgICAgIC8+XHJcblxyXG5cclxuICAgICAgICAgICAgICAgIDxpbnB1dFxyXG4gICAgICAgICAgICAgICAgICByZXF1aXJlZFxyXG4gICAgICAgICAgICAgICAgICB0eXBlPXtgdGV4dGB9XHJcbiAgICAgICAgICAgICAgICAgIG5hbWU9e2B0aW1lYH1cclxuICAgICAgICAgICAgICAgICAgdmFsdWU9e3ZhbHVlcy50aW1lIHx8ICcnfVxyXG4gICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcj17YFRpbWUgKGZvdXIgZGlnaXRzIGxpa2UgMDk6MDApYH1cclxuICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgZm9ybS1jb250cm9sYH1cclxuICAgICAgICAgICAgICAgICAgb25DaGFuZ2U9e2hhbmRsZUNoYW5nZX1cclxuICAgICAgICAgICAgICAgICAgb25CbHVyPXtoYW5kbGVCbHVyfVxyXG4gICAgICAgICAgICAgICAgICBhdXRvQ29tcGxldGU9e2BvZmZgfVxyXG4gICAgICAgICAgICAgICAgLz5cclxuICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICA8ZGl2PlxyXG4gICAgICAgICAgICAgICAgPFNpbmdsZURhdGVQaWNrZXJcclxuICAgICAgICAgICAgICAgICAgcmVhZE9ubHlcclxuICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9XCJEYXRlXCJcclxuICAgICAgICAgICAgICAgICAgZGF0ZT17dmFsdWVzLmRhdGV9XHJcbiAgICAgICAgICAgICAgICAgIG9uRGF0ZUNoYW5nZT17ZGF0ZSA9PiAodmFsdWVzLmRhdGUgPSBkYXRlKX1cclxuICAgICAgICAgICAgICAgICAgZm9jdXNlZD17dGhpcy5zdGF0ZS5mb2N1c2VkfVxyXG4gICAgICAgICAgICAgICAgICBvbkZvY3VzQ2hhbmdlPXsoeyBmb2N1c2VkIH0pID0+IHRoaXMuc2V0U3RhdGUoeyBmb2N1c2VkIH0pfVxyXG4gICAgICAgICAgICAgICAgICBuYW1lPVwiZGF0ZVwiXHJcbiAgICAgICAgICAgICAgICAgIG9uQmx1cj17aGFuZGxlQmx1cn1cclxuICAgICAgICAgICAgICAgICAgZGlzcGxheUZvcm1hdD1cIkREIE1NTSwgWVlZWVwiXHJcbiAgICAgICAgICAgICAgICAgIG51bWJlck9mTW9udGhzPXsxfVxyXG4gICAgICAgICAgICAgICAgICByZXF1aXJlZD17dHJ1ZX1cclxuICAgICAgICAgICAgICAgIC8+XHJcbiAgICAgICAgICAgICAgICBcclxuICAgICAgICAgICAgICAgIDxoNT5Db2xvcjwvaDU+XHJcbiAgICAgICAgICAgICAgICA8aW5wdXRcclxuICAgICAgICAgICAgICAgICAgcmVxdWlyZWRcclxuICAgICAgICAgICAgICAgICAgdHlwZT17YGNvbG9yYH1cclxuICAgICAgICAgICAgICAgICAgbmFtZT17YGNvbG9yYH1cclxuICAgICAgICAgICAgICAgICAgdmFsdWU9e3ZhbHVlcy5jb2xvcn1cclxuICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9e2BDb2xvcmB9XHJcbiAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT17YGZvcm0tY29udHJvbGB9XHJcbiAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXtoYW5kbGVDaGFuZ2V9XHJcbiAgICAgICAgICAgICAgICAgIG9uQmx1cj17aGFuZGxlQmx1cn1cclxuICAgICAgICAgICAgICAgICAgYXV0b0NvbXBsZXRlPXtgb2ZmYH1cclxuICAgICAgICAgICAgICAgIC8+XHJcbiAgICAgICAgICAgICAgICBcclxuICAgICAgICAgICAgICAgIHtwaWN0dXJlYnV0dG9uKCl9XHJcblxyXG4gICAgICAgICAgICAgICAgPGlucHV0XHJcbiAgICAgICAgICAgICAgICAgIGlkPVwiaGlkZUl0XCJcclxuICAgICAgICAgICAgICAgICAgdHlwZT17YHRleHRgfVxyXG4gICAgICAgICAgICAgICAgICBuYW1lPXtgaW1hZ2VgfVxyXG4gICAgICAgICAgICAgICAgICB2YWx1ZT17dmFsdWVzLmltYWdlID0gdGhpcy5nZXRQaWN0dXJlVXJsKCl9XHJcbiAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyPXtgSW1hZ2VgfVxyXG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2Bmb3JtLWNvbnRyb2xgfVxyXG4gICAgICAgICAgICAgICAgICBvbkNoYW5nZT17aGFuZGxlQ2hhbmdlfVxyXG4gICAgICAgICAgICAgICAgICBvbkJsdXI9e2hhbmRsZUJsdXJ9XHJcbiAgICAgICAgICAgICAgICAgIGF1dG9Db21wbGV0ZT17YG9mZmB9XHJcbiAgICAgICAgICAgICAgICAvPlxyXG5cclxuICAgICAgICAgICAgICA8L2Rpdj5cclxuXHJcbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9e2BldmVudEVkaXRGb3JtRm9vdGVyYH0+XHJcbiAgICAgICAgICAgICAgICA8YnV0dG9uXHJcbiAgICAgICAgICAgICAgICAgIHR5cGU9e2BzdWJtaXRgfVxyXG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2BidG4gZXZlbnRFZGl0Rm9ybVN1Ym1pdEJ0bmB9XHJcbiAgICAgICAgICAgICAgICAgIGRpc2FibGVkPXtpc1N1Ym1pdHRpbmd9XHJcbiAgICAgICAgICAgICAgICA+XHJcbiAgICAgICAgICAgICAgICAgIFNhdmVcclxuICAgICAgICAgICAgICAgIDwvYnV0dG9uPlxyXG4gICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICA8L2Zvcm0+XHJcbiAgICAgICAgICApfVxyXG4gICAgICAgIDwvRm9ybWlrPlxyXG4gICAgICAgIDxidXR0b25cclxuICAgICAgICAgIGNsYXNzTmFtZT17YGNsb3NlRXZlbnRFZGl0QnRuIGJ0biBidG5UcmFuc3BhcmVudCBidG5Sb3VuZGB9XHJcbiAgICAgICAgICBvbkNsaWNrPXt0aGlzLnByb3BzLnRvZ2dsZU1vZGFsfVxyXG4gICAgICAgID5cclxuICAgICAgICAgIDxpbWcgc3JjPXtgL3N0YXRpYy9pbWcvY3Jvc3Muc3ZnYH0gLz5cclxuICAgICAgICA8L2J1dHRvbj5cclxuICAgICAgPC9kaXY+XHJcbiAgICApO1xyXG4gIH1cclxufVxyXG5cclxuZXhwb3J0IGRlZmF1bHQgTW9kYWw7XHJcbiJdfQ== */\n/*@ sourceURL=C:\\Users\\dell\\projects\\UnicornScheduler\\components\\EventEdit.js */"
+        css: "body,.event{height:100vh;overflow:hidden;}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9Vc2Vycy9qb2VsL2Rldi9Vbmljb3JuU2NoZWR1bGVyL2NvbXBvbmVudHMvRXZlbnRFZGl0LmpzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQTBFMkIsQUFJMEIsYUFDRyxnQkFDbEIiLCJmaWxlIjoiL1VzZXJzL2pvZWwvZGV2L1VuaWNvcm5TY2hlZHVsZXIvY29tcG9uZW50cy9FdmVudEVkaXQuanMiLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgUmVhY3QgZnJvbSAncmVhY3QnO1xuaW1wb3J0IHsgRm9ybWlrIH0gZnJvbSAnZm9ybWlrJztcbmltcG9ydCAnLi8uLi9jc3MvZm9ybS1jb250cm9sLmNzcyc7XG5pbXBvcnQgJy4vLi4vY3NzL2J0bi5jc3MnO1xuaW1wb3J0ICcuLy4uL2Nzcy9ldmVudEVkaXQuY3NzJztcbmltcG9ydCBtb21lbnQgZnJvbSAnbW9tZW50JztcbmltcG9ydCAncmVhY3QtZGF0ZXMvaW5pdGlhbGl6ZSc7XG5pbXBvcnQgeyBTaW5nbGVEYXRlUGlja2VyIH0gZnJvbSAncmVhY3QtZGF0ZXMnO1xuaW1wb3J0ICcuLy4uL2Nzcy9kYXRlcGlja2VyLmNzcyc7XG5pbXBvcnQgdXBsb2FkY2FyZSBmcm9tICd1cGxvYWRjYXJlLXdpZGdldCc7XG5cbmNsYXNzIE1vZGFsIGV4dGVuZHMgUmVhY3QuQ29tcG9uZW50IHtcbiAgY29uc3RydWN0b3IoKSB7XG4gICAgc3VwZXIoKTtcblxuICAgIHRoaXMuc3RhdGUgPSB7XG4gICAgICBkYXRlOiBudWxsLFxuICAgICAgcGljdHVyZTogJycsXG4gICAgfTtcbiAgfVxuXG4gIHN1Ym1pdEV2ZW50Rm9ybSA9ICh2YWx1ZXMsIGFjdGlvbnMpID0+IHtcbiAgICBjb25zb2xlLmxvZyh0aGlzLnN0YXRlLmRhdGUpO1xuICAgIGNvbnNvbGUubG9nKHZhbHVlcyk7XG5cbiAgICBjb25zdCBmaXJlc3RvcmUgPSB0aGlzLnByb3BzLmZpcmViYXNlLmZpcmVzdG9yZSgpO1xuXG4gICAgdmFsdWVzLmRhdGUgPSB0aGlzLnN0YXRlLmRhdGUudG9EYXRlKCk7XG5cbiAgICBjb25zb2xlLmxvZyh0aGlzLnByb3BzKTtcblxuICAgIGNvbnN0IGRhdGVOb3cgPSBtb21lbnQoKS5mb3JtYXQoYFlZWVktTU0tREQgbW06c3NgKTtcbiAgICBjb25zdCBldmVudG5hbWUgPSBgJHtkYXRlTm93fSAke3ZhbHVlcy5oZWFkbGluZX1gO1xuXG4gICAgdmFsdWVzLmxhc3RVcGRhdGVkID0gbmV3IERhdGUoKTtcbiAgICB2YWx1ZXMuZG9jTmFtZSA9IGV2ZW50bmFtZTtcblxuICAgIC8vdGhlIGlkIG9mIHRoZSBldmVudCBpcyBjcmVhdGVkIHdoZW4gdGhlIGV2ZW50IGlzIGNyZWF0ZWRcbiAgICAvL2p1c3QgdXNpbmcgdW5peCB0aW1lIGZvciBub3cuXG4gICAgdmFsdWVzLmlkID0gbmV3IERhdGUoKS5nZXRUaW1lKCk7XG5cbiAgICBhbGVydChKU09OLnN0cmluZ2lmeSh2YWx1ZXMsIG51bGwsIDIpKTtcblxuICAgIGZpcmVzdG9yZVxuICAgICAgLmNvbGxlY3Rpb24oYGV2ZW50c2ApXG4gICAgICAuZG9jKGV2ZW50bmFtZSlcbiAgICAgIC5zZXQodmFsdWVzKTtcblxuICAgIHRoaXMuc2V0U3RhdGUoeyBwaWN0dXJlOiAnJyB9KTtcbiAgICBhY3Rpb25zLnNldFN1Ym1pdHRpbmcoZmFsc2UpO1xuICAgIGFjdGlvbnMucmVzZXRGb3JtKCk7XG4gIH07XG5cbiAgb25DaG9vc2luZ0ltYWdlID0gZSA9PiB7XG4gICAgZS5wcmV2ZW50RGVmYXVsdCgpO1xuICAgIHVwbG9hZGNhcmVcbiAgICAgIC5vcGVuRGlhbG9nKG51bGwsIHtcbiAgICAgICAgaW1hZ2VzT25seTogdHJ1ZSxcbiAgICAgICAgY3JvcDogJzM6MicsXG4gICAgICB9KVxuICAgICAgLmRvbmUoZmlsZSA9PiB7XG4gICAgICAgIGZpbGUucHJvbWlzZSgpLmRvbmUoZmlsZUluZm8gPT4ge1xuICAgICAgICAgIGNvbnNvbGUubG9nKCdGcm9tIGluc2lkZSBwcm9taXNlICcgKyBmaWxlSW5mby5jZG5VcmwpO1xuICAgICAgICAgIHRoaXMuc2V0U3RhdGUoe1xuICAgICAgICAgICAgcGljdHVyZTogZmlsZUluZm8uY2RuVXJsLFxuICAgICAgICAgIH0pO1xuICAgICAgICAgIGNvbnNvbGUubG9nKHRoaXMuc3RhdGUpO1xuICAgICAgICB9KTtcbiAgICAgIH0pO1xuICB9O1xuXG4gIHJlbmRlcigpIHtcbiAgICByZXR1cm4gKFxuICAgICAgPGRpdiBjbGFzc05hbWU9e2BldmVudEVkaXRgfT5cbiAgICAgICAgPHN0eWxlIGdsb2JhbCBqc3g+e2BcbiAgICAgICAgICBib2R5LFxuICAgICAgICAgIC5ldmVudCB7XG4gICAgICAgICAgICBoZWlnaHQ6IDEwMHZoO1xuICAgICAgICAgICAgb3ZlcmZsb3c6IGhpZGRlbjtcbiAgICAgICAgICB9XG4gICAgICAgIGB9PC9zdHlsZT5cbiAgICAgICAgPEZvcm1payBpbml0aWFsVmFsdWVzPXt7fX0gb25TdWJtaXQ9e3RoaXMuc3VibWl0RXZlbnRGb3JtfT5cbiAgICAgICAgICB7KHtcbiAgICAgICAgICAgIHZhbHVlcyxcbiAgICAgICAgICAgIGhhbmRsZUNoYW5nZSxcbiAgICAgICAgICAgIGhhbmRsZUJsdXIsXG4gICAgICAgICAgICBoYW5kbGVTdWJtaXQsXG4gICAgICAgICAgICBpc1N1Ym1pdHRpbmcsXG4gICAgICAgICAgfSkgPT4gKFxuICAgICAgICAgICAgPGZvcm0gb25TdWJtaXQ9e2hhbmRsZVN1Ym1pdH0gY2xhc3NOYW1lPXtgZXZlbnRFZGl0Rm9ybWB9PlxuICAgICAgICAgICAgICA8ZGl2PlxuICAgICAgICAgICAgICAgIDxpbnB1dFxuICAgICAgICAgICAgICAgICAgcmVxdWlyZWQ9e3RydWV9XG4gICAgICAgICAgICAgICAgICB0eXBlPXtgdGV4dGB9XG4gICAgICAgICAgICAgICAgICBuYW1lPXtgaGVhZGxpbmVgfVxuICAgICAgICAgICAgICAgICAgdmFsdWU9e3ZhbHVlcy5oZWFkbGluZSB8fCAnJ31cbiAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyPXtgRXZlbnRuYW1lYH1cbiAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT17YGZvcm0tY29udHJvbGB9XG4gICAgICAgICAgICAgICAgICBvbkNoYW5nZT17aGFuZGxlQ2hhbmdlfVxuICAgICAgICAgICAgICAgICAgb25CbHVyPXtoYW5kbGVCbHVyfVxuICAgICAgICAgICAgICAgICAgYXV0b0NvbXBsZXRlPXtgb2ZmYH1cbiAgICAgICAgICAgICAgICAvPlxuICAgICAgICAgICAgICAgIDx0ZXh0YXJlYVxuICAgICAgICAgICAgICAgICAgcmVxdWlyZWQ9e3RydWV9XG4gICAgICAgICAgICAgICAgICBuYW1lPXtgZGVzY3JpcHRpb25gfVxuICAgICAgICAgICAgICAgICAgdmFsdWU9e3ZhbHVlcy5kZXNjcmlwdGlvbiB8fCAnJ31cbiAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyPXtgRGVzY2lwdGlvbmB9XG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2Bmb3JtLWNvbnRyb2xgfVxuICAgICAgICAgICAgICAgICAgb25DaGFuZ2U9e2hhbmRsZUNoYW5nZX1cbiAgICAgICAgICAgICAgICAgIG9uQmx1cj17aGFuZGxlQmx1cn1cbiAgICAgICAgICAgICAgICAgIGF1dG9Db21wbGV0ZT17YG9mZmB9XG4gICAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgICA8aW5wdXRcbiAgICAgICAgICAgICAgICAgIHJlcXVpcmVkPXt0cnVlfVxuICAgICAgICAgICAgICAgICAgdHlwZT17YHRleHRgfVxuICAgICAgICAgICAgICAgICAgbmFtZT17YGxvY2F0aW9uYH1cbiAgICAgICAgICAgICAgICAgIHZhbHVlPXt2YWx1ZXMubG9jYXRpb24gfHwgJyd9XG4gICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcj17YExvY2F0aW9uYH1cbiAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT17YGZvcm0tY29udHJvbGB9XG4gICAgICAgICAgICAgICAgICBvbkNoYW5nZT17aGFuZGxlQ2hhbmdlfVxuICAgICAgICAgICAgICAgICAgb25CbHVyPXtoYW5kbGVCbHVyfVxuICAgICAgICAgICAgICAgICAgYXV0b0NvbXBsZXRlPXtgb2ZmYH1cbiAgICAgICAgICAgICAgICAvPlxuXG4gICAgICAgICAgICAgICAgPGlucHV0XG4gICAgICAgICAgICAgICAgICByZXF1aXJlZD17dHJ1ZX1cbiAgICAgICAgICAgICAgICAgIHR5cGU9e2B0ZXh0YH1cbiAgICAgICAgICAgICAgICAgIG5hbWU9e2B0aW1lYH1cbiAgICAgICAgICAgICAgICAgIHZhbHVlPXt2YWx1ZXMudGltZSB8fCAnJ31cbiAgICAgICAgICAgICAgICAgIHBsYWNlaG9sZGVyPXtgVGltZSAoZm91ciBkaWdpdHMgbGlrZSAwOTowMClgfVxuICAgICAgICAgICAgICAgICAgY2xhc3NOYW1lPXtgZm9ybS1jb250cm9sYH1cbiAgICAgICAgICAgICAgICAgIG9uQ2hhbmdlPXtoYW5kbGVDaGFuZ2V9XG4gICAgICAgICAgICAgICAgICBvbkJsdXI9e2hhbmRsZUJsdXJ9XG4gICAgICAgICAgICAgICAgICBhdXRvQ29tcGxldGU9e2BvZmZgfVxuICAgICAgICAgICAgICAgIC8+XG4gICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICA8ZGl2PlxuICAgICAgICAgICAgICAgIDxTaW5nbGVEYXRlUGlja2VyXG4gICAgICAgICAgICAgICAgICByZWFkT25seVxuICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9XCJEYXRlXCJcbiAgICAgICAgICAgICAgICAgIGRhdGU9e3RoaXMuc3RhdGUuZGF0ZX1cbiAgICAgICAgICAgICAgICAgIG9uRGF0ZUNoYW5nZT17ZGF0ZSA9PiB0aGlzLnNldFN0YXRlKHsgZGF0ZSB9KX1cbiAgICAgICAgICAgICAgICAgIGZvY3VzZWQ9e3RoaXMuc3RhdGUuZm9jdXNlZH1cbiAgICAgICAgICAgICAgICAgIG9uRm9jdXNDaGFuZ2U9eyh7IGZvY3VzZWQgfSkgPT4gdGhpcy5zZXRTdGF0ZSh7IGZvY3VzZWQgfSl9XG4gICAgICAgICAgICAgICAgICBkaXNwbGF5Rm9ybWF0PVwiREQgTU1NLCBZWVlZXCJcbiAgICAgICAgICAgICAgICAgIG51bWJlck9mTW9udGhzPXsxfVxuICAgICAgICAgICAgICAgICAgcmVxdWlyZWQ9e3RydWV9XG4gICAgICAgICAgICAgICAgLz5cblxuICAgICAgICAgICAgICAgIDxoNT5Db2xvcjwvaDU+XG4gICAgICAgICAgICAgICAgPGlucHV0XG4gICAgICAgICAgICAgICAgICByZXF1aXJlZD17ZmFsc2V9XG4gICAgICAgICAgICAgICAgICB0eXBlPXtgY29sb3JgfVxuICAgICAgICAgICAgICAgICAgbmFtZT17YGNvbG9yYH1cbiAgICAgICAgICAgICAgICAgIHZhbHVlPXt2YWx1ZXMuY29sb3J9XG4gICAgICAgICAgICAgICAgICBwbGFjZWhvbGRlcj17YENvbG9yYH1cbiAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT17YGZvcm0tY29udHJvbGB9XG4gICAgICAgICAgICAgICAgICBvbkNoYW5nZT17aGFuZGxlQ2hhbmdlfVxuICAgICAgICAgICAgICAgICAgb25CbHVyPXtoYW5kbGVCbHVyfVxuICAgICAgICAgICAgICAgICAgYXV0b0NvbXBsZXRlPXtgb2ZmYH1cbiAgICAgICAgICAgICAgICAvPlxuXG4gICAgICAgICAgICAgICAge3RoaXMuc3RhdGUucGljdHVyZSA/IChcbiAgICAgICAgICAgICAgICAgIDxkaXY+XG4gICAgICAgICAgICAgICAgICAgIDxpbWcgaWQ9XCJwaWN0dXJlX2xvYWRcIiBzcmM9e3RoaXMuc3RhdGUucGljdHVyZX0gLz5cbiAgICAgICAgICAgICAgICAgIDwvZGl2PlxuICAgICAgICAgICAgICAgICkgOiAoXG4gICAgICAgICAgICAgICAgICA8YnV0dG9uXG4gICAgICAgICAgICAgICAgICAgIGlkPVwicGljdHVyZV9sb2FkX2J1dHRvblwiXG4gICAgICAgICAgICAgICAgICAgIGNsYXNzTmFtZT1cInVpIGJ1dHRvbiBiaWcgd2lkZXJfYnV0dG9uXCJcbiAgICAgICAgICAgICAgICAgICAgb25DbGljaz17dGhpcy5vbkNob29zaW5nSW1hZ2V9XG4gICAgICAgICAgICAgICAgICA+XG4gICAgICAgICAgICAgICAgICAgIENob29zZSBhIHBpY3R1cmVcbiAgICAgICAgICAgICAgICAgIDwvYnV0dG9uPlxuICAgICAgICAgICAgICAgICl9XG5cbiAgICAgICAgICAgICAgICA8aW5wdXRcbiAgICAgICAgICAgICAgICAgIGlkPVwiaW1hZ2VcIlxuICAgICAgICAgICAgICAgICAgdHlwZT17YGhpZGRlbmB9XG4gICAgICAgICAgICAgICAgICBuYW1lPXtgaW1hZ2VgfVxuICAgICAgICAgICAgICAgICAgdmFsdWU9eyh2YWx1ZXMuaW1hZ2UgPSB0aGlzLnN0YXRlLnBpY3R1cmUpfVxuICAgICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9e2BJbWFnZWB9XG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2Bmb3JtLWNvbnRyb2xgfVxuICAgICAgICAgICAgICAgICAgb25DaGFuZ2U9e2hhbmRsZUNoYW5nZX1cbiAgICAgICAgICAgICAgICAgIG9uQmx1cj17aGFuZGxlQmx1cn1cbiAgICAgICAgICAgICAgICAgIGF1dG9Db21wbGV0ZT17YG9mZmB9XG4gICAgICAgICAgICAgICAgLz5cbiAgICAgICAgICAgICAgPC9kaXY+XG5cbiAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9e2BldmVudEVkaXRGb3JtRm9vdGVyYH0+XG4gICAgICAgICAgICAgICAgPGJ1dHRvblxuICAgICAgICAgICAgICAgICAgdHlwZT17YHN1Ym1pdGB9XG4gICAgICAgICAgICAgICAgICBjbGFzc05hbWU9e2BidG4gZXZlbnRFZGl0Rm9ybVN1Ym1pdEJ0bmB9XG4gICAgICAgICAgICAgICAgICBkaXNhYmxlZD17aXNTdWJtaXR0aW5nfVxuICAgICAgICAgICAgICAgID5cbiAgICAgICAgICAgICAgICAgIFNhdmVcbiAgICAgICAgICAgICAgICA8L2J1dHRvbj5cbiAgICAgICAgICAgICAgPC9kaXY+XG4gICAgICAgICAgICA8L2Zvcm0+XG4gICAgICAgICAgKX1cbiAgICAgICAgPC9Gb3JtaWs+XG4gICAgICAgIDxidXR0b25cbiAgICAgICAgICBjbGFzc05hbWU9e2BjbG9zZUV2ZW50RWRpdEJ0biBidG4gYnRuVHJhbnNwYXJlbnQgYnRuUm91bmRgfVxuICAgICAgICAgIG9uQ2xpY2s9e3RoaXMucHJvcHMudG9nZ2xlRXZlbnRFZGl0T3Blbn1cbiAgICAgICAgPlxuICAgICAgICAgIDxpbWcgc3JjPXtgL3N0YXRpYy9pbWcvY3Jvc3Muc3ZnYH0gLz5cbiAgICAgICAgPC9idXR0b24+XG4gICAgICA8L2Rpdj5cbiAgICApO1xuICB9XG59XG5cbmV4cG9ydCBkZWZhdWx0IE1vZGFsO1xuIl19 */\n/*@ sourceURL=/Users/joel/dev/UnicornScheduler/components/EventEdit.js */"
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(formik__WEBPACK_IMPORTED_MODULE_2__["Formik"], {
         initialValues: {},
         onSubmit: this.submitEventForm
@@ -434,9 +298,11 @@ function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement(react_dates__WEBPACK_IMPORTED_MODULE_8__["SingleDatePicker"], {
           readOnly: true,
           placeholder: "Date",
-          date: values.date,
+          date: _this2.state.date,
           onDateChange: function onDateChange(date) {
-            return values.date = date;
+            return _this2.setState({
+              date: date
+            });
           },
           focused: _this2.state.focused,
           onFocusChange: function onFocusChange(_ref2) {
@@ -445,15 +311,13 @@ function (_React$Component) {
               focused: focused
             });
           },
-          name: "date",
-          onBlur: handleBlur,
           displayFormat: "DD MMM, YYYY",
           numberOfMonths: 1,
           required: true
         }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("h5", {
           className: "jsx-1704629409"
         }, "Color"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-          required: true,
+          required: false,
           type: "color",
           name: "color",
           value: values.color,
@@ -462,11 +326,21 @@ function (_React$Component) {
           onBlur: handleBlur,
           autoComplete: "off",
           className: "jsx-1704629409" + " " + "form-control"
-        }), picturebutton(), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
-          id: "hideIt",
-          type: "text",
+        }), _this2.state.picture ? react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("div", {
+          className: "jsx-1704629409"
+        }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
+          id: "picture_load",
+          src: _this2.state.picture,
+          className: "jsx-1704629409"
+        })) : react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
+          id: "picture_load_button",
+          onClick: _this2.onChoosingImage,
+          className: "jsx-1704629409" + " " + "ui button big wider_button"
+        }, "Choose a picture"), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("input", {
+          id: "image",
+          type: "hidden",
           name: "image",
-          value: values.image = _this2.getPictureUrl(),
+          value: values.image = _this2.state.picture,
           placeholder: "Image",
           onChange: handleChange,
           onBlur: handleBlur,
@@ -480,7 +354,7 @@ function (_React$Component) {
           className: "jsx-1704629409" + " " + "btn eventEditFormSubmitBtn"
         }, "Save")));
       }), react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("button", {
-        onClick: this.props.toggleModal,
+        onClick: this.props.toggleEventEditOpen,
         className: "jsx-1704629409" + " " + "closeEventEditBtn btn btnTransparent btnRound"
       }, react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement("img", {
         src: "/static/img/cross.svg",
@@ -518,11 +392,7 @@ var defaultOGImage = '/static/img/test1.jpg';
 var defaultIcon = '/static/img/logo.png';
 
 var Head = function Head(props) {
-  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("script", null, "UPLOADCARE_PUBLIC_KEY = 'demopublickey'; UPLOADCARE_TABS = 'file camera facebook dropbox'; UPLOADCARE_EFFECTS = 'crop'; UPLOADCARE_IMAGES_ONLY = true; UPLOADCARE_PREVIEW_STEP = true;"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("script", {
-    src: "https://ucarecdn.com/libs/widget/3.6.1/uploadcare.full.min.js"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("script", {
-    src: "https://ucarecdn.com/libs/widget-tab-effects/1.x/uploadcare.tab-effects.js"
-  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("script", null, "uploadcare.registerTab('preview', uploadcareTabEffects)"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("meta", {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(next_head__WEBPACK_IMPORTED_MODULE_1___default.a, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("meta", {
     charSet: "UTF-8"
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("title", null, props.title || defaultTitle), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("link", {
     rel: "manifest",
@@ -566,6 +436,10 @@ var Head = function Head(props) {
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("meta", {
     property: "og:image:height",
     content: "630"
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("script", {
+    dangerouslySetInnerHTML: {
+      __html: "\n          UPLOADCARE_PUBLIC_KEY = '3c62cd2cc88c1ce1c4ea';\n          UPLOADCARE_TABS = 'file camera facebook dropbox'; \n          UPLOADCARE_EFFECTS = 'crop'; \n          UPLOADCARE_IMAGES_ONLY = true; \n          UPLOADCARE_PREVIEW_STEP = true;\n    "
+    }
   }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("script", {
     src: "https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js"
   }));
@@ -96765,9 +96639,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_slick__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_slick__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! firebase/app */ "./node_modules/firebase/app/dist/index.cjs.js");
 /* harmony import */ var firebase_app__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(firebase_app__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! firebase/firestore */ "./node_modules/firebase/firestore/dist/index.esm.js");
-/* harmony import */ var _css_slider_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../css/slider.css */ "./css/slider.css");
-/* harmony import */ var _css_slider_css__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_css_slider_css__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
+/* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _components_EventEdit_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./../components/EventEdit.js */ "./components/EventEdit.js");
+/* harmony import */ var _utils_functions_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./../utils/functions.js */ "./utils/functions.js");
+/* harmony import */ var react_pose__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-pose */ "./node_modules/react-pose/dist/react-pose.es.js");
+/* harmony import */ var firebase_firestore__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! firebase/firestore */ "./node_modules/firebase/firestore/dist/index.esm.js");
+/* harmony import */ var _css_slider_css__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./../css/slider.css */ "./css/slider.css");
+/* harmony import */ var _css_slider_css__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(_css_slider_css__WEBPACK_IMPORTED_MODULE_10__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
@@ -96780,14 +96659,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
 
@@ -96795,6 +96675,47 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
+
+
+
+
+var EventEditContainer = react_pose__WEBPACK_IMPORTED_MODULE_8__["default"].div({
+  enter: {
+    y: '0',
+    opacity: 1
+  },
+  exit: {
+    y: '-80%',
+    opacity: 0
+  }
+});
+var EventEditDarkenContainer = react_pose__WEBPACK_IMPORTED_MODULE_8__["default"].div({
+  enter: {
+    opacity: 1
+  },
+  exit: {
+    opacity: 0
+  }
+});
+var EventListContainer = react_pose__WEBPACK_IMPORTED_MODULE_8__["default"].div({
+  enter: {
+    y: '0',
+    opacity: 1
+  },
+  exit: {
+    y: '-80%',
+    opacity: 0
+  }
+});
+var EventListDarkenContainer = react_pose__WEBPACK_IMPORTED_MODULE_8__["default"].div({
+  enter: {
+    opacity: 1
+  },
+  exit: {
+    opacity: 0
+  }
+});
 
 var Index =
 /*#__PURE__*/
@@ -96807,6 +96728,28 @@ function (_React$Component) {
     _classCallCheck(this, Index);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(Index).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleToolbarItemClick", function (e) {
+      e.preventDefault();
+      var eventEditOpen = _this.state.eventEditOpen;
+
+      if (!eventEditOpen) {
+        //Modal is about to be open, pause the slider
+        _this.slider.slickPause();
+
+        console.log('pause slider');
+      } else {
+        //Modal is about to be close, play the slider
+        _this.slider.slickPlay();
+
+        console.log('play slider');
+      }
+
+      _this.setState({
+        eventEditOpen: !eventEditOpen
+      });
+    });
+
     var config = {
       apiKey: 'AIzaSyDMVk4kh4_hTKYVXMWam50p3sYtrkbE-L0',
       authDomain: 'unicornscheduler1.firebaseapp.com',
@@ -96829,7 +96772,8 @@ function (_React$Component) {
     }
 
     _this.state = {
-      events: []
+      events: [],
+      todaysDate: moment__WEBPACK_IMPORTED_MODULE_5___default()().format("YYYY-MM-DD")
     };
     return _this;
   }
@@ -96844,6 +96788,18 @@ function (_React$Component) {
         this.updateWindowDimensions();
         window.addEventListener('resize', this.updateWindowDimensions);
       */
+
+      /*
+      if app is not exported to static files we shoul use next/router 
+      insted of window.location.search as this util function uses
+      Then we could also move it to the constructor
+      */
+      var dateFromUrl = Object(_utils_functions_js__WEBPACK_IMPORTED_MODULE_7__["getQueryVariable"])('date');
+      var eventFromUrl = Object(_utils_functions_js__WEBPACK_IMPORTED_MODULE_7__["getQueryVariable"])('event');
+      this.setState({
+        dateFromUrl: dateFromUrl,
+        eventFromUrl: eventFromUrl
+      });
       var firestore = firebase_app__WEBPACK_IMPORTED_MODULE_4___default.a.firestore();
       var settings = {
         timestampsInSnapshots: true
@@ -96851,15 +96807,12 @@ function (_React$Component) {
       firestore.settings(settings);
       firestore.collection("events").onSnapshot(function (querySnapshot) {
         var events = querySnapshot.docs.map(function (event) {
-          var eventData = event.data();
+          var eventData = event.data(); // adding and extra value to event in state that is not in firebase
+
+          eventData.normalizedDate = moment__WEBPACK_IMPORTED_MODULE_5___default.a.unix(eventData.date.seconds).format("YYYY-MM-DD");
+          console.log(eventData.headline, eventData);
           return eventData;
         });
-        /*
-          dump to console only for dev purposes
-          remove when app is in production
-        */
-
-        console.log(JSON.stringify(events, null, 2));
 
         _this2.setState({
           events: events
@@ -96886,9 +96839,9 @@ function (_React$Component) {
       /*
         Only autoplay if window is wider than 500px.
         this did not work so good, removed it.
-          var autoPlay = this.state.width > 500 ? true : false;
+         var autoPlay = this.state.width > 500 ? true : false;
       */
-      var autoPlay = false;
+      var autoPlay = true;
       var sliderSettings = {
         dots: true,
         infinite: true,
@@ -96904,21 +96857,61 @@ function (_React$Component) {
       var renderEvents = [];
 
       if (this.state.events) {
-        renderEvents = this.state.events.map(function (event, i) {
+        renderEvents = this.state.events.filter(function (event) {
+          //first filter the events on date, then map them
+          var _this3$state = _this3.state,
+              dateFromUrl = _this3$state.dateFromUrl,
+              todaysDate = _this3$state.todaysDate,
+              eventFromUrl = _this3$state.eventFromUrl;
+          console.log(dateFromUrl, todaysDate, eventFromUrl);
+
+          if (eventFromUrl) {
+            if (dateFromUrl) {
+              //both event headline and date is provided, sort on both
+              return event.headline === eventFromUrl && event.normalizedDate === dateFromUrl;
+            } else {
+              //only event headline is provided, sort on that
+              return event.headline === eventFromUrl;
+            }
+          } else {
+            //sort on date from url if provided, else sort on todays date
+            return event.normalizedDate === (dateFromUrl || todaysDate);
+          }
+        }).map(function (event, i) {
           return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Event_js__WEBPACK_IMPORTED_MODULE_2__["default"], {
-            key: i,
             event: event,
-            slider: _this3.slider,
-            firebase: firebase_app__WEBPACK_IMPORTED_MODULE_4___default.a
+            key: i
           });
         });
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Layout_js__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_3___default.a, _extends({
+      var eventEditOpen = this.state.eventEditOpen;
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Layout_js__WEBPACK_IMPORTED_MODULE_1__["default"], null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "eventToolbar"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#",
+        onClick: this.handleToolbarItemClick
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "/static/img/pen.svg"
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+        href: "#",
+        onClick: this.handleToolbarItemClick
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+        src: "/static/img/plus.svg"
+      }))), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_slick__WEBPACK_IMPORTED_MODULE_3___default.a, _extends({
         ref: function ref(e) {
           return _this3.slider = e;
         }
-      }, sliderSettings), renderEvents));
+      }, sliderSettings), renderEvents), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_pose__WEBPACK_IMPORTED_MODULE_8__["PoseGroup"], null, eventEditOpen ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(EventEditContainer, {
+        className: "eventEditWrapper",
+        key: "eventEdit"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_EventEdit_js__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        firebase: firebase_app__WEBPACK_IMPORTED_MODULE_4___default.a,
+        toggleEventEditOpen: this.handleToolbarItemClick
+      })) : null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_pose__WEBPACK_IMPORTED_MODULE_8__["PoseGroup"], null, eventEditOpen ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(EventEditDarkenContainer, {
+        className: "eventEditDarken",
+        key: "darken"
+      }) : null));
     }
   }]);
 
@@ -96945,6 +96938,47 @@ function (_React$Component) {
     })(typeof __webpack_exports__ !== 'undefined' ? __webpack_exports__.default : (module.exports.default || module.exports), "/")
   
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../node_modules/webpack/buildin/harmony-module.js */ "./node_modules/webpack/buildin/harmony-module.js")(module)))
+
+/***/ }),
+
+/***/ "./utils/functions.js":
+/*!****************************!*\
+  !*** ./utils/functions.js ***!
+  \****************************/
+/*! exports provided: getQueryVariable, replaceUrlParam */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getQueryVariable", function() { return getQueryVariable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "replaceUrlParam", function() { return replaceUrlParam; });
+function getQueryVariable(variable) {
+  var query = window.location.search.substring(1);
+  var vars = query.split('&');
+
+  for (var i = 0; i < vars.length; i++) {
+    var pair = vars[i].split('=');
+
+    if (pair[0] === variable) {
+      return pair[1];
+    }
+  }
+
+  return null;
+}
+function replaceUrlParam(url, paramName, paramValue) {
+  if (paramValue == null) {
+    paramValue = '';
+  }
+
+  var pattern = new RegExp('\\b(' + paramName + '=).*?(&|$)');
+
+  if (url.search(pattern) >= 0) {
+    return url.replace(pattern, '$1' + paramValue + '$2');
+  }
+
+  return url + (url.indexOf('?') > 0 ? '&' : '?') + paramName + '=' + paramValue;
+}
 
 /***/ }),
 

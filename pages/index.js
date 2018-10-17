@@ -3,7 +3,9 @@ import Layout from './../components/Layout.js';
 import Event from './../components/Event.js';
 import Slider from 'react-slick';
 import firebase from 'firebase/app';
+import moment from 'moment';
 import EventEdit from './../components/EventEdit.js';
+import { getQueryVariable } from './../utils/functions.js';
 import posed, { PoseGroup } from 'react-pose';
 import 'firebase/firestore';
 import './../css/slider.css';
@@ -79,6 +81,7 @@ class Index extends React.Component {
       eventListOpen: false,
       existingEditOpen: false,
       selectedEvent: []
+      todaysDate: moment().format(`YYYY-MM-DD`),
     };
   }
 
@@ -88,6 +91,18 @@ class Index extends React.Component {
       this.updateWindowDimensions();
       window.addEventListener('resize', this.updateWindowDimensions);
     */
+
+    /*
+    if app is not exported to static files we shoul use next/router 
+    insted of window.location.search as this util function uses
+    Then we could also move it to the constructor
+    */
+
+    const dateFromUrl = getQueryVariable('date');
+    const eventFromUrl = getQueryVariable('event');
+
+    this.setState({ dateFromUrl, eventFromUrl });
+
     const firestore = firebase.firestore();
 
     const settings = {
@@ -95,20 +110,21 @@ class Index extends React.Component {
     };
     firestore.settings(settings);
 
-    firestore
-      .collection(`events`)
-      .onSnapshot(querySnapshot => {
-        const events = querySnapshot.docs.map(event => {
-          let eventData = event.data();
-          return eventData;
-        });
-        /*
-          dump to console only for dev purposes
-          remove when app is in production
-        */
-        console.log(JSON.stringify(events, null, 2));
-        this.setState({ events });
+    firestore.collection(`events`).onSnapshot(querySnapshot => {
+      const events = querySnapshot.docs.map(event => {
+        let eventData = event.data();
+
+        // adding and extra value to event in state that is not in firebase
+        eventData.normalizedDate = moment
+          .unix(eventData.date.seconds)
+          .format(`YYYY-MM-DD`);
+
+        console.log(eventData.headline, eventData);
+
+        return eventData;
       });
+      this.setState({ events });
+    });
   }
 
   componentWillUnmount() {
@@ -213,7 +229,7 @@ class Index extends React.Component {
 
       var autoPlay = this.state.width > 500 ? true : false;
     */
-    var autoPlay = false;
+    var autoPlay = true;
 
     let sliderSettings = {
       dots: true,
@@ -230,14 +246,33 @@ class Index extends React.Component {
 
     let renderEvents = [];
     if (this.state.events) {
-      renderEvents = this.state.events.map((event, i) => {
-        return <Event key={i} event={event} slider={this.slider} firebase={firebase} />;
-      });
+      renderEvents = this.state.events
+        .filter(event => {
+          //first filter the events on date, then map them
+          const { dateFromUrl, todaysDate, eventFromUrl } = this.state;
+
+          if (eventFromUrl) {
+            if (dateFromUrl) {
+              //both event headline and date is provided, sort on both
+              return (
+                event.headline === eventFromUrl &&
+                event.normalizedDate === dateFromUrl
+              );
+            } else {
+              //only event headline is provided, sort on that
+              return event.headline === eventFromUrl;
+            }
+          } else {
+            //sort on date from url if provided, else sort on todays date
+            return event.normalizedDate === (dateFromUrl || todaysDate);
+          }
+        })
+        .map((event, i) => {
+          return <Event event={event} key={i} />;
+        });
     }
 
     const { eventEditOpen, eventListOpen, existingEditOpen } = this.state;
-
-   
 
     return (
       <Layout>
@@ -253,6 +288,7 @@ class Index extends React.Component {
           {renderEvents}
         </Slider>
         <PoseGroup>
+
             {eventEditOpen ? (
               <EventEditContainer
                 className={`eventEditWrapper`}
@@ -308,9 +344,7 @@ class Index extends React.Component {
               />
             ) : null}
           </PoseGroup>
-          
       </Layout>
-
     );
   }
 }
