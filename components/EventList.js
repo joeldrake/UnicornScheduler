@@ -36,7 +36,7 @@ class EventList extends React.Component {
         var {headline} = event;
         return (
         <li>
-        <a href="#" onClick={(e) => this.editEvent(headline)}>{headline}</a>
+        <a href="#" onClick={this.props.toggleModal1}>{headline}</a>
         </li>
         )
         
