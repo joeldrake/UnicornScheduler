@@ -201,7 +201,7 @@ class Modal extends React.Component {
         </Formik>
         <button
           className={`closeEventEditBtn btn btnTransparent btnRound`}
-          onClick={this.props.toggleEventEditOpen}
+          onClick={this.props.toggleModal}
         >
           <img src={`/static/img/cross.svg`} />
         </button>
