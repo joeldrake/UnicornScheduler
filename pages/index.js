@@ -80,7 +80,7 @@ class Index extends React.Component {
       eventEditOpen: false,
       eventListOpen: false,
       existingEditOpen: false,
-      selectedEvent: []
+      selectedEvent: [],
       todaysDate: moment().format(`YYYY-MM-DD`),
     };
   }
