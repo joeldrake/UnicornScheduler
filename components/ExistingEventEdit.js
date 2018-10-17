@@ -8,29 +8,30 @@ import { SingleDatePicker } from 'react-dates';
 import './../css/datepicker.css';
 import uploadcare from 'uploadcare-widget';
 import './../css/eventEdit.css';
+import moment from 'moment';
 
 class ExistingEventEdit extends React.Component {
   constructor() {
     super();
 
     this.state = {
-      date: '',
+      date: null,
       picture: '',
     };
   }
 
   submitEventForm = (values, actions) => {
+    const {selectedEvent} = this.props
     console.log(this.state.date);
     console.log(values);
     alert(JSON.stringify(values, null, 2));
 
     const firestore = this.props.firebase.firestore();
-    const eventname = `${values.name} ${Date.now()}`;
+    const eventname = selectedEvent.docName;
     values.date = this.state.date;
     values.lastUpdated = new Date();
-    values.id = eventname;
-    
-    // firestore.collection(`events`).doc(eventname).set(values);
+
+    firestore.collection(`events`).doc(eventname).set(values);
 
     actions.setSubmitting(false);
     actions.resetForm();
@@ -59,7 +60,8 @@ class ExistingEventEdit extends React.Component {
   }
 
   render() {
-
+    const {selectedEvent} = this.props
+    console.log('Selected event', selectedEvent)
     console.log('from existing event.js', this.props.selectedEvent)
     const headline = this.props.selectedEvent.headline
     console.log(headline)
@@ -86,7 +88,7 @@ class ExistingEventEdit extends React.Component {
             overflow: hidden;
           }
         `}</style>
-        <Formik initialValues={{}} onSubmit={this.submitEventForm}>
+        <Formik initialValues={selectedEvent} onSubmit={this.submitEventForm}>
           {({
             values,
             handleChange,
@@ -101,7 +103,7 @@ class ExistingEventEdit extends React.Component {
                   required
                   type={`text`}
                   name={`headline`}
-                  value={values.headline || this.props.selectedEvent.headline}
+                  value={values.headline || ""}
                   placeholder={`Eventname`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -111,7 +113,7 @@ class ExistingEventEdit extends React.Component {
                 <textarea
                   required
                   name={`description`}
-                  value={values.description || this.props.selectedEvent.description}
+                  value={values.description || ""}
                   placeholder={`Desciption`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -122,7 +124,7 @@ class ExistingEventEdit extends React.Component {
                   required
                   type={`text`}
                   name={`location`}
-                  value={values.location || this.props.selectedEvent.location}
+                  value={values.location || ""}
                   placeholder={`Location`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -135,7 +137,7 @@ class ExistingEventEdit extends React.Component {
                   required
                   type={`text`}
                   name={`time`}
-                  value={values.time || this.props.selectedEvent.time}
+                  value={values.time || ""}
                   placeholder={`Time (four digits like 09:00)`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -144,15 +146,13 @@ class ExistingEventEdit extends React.Component {
                 />
               </div>
               <div>
-                <SingleDatePicker
+              <SingleDatePicker
                   readOnly
                   placeholder="Date"
-                  date={values.date}
-                  onDateChange={date => (values.date = date)}
+                  date={this.state.date}
+                  onDateChange={date => this.setState({ date })}
                   focused={this.state.focused}
                   onFocusChange={({ focused }) => this.setState({ focused })}
-                  name="date"
-                  onBlur={handleBlur}
                   displayFormat="DD MMM, YYYY"
                   numberOfMonths={1}
                   required={true}
@@ -163,7 +163,7 @@ class ExistingEventEdit extends React.Component {
                   required
                   type={`color`}
                   name={`color`}
-                  value={values.color || this.props.selectedEvent.color}
+                  value={values.color || ""}
                   placeholder={`Color`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -177,7 +177,7 @@ class ExistingEventEdit extends React.Component {
                   id="hideIt"
                   type={`text`}
                   name={`image`}
-                  value={values.image || this.props.selectedEvent.image}
+                  value={values.image || ""}
                   placeholder={`Image`}
                   className={`form-control`}
                   onChange={handleChange}
