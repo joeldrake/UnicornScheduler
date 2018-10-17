@@ -29,8 +29,8 @@ class ExistingEventEdit extends React.Component {
     values.date = this.state.date;
     values.lastUpdated = new Date();
     values.id = eventname;
-
-    firestore.collection(`events`).doc(eventname).set(values);
+    
+    // firestore.collection(`events`).doc(eventname).set(values);
 
     actions.setSubmitting(false);
     actions.resetForm();
@@ -61,7 +61,7 @@ class ExistingEventEdit extends React.Component {
   render() {
 
     console.log('from existing event.js', this.props.selectedEvent)
-    const headline = this.props.selectedEvent[0].headline
+    const headline = this.props.selectedEvent.headline
     console.log(headline)
 
     var picturebutton = () => {
@@ -71,7 +71,7 @@ class ExistingEventEdit extends React.Component {
         return<div><button id="picture_load_button" className="ui button big wider_button" onClick={this.onChoosingImage}>
                 Choose a picture
               </button>
-             <img id="picture_load" src={this.props.selectedEvent[0].image}></img>
+             <img id="picture_load" src={this.props.selectedEvent.image}></img>
              </div>
             
       }
@@ -101,7 +101,7 @@ class ExistingEventEdit extends React.Component {
                   required
                   type={`text`}
                   name={`headline`}
-                  value={values.headline || this.props.selectedEvent[0].headline}
+                  value={values.headline || this.props.selectedEvent.headline}
                   placeholder={`Eventname`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -111,7 +111,7 @@ class ExistingEventEdit extends React.Component {
                 <textarea
                   required
                   name={`description`}
-                  value={values.description || this.props.selectedEvent[0].description}
+                  value={values.description || this.props.selectedEvent.description}
                   placeholder={`Desciption`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -122,7 +122,7 @@ class ExistingEventEdit extends React.Component {
                   required
                   type={`text`}
                   name={`location`}
-                  value={values.location || this.props.selectedEvent[0].location}
+                  value={values.location || this.props.selectedEvent.location}
                   placeholder={`Location`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -135,7 +135,7 @@ class ExistingEventEdit extends React.Component {
                   required
                   type={`text`}
                   name={`time`}
-                  value={values.time || this.props.selectedEvent[0].time}
+                  value={values.time || this.props.selectedEvent.time}
                   placeholder={`Time (four digits like 09:00)`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -163,7 +163,7 @@ class ExistingEventEdit extends React.Component {
                   required
                   type={`color`}
                   name={`color`}
-                  value={values.color || this.props.selectedEvent[0].color}
+                  value={values.color || this.props.selectedEvent.color}
                   placeholder={`Color`}
                   className={`form-control`}
                   onChange={handleChange}
@@ -177,7 +177,7 @@ class ExistingEventEdit extends React.Component {
                   id="hideIt"
                   type={`text`}
                   name={`image`}
-                  value={values.image || this.props.selectedEvent[0].image}
+                  value={values.image || this.props.selectedEvent.image}
                   placeholder={`Image`}
                   className={`form-control`}
                   onChange={handleChange}

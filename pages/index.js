@@ -76,7 +76,7 @@ class Index extends React.Component {
     this.state = {
       events: [],
       eventEditOpen: false,
-      eventListOpen: true,
+      eventListOpen: false,
       existingEditOpen: false,
       selectedEvent: []
     };
@@ -258,7 +258,7 @@ class Index extends React.Component {
                 className={`eventEditWrapper`}
                 key="eventEdit"
               >
-                <EventEdit firebase={this.props.firebase} toggleModal={this.handleToolbarItemClick} />
+                <EventEdit firebase={firebase} toggleModal={this.handleToolbarItemClick} />
               </EventEditContainer>
             ) : null}
           </PoseGroup>
@@ -296,7 +296,7 @@ class Index extends React.Component {
                 className={`eventEditWrapper`}
                 key="eventEdit"
               >
-                <ExistingEventEdit firebase={this.props.firebase} toggleModal={this.handleListClick} toggleModal1={this.handleExistingClick} selectedEvent={this.state.selectedEvent} />
+                <ExistingEventEdit firebase={firebase} toggleModal={this.handleListClick} toggleModal1={this.handleExistingClick} selectedEvent={this.state.selectedEvent[0]} />
               </EventEditContainer>
             ) : null}
           </PoseGroup>

@@ -42,7 +42,7 @@ class EventList extends React.Component {
         
       })}
       </ul>
-      <button onClick={this.props.toggleModal1}>test</button>
+      
       
         
         <button
