@@ -185,7 +185,7 @@ class Index extends React.Component {
       pauseOnHover: false,
       arrows: true,
       initialSlide: 0,
-      autoplaySpeed: 5000,
+      autoplaySpeed: 8000,
     };
 
     const { dateFromUrl, todaysDate, eventFromUrl } = this.state;
