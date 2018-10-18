@@ -5,7 +5,7 @@ const defaultDescription =
   'Welcome to the Unicorn Scheduler. Home of all the fantastic scheduled events.';
 const defaultOGURL = 'https://unicornscheduler1.firebaseapp.com/';
 const defaultOGImage = '/static/img/logo.png';
-const defaultIcon = '/static/img/logo.png';
+const defaultIcon = '/static/img/android-chrome-512x512.png';
 
 const Head = props => (
   <NextHead>
