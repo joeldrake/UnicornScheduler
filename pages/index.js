@@ -175,36 +175,34 @@ class Index extends React.Component {
     });
   };
 
-  findEvent = (header) => {
-    const incomeHeader = header
-    const events = this.state.events
-    console.log('from find event', events)
+  findEvent = header => {
+    const incomeHeader = header;
+    const events = this.state.events;
+    console.log('from find event', events);
 
     let selectedEvent = events.filter(event => {
-      return event.headline === incomeHeader
-    })
+      return event.headline === incomeHeader;
+    });
 
     this.setState({
-      selectedEvent
-    })
+      selectedEvent,
+    });
 
-    console.log('from function', selectedEvent)
-    console.log('from state', this.state.selectedEvent)
+    console.log('from function', selectedEvent);
+    console.log('from state', this.state.selectedEvent);
 
     // let filteredIceCream = iceCream.filter(iceCream => {
     //   return iceCream.flavour !== flavour;
     // })
-
-  }
+  };
 
   handleExistingClick = (e, header) => {
     e.preventDefault();
     if (header) {
-      this.findEvent(header)
+      this.findEvent(header);
     }
-    
+
     const { existingEditOpen } = this.state;
-    
 
     if (!existingEditOpen) {
       //Modal is about to be open, pause the slider
@@ -220,7 +218,6 @@ class Index extends React.Component {
       existingEditOpen: !existingEditOpen,
     });
   };
-
 
   render() {
     /*
@@ -277,73 +274,75 @@ class Index extends React.Component {
     return (
       <Layout>
         <div className={`eventToolbar`}>
-            <a href="#" onClick={this.handleListClick}>
-              <img src={`/static/img/pen.svg`} />
-            </a>
-            <a href="#" onClick={this.handleToolbarItemClick}>
-              <img src={`/static/img/plus.svg`} />
-            </a>
-          </div>
+          <a href="#" onClick={this.handleListClick}>
+            <img src={`/static/img/pen.svg`} />
+          </a>
+          <a href="#" onClick={this.handleToolbarItemClick}>
+            <img src={`/static/img/plus.svg`} />
+          </a>
+        </div>
         <Slider ref={e => (this.slider = e)} {...sliderSettings}>
           {renderEvents}
         </Slider>
         <PoseGroup>
-
-            {eventEditOpen ? (
-              <EventEditContainer
-                className={`eventEditWrapper`}
-                key="eventEdit"
-              >
-                <EventEdit firebase={firebase} toggleModal={this.handleToolbarItemClick} />
-              </EventEditContainer>
-            ) : null}
-          </PoseGroup>
-          <PoseGroup>
-            {eventEditOpen ? (
-              <EventEditDarkenContainer
-                className={`eventEditDarken`}
-                key="darken"
+          {eventEditOpen ? (
+            <EventEditContainer className={`eventEditWrapper`} key="eventEdit">
+              <EventEdit
+                firebase={firebase}
+                toggleModal={this.handleToolbarItemClick}
               />
-            ) : null}
-          </PoseGroup>
+            </EventEditContainer>
+          ) : null}
+        </PoseGroup>
+        <PoseGroup>
+          {eventEditOpen ? (
+            <EventEditDarkenContainer
+              className={`eventEditDarken`}
+              key="darken"
+            />
+          ) : null}
+        </PoseGroup>
 
-          <PoseGroup>
-            {eventListOpen ? (
-              <EventEditContainer
-                className={`eventEditWrapper`}
-                key="eventEdit"
-              >
-                <EventList events={this.state.events} toggleModal={this.handleListClick} toggleModal1={this.handleExistingClick} />
-              </EventEditContainer>
-            ) : null}
-          </PoseGroup>
-          <PoseGroup>
-            {eventListOpen ? (
-              <EventEditDarkenContainer
-                className={`eventEditDarken`}
-                key="darken"
+        <PoseGroup>
+          {eventListOpen ? (
+            <EventEditContainer className={`eventEditWrapper`} key="eventEdit">
+              <EventList
+                events={this.state.events}
+                toggleModal={this.handleListClick}
+                toggleModal1={this.handleExistingClick}
               />
-            ) : null}
-          </PoseGroup>
+            </EventEditContainer>
+          ) : null}
+        </PoseGroup>
+        <PoseGroup>
+          {eventListOpen ? (
+            <EventEditDarkenContainer
+              className={`eventEditDarken`}
+              key="darken"
+            />
+          ) : null}
+        </PoseGroup>
 
-          <PoseGroup>
-            {existingEditOpen ? (
-              <EventEditContainer
-                className={`eventEditWrapper`}
-                key="eventEdit"
-              >
-                <ExistingEventEdit firebase={firebase} toggleModal={this.handleListClick} toggleModal1={this.handleExistingClick} selectedEvent={this.state.selectedEvent[0]} />
-              </EventEditContainer>
-            ) : null}
-          </PoseGroup>
-          <PoseGroup>
-            {existingEditOpen ? (
-              <EventEditDarkenContainer
-                className={`eventEditDarken`}
-                key="darken"
+        <PoseGroup>
+          {existingEditOpen ? (
+            <EventEditContainer className={`eventEditWrapper`} key="eventEdit">
+              <ExistingEventEdit
+                firebase={firebase}
+                toggleModal={this.handleListClick}
+                toggleModal1={this.handleExistingClick}
+                selectedEvent={this.state.selectedEvent[0]}
               />
-            ) : null}
-          </PoseGroup>
+            </EventEditContainer>
+          ) : null}
+        </PoseGroup>
+        <PoseGroup>
+          {existingEditOpen ? (
+            <EventEditDarkenContainer
+              className={`eventEditDarken`}
+              key="darken"
+            />
+          ) : null}
+        </PoseGroup>
       </Layout>
     );
   }
