@@ -1,4 +1,4 @@
-.eventEditDarken {
+.eventModalDarken {
   position: absolute;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@
   background: rgba(0, 0, 0, 0.4);
 }
 
-.eventEditWrapper {
+.eventModalWrapper {
   position: absolute;
   top: 0;
   bottom: 0;
@@ -27,7 +27,7 @@
   -webkit-overflow-scrolling: touch;
 }
 
-.eventEdit {
+.eventModal {
   position: relative;
   z-index: 11;
   display: flex;
@@ -37,31 +37,35 @@
   max-width: 700px;
   min-height: 300px;
   border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.78);
+  background-color: rgba(255, 255, 255, 0.9);
   color: #000000;
 }
 
 @media screen and (max-width: 600px) {
-  .eventEditWrapper {
+  .eventModalWrapper {
     display: block;
   }
-  .eventEdit {
+  .eventModal {
     margin: 30px auto;
     width: 90%;
   }
 }
 
-.closeEventEditBtn {
+.closeEventModalBtn {
   position: absolute;
   top: 5px;
   right: 5px;
+}
+
+.eventModalHeader {
+  padding: 20px 20px 0 20px;
 }
 
 .eventEditForm {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-  padding: 50px 20px 20px 20px;
+  padding: 10px 20px 20px 20px;
   justify-content: space-between;
 }
 
@@ -92,11 +96,11 @@
 #picture_load {
   width: 100%;
   border-radius: 0.5em;
-} 
+}
 
 h5 {
   font-size: 0.8em;
-  color:rgb(68, 68, 68);
+  color: rgb(68, 68, 68);
   margin-bottom: 0.4em;
 }
 
@@ -108,4 +112,9 @@ h5 {
   width: 100%;
   height: 4em;
   font-size: 1em;
+}
+
+.previewLink {
+  display: inline-block;
+  margin-bottom: 15px;
 }

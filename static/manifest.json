@@ -4,9 +4,14 @@
   "description": "Welcome to the Unicorn Scheduler. Home of all the fantastic scheduled events.",
   "icons": [
     {
-      "src": "/static/img/logo.png",
-      "sizes": "800x800",
-      "type": "image/png"
+      "src": "/static/img/android-chrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/static/img/android-chrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
     }
   ],
   "start_url": "/",

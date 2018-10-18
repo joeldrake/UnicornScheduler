@@ -3,8 +3,8 @@ import NextHead from 'next/head';
 const defaultTitle = 'Unicorn Scheduler';
 const defaultDescription =
   'Welcome to the Unicorn Scheduler. Home of all the fantastic scheduled events.';
-const defaultOGURL = 'https://unicornscheduler.com';
-const defaultOGImage = '/static/img/test1.jpg';
+const defaultOGURL = 'https://unicornscheduler1.firebaseapp.com/';
+const defaultOGImage = '/static/img/logo.png';
 const defaultIcon = '/static/img/logo.png';
 
 const Head = props => (
@@ -30,8 +30,8 @@ const Head = props => (
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content={props.ogImage || defaultOGImage} />
     <meta property="og:image" content={props.ogImage || defaultOGImage} />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
+    <meta property="og:image:width" content="800" />
+    <meta property="og:image:height" content="800" />
 
     <script
       dangerouslySetInnerHTML={{
@@ -44,20 +44,6 @@ const Head = props => (
     `,
       }}
     />
-
-    {/*
-    <script src="https://ucarecdn.com/libs/widget/3.6.1/uploadcare.full.min.js" />
-    <script src="https://ucarecdn.com/libs/widget-tab-effects/1.x/uploadcare.tab-effects.js" />
-
-    <script
-      dangerouslySetInnerHTML={{
-        __html: `
-    uploadcare.registerTab('preview', uploadcareTabEffects)
-`,
-      }}
-      
-    />
-    */}
 
     {/* todo: get this polyfill in the normal next.js build, or remove it, or maybe just remove it*/}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.23.0/polyfill.min.js" />
