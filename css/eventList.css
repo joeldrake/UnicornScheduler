@@ -1,0 +1,15 @@
+.eventListWrapper {
+  width: 100%;
+  text-align: left;
+}
+
+.eventList {
+  list-style-type: none;
+  margin: 0;
+  padding: 20px;
+}
+
+.eventList li {
+  font-size: 1.2em;
+  padding: 10px 0;
+}
