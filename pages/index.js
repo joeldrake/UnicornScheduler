@@ -76,8 +76,11 @@ class Index extends React.Component {
     Then we could also move it to the constructor
     */
 
-    const dateFromUrl = getQueryVariable('date');
-    const eventFromUrl = getQueryVariable('event');
+    let dateFromUrl = getQueryVariable('date');
+    let eventFromUrl = getQueryVariable('event');
+    if (eventFromUrl) {
+      eventFromUrl = decodeURI(eventFromUrl);
+    }
 
     this.setState({ dateFromUrl, eventFromUrl });
 
@@ -230,7 +233,7 @@ class Index extends React.Component {
           <a href="/" onClick={e => this.handleToggleEventModal(e, 'new')}>
             <img src={`/static/img/plus.svg`} />
           </a>
-          {renderEvents.length ? (
+          {renderEvents.length || dateFromUrl || eventFromUrl ? (
             <a href="/" onClick={e => this.handleToggleEventModal(e, 'edit')}>
               <img src={`/static/img/lines.svg`} />
             </a>
