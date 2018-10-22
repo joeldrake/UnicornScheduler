@@ -233,7 +233,7 @@ class Index extends React.Component {
           <a href="/" onClick={e => this.handleToggleEventModal(e, 'new')}>
             <img src={`/static/img/plus.svg`} />
           </a>
-          {renderEvents.length || dateFromUrl || eventFromUrl ? (
+          {this.state.events ? (
             <a href="/" onClick={e => this.handleToggleEventModal(e, 'edit')}>
               <img src={`/static/img/lines.svg`} />
             </a>
