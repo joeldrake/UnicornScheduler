@@ -4,7 +4,8 @@
     "dev": "node server.js",
     "start": "NODE_ENV=production node server.js",
     "build": "next build",
-    "export": "next export"
+    "export": "next export",
+    "deploy": "rm -rf node_modules/.cache && npm run build && npm run export && firebase deploy"
   },
   "dependencies": {
     "@zeit/next-css": "^1.0.1",
