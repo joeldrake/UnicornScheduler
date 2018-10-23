@@ -223,6 +223,7 @@ class Modal extends React.Component {
                 {this.state.picture ? (
                   <div>
                     <img id="picture_load" src={this.state.picture} />
+                    {/* Add picture button here */}
                   </div>
                 ) : (
                   <button
