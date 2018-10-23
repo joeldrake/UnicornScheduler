@@ -202,8 +202,7 @@ class Index extends React.Component {
 
     let renderEvents = [];
     if (this.state.events) {
-      renderEvents = this.state.events
-        .filter(event => {
+      renderEvents = this.state.events.filter(event => {
           //first filter the events on date, then map them
 
           if (eventFromUrl) {
@@ -221,8 +220,7 @@ class Index extends React.Component {
             //sort on date from url if provided, else sort on todays date
             return event.normalizedDate === (dateFromUrl || todaysDate);
           }
-        })
-        .map((event, i) => {
+        }).map((event, i) => {
           return <Event event={event} key={i} />;
         });
     }
