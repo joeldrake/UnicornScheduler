@@ -252,7 +252,7 @@ class Index extends React.Component {
           <div className={`noEventsMessage`}>
             No events scheduled today...
             <br />
-            Go to http//bit.ly/unicornscheduler to add an event!
+            Go to http://bit.ly/unicornscheduler to add an event!
           </div>
         ) : (
           <div>{/*loading form firebase*/}</div>
