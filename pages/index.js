@@ -113,6 +113,13 @@ class Index extends React.Component {
       });
       this.setState({ events, initialLoadingDone: true });
     });
+
+    /*
+      Using setInterval to reload the page every 6 hours
+    */
+    this.reloadInterval = setInterval(() => {
+      location.reload();
+    }, 1000 * 60 * 60 * 6);
   }
 
   componentWillUnmount() {
