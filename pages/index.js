@@ -202,7 +202,8 @@ class Index extends React.Component {
 
     let renderEvents = [];
     if (this.state.events) {
-      renderEvents = this.state.events.filter(event => {
+      renderEvents = this.state.events
+        .filter(event => {
           //first filter the events on date, then map them
 
           if (eventFromUrl) {
@@ -220,9 +221,27 @@ class Index extends React.Component {
             //sort on date from url if provided, else sort on todays date
             return event.normalizedDate === (dateFromUrl || todaysDate);
           }
-        }).map((event, i) => {
+        })
+        .map((event, i) => {
           return <Event event={event} key={i} />;
         });
+
+      if (!eventFromUrl) {
+        renderEvents.push(
+          <Event
+            event={{
+              headline: 'The Unicorn Scheduler',
+              description:
+                'The Unicorn Scheduler is open for anyone to add their own events. Go to bit.ly/unicornscheduler to see and add events!',
+              image:
+                'xhttps://ucarecdn.com/77961201-c260-4d9e-87ec-a6489f8310d3/-/crop/1024x683/0,341/-/preview/',
+              time: 'Made by',
+              location: 'Castle Coding',
+            }}
+            key={`infoEvent`}
+          />,
+        );
+      }
     }
 
     const {
