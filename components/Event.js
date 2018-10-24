@@ -45,7 +45,7 @@ class Event extends React.Component {
     );
 
     let renderLocation = event.location ? (
-      <div className={`eventBox white eventLocation`}>{event.location}</div>
+      <div className={`eventBox eventLocation`}>{event.location}</div>
     ) : (
       ''
     );
