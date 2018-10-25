@@ -227,14 +227,12 @@ class Index extends React.Component {
         });
 
       if (!eventFromUrl) {
-        renderEvents.push(
+        renderEvents.unshift(
           <Event
             event={{
               headline: 'The Unicorn Scheduler',
               description:
                 'The Unicorn Scheduler is open for anyone to add their own events. Go to bit.ly/unicornscheduler to see and add events!',
-              image:
-                'xhttps://ucarecdn.com/77961201-c260-4d9e-87ec-a6489f8310d3/-/crop/1024x683/0,341/-/preview/',
               time: 'Made by',
               location: 'Castle Coding',
             }}
