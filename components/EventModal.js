@@ -1,5 +1,5 @@
 import React from 'react';
-import { Formik } from 'formik';
+import { Formik, FieldArray } from 'formik';
 import moment from 'moment';
 import { SingleDatePicker } from 'react-dates';
 import uploadcare from 'uploadcare-widget';
@@ -15,28 +15,34 @@ class Modal extends React.Component {
     super();
 
     this.state = {
-      date: moment(),
       picture: '',
       selectedEvent: null,
+      focused: [],
     };
   }
 
   submitEventForm = (values, actions) => {
     const { selectedEvent } = this.state;
 
+    //create an immutable version of values
+    const immutableValues = { ...values };
+
     if (selectedEvent) {
       //user is updating a selected event, update it
-      this.updateSelectedEvent(values, actions);
+      this.updateSelectedEvent(immutableValues);
     } else {
-      this.createNewEvent(values, actions);
+      this.createNewEvent(immutableValues);
     }
   };
 
-  createNewEvent(values, actions) {
+  createNewEvent(values) {
     const firestore = this.props.firebase.firestore();
 
     //setting date as an array, if we want events to have more dates in the future
-    values.date = [this.state.date.toDate()];
+    const fixedDates = values.dates.map(date => {
+      return date.toDate();
+    });
+    values.dates = fixedDates;
     values.image = this.state.picture;
 
     const dateNow = moment().format(`YYYY-MM-DD HH:ss`);
@@ -61,11 +67,14 @@ class Modal extends React.Component {
       });
   }
 
-  updateSelectedEvent(values, actions) {
+  updateSelectedEvent(values) {
     const firestore = this.props.firebase.firestore();
 
     //setting date as an array, if we want events to have more dates in the future
-    values.date = [this.state.date.toDate()];
+    const fixedDates = values.dates.map(date => {
+      return date.toDate();
+    });
+    values.dates = fixedDates;
 
     values.image = this.state.picture;
 
@@ -73,6 +82,10 @@ class Modal extends React.Component {
 
     console.log(values);
     console.log(this.state.picture);
+
+    //remove the normalized dates so they do not get saved to firebase
+    delete values.normalizedDate;
+    delete values.normalizedDates;
 
     firestore
       .collection(`events`)
@@ -106,13 +119,28 @@ class Modal extends React.Component {
   };
 
   renderEventEditForm(selectedEvent) {
-    let initialValues = {};
+    let initialValues = { dates: [moment()] };
+
     if (selectedEvent) {
       /*
         Event selected, this means user is editing that event.
         Put it in formik initial values
       */
-      initialValues = selectedEvent;
+      let immutableSelectedEvent = { ...selectedEvent };
+      if (immutableSelectedEvent.dates) {
+        immutableSelectedEvent.dates = immutableSelectedEvent.dates.map(
+          date => {
+            return moment.unix(date.seconds);
+          },
+        );
+      } else if (immutableSelectedEvent.date) {
+        //fix to handle old dated items
+        immutableSelectedEvent.dates = [
+          moment.unix(immutableSelectedEvent.date[0].seconds),
+        ];
+      }
+
+      initialValues = immutableSelectedEvent;
     }
 
     const requiredMasterSwitch = false;
@@ -195,16 +223,47 @@ class Modal extends React.Component {
                 />
               </div>
               <div>
-                <SingleDatePicker
-                  readOnly
-                  placeholder="Date"
-                  date={this.state.date}
-                  onDateChange={date => this.setState({ date })}
-                  focused={this.state.focused}
-                  onFocusChange={({ focused }) => this.setState({ focused })}
-                  displayFormat="DD MMM, YYYY"
-                  numberOfMonths={1}
-                  required={true}
+                <FieldArray
+                  name={`dates`}
+                  render={arrayHelpers => (
+                    <div>
+                      {values.dates.map((date, i) => (
+                        <div key={i}>
+                          <SingleDatePicker
+                            readOnly
+                            placeholder="Date"
+                            date={values.dates[i]}
+                            onDateChange={date => (values.dates[i] = date)}
+                            focused={this.state.focused[i]}
+                            onFocusChange={({ focused }) => {
+                              let newFocused = this.state.focused;
+                              newFocused[i] = focused;
+                              this.setState({ focused: newFocused });
+                            }}
+                            displayFormat="DD MMM, YYYY"
+                            numberOfMonths={1}
+                            required={true}
+                          />
+
+                          {i !== 0 ? (
+                            <button
+                              type="button"
+                              onClick={() => arrayHelpers.remove(i)}
+                            >
+                              -
+                            </button>
+                          ) : null}
+                        </div>
+                      ))}
+
+                      <button
+                        type="button"
+                        onClick={() => arrayHelpers.push(moment())}
+                      >
+                        +
+                      </button>
+                    </div>
+                  )}
                 />
 
                 <h5>Color</h5>
@@ -287,6 +346,9 @@ class Modal extends React.Component {
   renderEventList() {
     const { events } = this.props;
 
+    //create im
+    let immuatableEvents = events;
+
     return (
       <div className={`eventListWrapper`}>
         <div className={`eventModalHeader`}>
@@ -294,18 +356,19 @@ class Modal extends React.Component {
         </div>
         <ul className={`eventList`}>
           {events.map((event, i) => {
-            let normaizedDate;
-            if (event && event.date && event.date[0] && event.date[0].seconds) {
-              normaizedDate = moment
-                .unix(event.date[0].seconds)
-                .format(`YYYY-MM-DD`);
+            let eventName = ``;
+            if (event && event.normalizedDates) {
+              eventName = event.normalizedDates[0];
             }
 
-            const eventName = event.headline ? event.headline : `No name`;
+            if (event.headline) {
+              eventName += ` ${event.headline}`;
+            } else {
+              eventName += ` No headline`;
+            }
 
             return (
               <li key={i}>
-                {normaizedDate} {` `}
                 <a href="/" onClick={e => this.handleSelectEvent(e, event)}>
                   {eventName}
                 </a>
