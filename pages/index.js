@@ -107,7 +107,18 @@ class Index extends React.Component {
             .format(`YYYY-MM-DD`);
         }
 
-        //console.log(eventData.headline, eventData);
+        if (
+          eventData &&
+          eventData.dates &&
+          eventData.dates.length &&
+          eventData.dates[0].seconds
+        ) {
+          eventData.normalizedDates = eventData.dates.map(date => {
+            return moment.unix(date.seconds).format(`YYYY-MM-DD`);
+          });
+        }
+
+        console.log(eventData.headline, eventData);
 
         return eventData;
       });
@@ -219,7 +230,18 @@ class Index extends React.Component {
             }
           } else {
             //sort on date from url if provided, else sort on todays date
-            return event.normalizedDate === (dateFromUrl || todaysDate);
+            if (event.normalizedDates) {
+              //this is the new dates that is an array
+              if (dateFromUrl) {
+                console.log(dateFromUrl);
+                return event.normalizedDates.includes(dateFromUrl);
+              } else {
+                return event.normalizedDates.includes(todaysDate);
+              }
+            } else if (event.normalizedDate) {
+              //have this to work with old event style with only one date
+              return event.normalizedDate === (dateFromUrl || todaysDate);
+            }
           }
         })
         .map((event, i) => {
