@@ -79,7 +79,7 @@ class Index extends React.Component {
     let dateFromUrl = getQueryVariable('date');
     let eventFromUrl = getQueryVariable('event');
     if (eventFromUrl) {
-      eventFromUrl = decodeURI(eventFromUrl);
+      eventFromUrl = decodeURIComponent(eventFromUrl);
     }
 
     this.setState({ dateFromUrl, eventFromUrl });
@@ -219,11 +219,19 @@ class Index extends React.Component {
 
           if (eventFromUrl) {
             if (dateFromUrl) {
-              //both event headline and date is provided, sort on both
-              return (
-                event.headline === eventFromUrl &&
-                event.normalizedDate === dateFromUrl
-              );
+              if (event.normalizedDates) {
+                //this is the new dates that is an array
+                return (
+                  event.normalizedDates.includes(dateFromUrl) &&
+                  event.headline === eventFromUrl
+                );
+              } else if (event.normalizedDate) {
+                //have this to work with old event style with only one date
+                return (
+                  event.normalizedDate === dateFromUrl &&
+                  event.headline === eventFromUrl
+                );
+              }
             } else {
               //only event headline is provided, sort on that
               return event.headline === eventFromUrl;

@@ -155,9 +155,12 @@ class Modal extends React.Component {
               </a>
               <h2>Editing event "{selectedEvent.headline}"</h2>
               <a
-                href={`/?date=${selectedEvent.normalizedDate}&event=${
-                  selectedEvent.headline
-                }`}
+                href={`/?date=${
+                  selectedEvent.normalizedDates &&
+                  selectedEvent.normalizedDates.length
+                    ? selectedEvent.normalizedDates[0]
+                    : selectedEvent.normalizedDate
+                }&event=${encodeURIComponent(selectedEvent.headline)}`}
                 className={`previewLink`}
               >
                 Preview event page
@@ -346,8 +349,16 @@ class Modal extends React.Component {
   renderEventList() {
     const { events } = this.props;
 
-    //create im
-    let immuatableEvents = events;
+    //create immutable array
+    let immuatableEvents = [...events];
+
+    //sort events on date
+    immuatableEvents.sort((a, b) => {
+      var x = a.dates && a.dates.length ? a.dates[0].seconds : 0;
+      var y = b.dates && b.dates.length ? b.dates[0].seconds : 0;
+
+      return x < y ? -1 : x > y ? 1 : 0;
+    });
 
     return (
       <div className={`eventListWrapper`}>
@@ -355,7 +366,7 @@ class Modal extends React.Component {
           <h2>List of events</h2>
         </div>
         <ul className={`eventList`}>
-          {events.map((event, i) => {
+          {immuatableEvents.map((event, i) => {
             let eventName = ``;
             if (event && event.normalizedDates) {
               eventName = event.normalizedDates[0];
