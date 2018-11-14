@@ -13,3 +13,30 @@
   font-size: 1.2em;
   padding: 10px 0;
 }
+
+.eventListHeadline {
+  font-size: 1.8em;
+  text-decoration: underline;
+  margin-bottom: 10px;
+}
+
+.eventListDate {
+  font-size: 0.7em;
+  display: inline-block;
+  border: 1px solid #ccc;
+  padding: 4px;
+  margin: 0 5px 5px 0;
+  background: #f4f4f4;
+  color: #333;
+}
+
+.eventListLink {
+  display: inline-block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.loadingEventSign {
+  margin-top: 50px;
+  text-align: center;
+}

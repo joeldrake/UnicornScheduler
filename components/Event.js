@@ -18,7 +18,13 @@ class Event extends React.Component {
     let eventHeadlineStyle = {};
 
     if (event.image) {
-      eventStyle.backgroundImage = `url(${event.image})`;
+      let displayImage = event.image;
+      if (displayImage.includes('ucarecdn.com')) {
+        //uploadcareUrl, add resize parameter
+        displayImage += `-/resize/1200x/`;
+      }
+
+      eventStyle.backgroundImage = `url(${displayImage})`;
     }
     if (event.color) {
       eventHeadlineStyle.backgroundColor = `${event.color}`;

@@ -117,3 +117,29 @@ h5 {
   display: inline-block;
   margin-bottom: 15px;
 }
+
+.datePickerWrapper {
+  position: relative;
+  margin-top: 10px;
+}
+
+.datePickerWrapper:first-child {
+  margin-top: 0;
+}
+
+.removeDateBtn {
+  background: black;
+  color: white;
+  border: 0;
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%);
+}
+
+.addDateBtn,
+.removeImageBtn {
+  text-transform: none;
+  padding: 5px;
+  margin-top: 10px;
+}
