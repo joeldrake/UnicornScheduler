@@ -18,6 +18,7 @@ class Modal extends React.Component {
       picture: '',
       selectedEvent: null,
       focused: [],
+      uploadingImage: false,
     };
   }
 
@@ -80,9 +81,6 @@ class Modal extends React.Component {
 
     values.lastUpdated = new Date();
 
-    console.log(values);
-    console.log(this.state.picture);
-
     //remove the normalized dates so they do not get saved to firebase
     delete values.normalizedDate;
     delete values.normalizedDates;
@@ -103,6 +101,11 @@ class Modal extends React.Component {
 
   onChoosingImage = e => {
     e.preventDefault();
+
+    this.setState({
+      uploadingImage: true,
+    });
+
     uploadcare
       .openDialog(null, {
         imagesOnly: true,
@@ -113,12 +116,27 @@ class Modal extends React.Component {
           console.log('From inside promise ' + fileInfo.cdnUrl);
           this.setState({
             picture: fileInfo.cdnUrl,
+            uploadingImage: false,
           });
+        });
+      })
+      .fail(() => {
+        //user closed the image picker without choosing a file
+        this.setState({
+          uploadingImage: false,
         });
       });
   };
 
+  removeCurrentImage = () => {
+    this.setState({
+      picture: '',
+    });
+  };
+
   renderEventEditForm(selectedEvent) {
+    const { uploadingImage } = this.state;
+
     let initialValues = { dates: [moment()] };
 
     if (selectedEvent) {
@@ -231,7 +249,7 @@ class Modal extends React.Component {
                   render={arrayHelpers => (
                     <div>
                       {values.dates.map((date, i) => (
-                        <div key={i}>
+                        <div className={`datePickerWrapper`} key={i}>
                           <SingleDatePicker
                             readOnly
                             placeholder="Date"
@@ -243,7 +261,7 @@ class Modal extends React.Component {
                               newFocused[i] = focused;
                               this.setState({ focused: newFocused });
                             }}
-                            displayFormat="DD MMM, YYYY"
+                            displayFormat="(ddd) DD MMM, YYYY"
                             numberOfMonths={1}
                             required={true}
                           />
@@ -252,8 +270,9 @@ class Modal extends React.Component {
                             <button
                               type="button"
                               onClick={() => arrayHelpers.remove(i)}
+                              className={`removeDateBtn`}
                             >
-                              -
+                              Remove
                             </button>
                           ) : null}
                         </div>
@@ -262,8 +281,9 @@ class Modal extends React.Component {
                       <button
                         type="button"
                         onClick={() => arrayHelpers.push(moment())}
+                        className={`addDateBtn btn`}
                       >
-                        +
+                        + add date
                       </button>
                     </div>
                   )}
@@ -285,7 +305,13 @@ class Modal extends React.Component {
                 {this.state.picture ? (
                   <div>
                     <img id="picture_load" src={this.state.picture} />
-                    {/* Add picture button here */}
+                    <button
+                      type="button"
+                      onClick={this.removeCurrentImage}
+                      className={`removeImageBtn btn`}
+                    >
+                      Remove image
+                    </button>
                   </div>
                 ) : (
                   <button
@@ -293,6 +319,9 @@ class Modal extends React.Component {
                     className="ui button big wider_button"
                     onClick={this.onChoosingImage}
                   >
+                    {uploadingImage ? (
+                      <div className={`spinner onBtn`} />
+                    ) : null}
                     Choose a picture
                   </button>
                 )}
@@ -313,7 +342,7 @@ class Modal extends React.Component {
                 <button
                   type={`submit`}
                   className={`btn eventEditFormSubmitBtn`}
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || uploadingImage}
                 >
                   Save
                 </button>
@@ -357,36 +386,58 @@ class Modal extends React.Component {
       var x = a.dates && a.dates.length ? a.dates[0].seconds : 0;
       var y = b.dates && b.dates.length ? b.dates[0].seconds : 0;
 
-      return x < y ? -1 : x > y ? 1 : 0;
+      return x > y ? -1 : x < y ? 1 : 0;
     });
 
     return (
       <div className={`eventListWrapper`}>
         <div className={`eventModalHeader`}>
-          <h2>List of events</h2>
+          <h2 className={`eventListHeadline`}>List of events</h2>
         </div>
-        <ul className={`eventList`}>
-          {immuatableEvents.map((event, i) => {
-            let eventName = ``;
-            if (event && event.normalizedDates) {
-              eventName = event.normalizedDates[0];
-            }
 
-            if (event.headline) {
-              eventName += ` ${event.headline}`;
-            } else {
-              eventName += ` No headline`;
-            }
+        {immuatableEvents.length ? (
+          <ul className={`eventList`}>
+            {immuatableEvents.map((event, i) => {
+              let eventName = ``;
+              let dates = [];
 
-            return (
-              <li key={i}>
-                <a href="/" onClick={e => this.handleSelectEvent(e, event)}>
-                  {eventName}
-                </a>
-              </li>
-            );
-          })}
-        </ul>
+              if (event.normalizedDates) {
+                dates = event.normalizedDates.map((date, i) => {
+                  return (
+                    <span
+                      className={`eventListDate`}
+                      title={moment(date).format(`YYYY`)}
+                      key={i}
+                    >
+                      {moment(date).format(`MMM D, YYYY`)}
+                    </span>
+                  );
+                });
+              }
+
+              if (event.headline) {
+                eventName += event.headline;
+              } else {
+                eventName += `No headline`;
+              }
+
+              return (
+                <li key={i}>
+                  <a
+                    href="/"
+                    className={`eventListLink`}
+                    onClick={e => this.handleSelectEvent(e, event)}
+                  >
+                    {eventName}
+                  </a>
+                  <div className={`eventListDateWrapper`}>{dates}</div>
+                </li>
+              );
+            })}
+          </ul>
+        ) : (
+          <p className={`loadingEventSign`}>Loading events...</p>
+        )}
       </div>
     );
   }

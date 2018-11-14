@@ -118,7 +118,7 @@ class Index extends React.Component {
           });
         }
 
-        console.log(eventData.headline, eventData);
+        //console.log(eventData.headline, eventData);
 
         return eventData;
       });
@@ -281,6 +281,12 @@ class Index extends React.Component {
 
     return (
       <Layout>
+        {dateFromUrl || eventFromUrl ? (
+          <a href="/" className={`resetLink`}>
+            Back to todays events
+          </a>
+        ) : null}
+
         <div className={`eventToolbar`}>
           <a href="/" onClick={e => this.handleToggleEventModal(e, 'new')}>
             <img src={`/static/img/plus.svg`} />
@@ -304,7 +310,6 @@ class Index extends React.Component {
         ) : (
           <div>{/*loading form firebase*/}</div>
         )}
-
         <PoseGroup>
           {eventModalOpen ? (
             <EventModalContainer
@@ -320,7 +325,6 @@ class Index extends React.Component {
             </EventModalContainer>
           ) : null}
         </PoseGroup>
-
         <PoseGroup>
           {eventModalOpen ? (
             <EventModalDarkenContainer
