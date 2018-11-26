@@ -381,10 +381,12 @@ class Modal extends React.Component {
     //create immutable array
     let immuatableEvents = [...events];
 
-    //sort events on date
+    //sort events on last date in each event
     immuatableEvents.sort((a, b) => {
-      var x = a.dates && a.dates.length ? a.dates[0].seconds : 0;
-      var y = b.dates && b.dates.length ? b.dates[0].seconds : 0;
+      var x =
+        a.dates && a.dates.length ? a.dates[a.dates.length - 1].seconds : 0;
+      var y =
+        b.dates && b.dates.length ? b.dates[b.dates.length - 1].seconds : 0;
 
       return x > y ? -1 : x < y ? 1 : 0;
     });
