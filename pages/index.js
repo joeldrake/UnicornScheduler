@@ -256,7 +256,7 @@ class Index extends React.Component {
           return <Event event={event} key={i} />;
         });
 
-      if (!eventFromUrl) {
+      if (!eventFromUrl && renderEvents.length < 2) {
         renderEvents.unshift(
           <Event
             event={{
