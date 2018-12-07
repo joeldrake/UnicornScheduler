@@ -241,7 +241,6 @@ class Index extends React.Component {
             if (event.normalizedDates) {
               //this is the new dates that is an array
               if (dateFromUrl) {
-                console.log(dateFromUrl);
                 return event.normalizedDates.includes(dateFromUrl);
               } else {
                 return event.normalizedDates.includes(todaysDate);
@@ -251,6 +250,13 @@ class Index extends React.Component {
               return event.normalizedDate === (dateFromUrl || todaysDate);
             }
           }
+        })
+        .sort((a, b) => {
+          //sort events on time to _try_ and get them in cronological order
+          var x = a.time || '';
+          var y = b.time || '';
+
+          return x < y ? -1 : x > y ? 1 : 0;
         })
         .map((event, i) => {
           return <Event event={event} key={i} />;
