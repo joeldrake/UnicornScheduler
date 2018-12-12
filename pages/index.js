@@ -251,16 +251,20 @@ class Index extends React.Component {
             }
           }
         })
-        .sort((a, b) => {
-          //sort events on time to _try_ and get them in cronological order
-          var x = a.time || '';
-          var y = b.time || '';
-
-          return x < y ? -1 : x > y ? 1 : 0;
-        })
         .map((event, i) => {
           return <Event event={event} key={i} />;
         });
+
+      /*
+        //sorts the event based on time each day, caused crash on calles old ipad when it had been running for to long
+        .sort((a, b) => {
+          //sort events on time to _try_ and get them in cronological order
+          var x = a.time ? a.time : 0;
+          var y = b.time ? b.time : 0;
+
+          return x < y ? -1 : x > y ? 1 : 0;
+        })
+        */
 
       if (!eventFromUrl && renderEvents.length < 2) {
         renderEvents.unshift(
